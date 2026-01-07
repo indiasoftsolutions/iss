@@ -377,365 +377,230 @@
       transition: all 0.4s ease;
     }
 
-/* ===== Products Section ===== */
-#products {
-  padding: 140px 5% 120px;
-  position: relative;
-  min-height: auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
+    /* ===== Products Section ===== */
+    #products {
+      padding: 140px 5% 120px;
+      position: relative;
+      min-height: auto;
+    }
 
-#products h2 {
-  text-align: center;
-  font-size: 2.5em;
-  color: #ff9500;
-  margin-bottom: 40px;
-  text-shadow: 0 0 15px rgba(255, 149, 0, 0.5);
-}
+    #products h2 {
+      text-align: center;
+      font-size: 2.5em;
+      color: #ff9500;
+      margin-bottom: 40px;
+      text-shadow: 0 0 15px rgba(255, 149, 0, 0.5);
+    }
 
-/* Products Container - Use grid for desktop, cards for mobile */
-.products-container {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 25px;
-  opacity: 0;
-  transform: translateY(80px);
-  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
-}
+    /* Products Container - Grid for desktop, cards for mobile */
+    .products-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      opacity: 0;
+      transform: translateY(80px);
+      transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+    }
 
-.products-container.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .products-container.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.products-container.hidden {
-  opacity: 0;
-  transform: translateY(80px);
-}
+    .products-container.hidden {
+      opacity: 0;
+      transform: translateY(80px);
+    }
 
-/* Product Card for mobile/desktop */
-.product-card {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(25px);
-  border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  transition: all 0.4s ease;
-  display: flex;
-  flex-direction: column;
-  opacity: 0;
-  transform: translateY(20px);
-}
+    /* Product Card */
+    .product-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(25px);
+      border-radius: 20px;
+      padding: 25px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      transition: all 0.4s ease;
+      display: flex;
+      flex-direction: column;
+      opacity: 0;
+      transform: translateY(20px);
+    }
 
-.product-card.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
+    .product-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.product-card:hover {
-  transform: translateY(-10px);
-  background: rgba(255, 255, 255, 0.12);
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
-}
+    .product-card:hover {
+      transform: translateY(-10px);
+      background: rgba(255, 255, 255, 0.12);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+    }
 
-/* Product Header */
-.product-header {
-  display: flex;
-  align-items: center;
-  margin-bottom: 20px;
-  border-bottom: 1px solid rgba(255, 149, 0, 0.3);
-  padding-bottom: 15px;
-}
+    /* Product Header */
+    .product-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+      border-bottom: 1px solid rgba(255, 149, 0, 0.3);
+      padding-bottom: 15px;
+    }
 
-.product-logo {
-  width: 60px;
-  height: 60px;
-  margin-right: 15px;
-}
+    .product-logo {
+      width: 60px;
+      height: 60px;
+      margin-right: 15px;
+      flex-shrink: 0;
+    }
 
-.product-logo img {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  border-radius: 12px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 5px;
-}
+    .product-logo img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      border-radius: 12px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 5px;
+    }
 
-.product-title {
-  flex: 1;
-}
+    .product-title {
+      flex: 1;
+    }
 
-.product-title h3 {
-  color: #ff9500;
-  font-size: 1.4em;
-  margin-bottom: 5px;
-}
+    .product-title h3 {
+      color: #ff9500;
+      font-size: 1.4em;
+      margin-bottom: 5px;
+    }
 
-.product-sl {
-  color: #ff9500;
-  font-weight: 600;
-  font-size: 1.1em;
-  background: rgba(255, 149, 0, 0.1);
-  padding: 4px 12px;
-  border-radius: 20px;
-  display: inline-block;
-}
+    .product-sl {
+      color: #ff9500;
+      font-weight: 600;
+      font-size: 1.1em;
+      background: rgba(255, 149, 0, 0.1);
+      padding: 4px 12px;
+      border-radius: 20px;
+      display: inline-block;
+    }
 
-/* Product Description */
-.product-description {
-  margin-bottom: 25px;
-  flex: 1;
-}
+    /* Product Description */
+    .product-description {
+      margin-bottom: 25px;
+      flex: 1;
+    }
 
-.product-description p {
-  color: #ddd;
-  line-height: 1.6;
-  font-size: 0.95em;
-}
+    .product-description p {
+      color: #ddd;
+      line-height: 1.6;
+      font-size: 0.95em;
+    }
 
-/* Download Platforms */
-.download-platforms {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
+    /* Download Platforms */
+    .download-platforms {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
 
-.platform-title {
-  color: #ff9500;
-  font-weight: 600;
-  font-size: 1em;
-  margin-bottom: 5px;
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+    .platform-title {
+      color: #ff9500;
+      font-weight: 600;
+      font-size: 1em;
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
 
-.platform-title i {
-  font-size: 1.2em;
-}
+    .platform-title i {
+      font-size: 1.2em;
+    }
 
-/* Platform Buttons Container */
-.platform-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 15px;
-}
+    /* Platform Buttons Container */
+    .platform-buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 15px;
+    }
 
-/* Platform Button */
-.platform-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 10px 18px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.9em;
-  transition: all 0.3s ease;
-  border: 1px solid transparent;
-  min-width: 120px;
-  justify-content: center;
-}
+    /* Platform Button */
+    .platform-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9em;
+      transition: all 0.3s ease;
+      border: 1px solid transparent;
+      min-width: 120px;
+      justify-content: center;
+    }
 
-.platform-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
+    .platform-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
 
-/* Platform-specific button colors */
-.windows-btn {
-  background: rgba(0, 120, 212, 0.9);
-  color: white;
-}
+    /* Platform-specific button colors */
+    .windows-btn {
+      background: rgba(0, 120, 212, 0.9);
+      color: white;
+    }
 
-.windows-btn:hover {
-  background: rgba(0, 120, 212, 1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
+    .windows-btn:hover {
+      background: rgba(0, 120, 212, 1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
 
-.android-btn {
-  background: rgba(61, 220, 132, 0.9);
-  color: white;
-}
+    .android-btn {
+      background: rgba(61, 220, 132, 0.9);
+      color: white;
+    }
 
-.android-btn:hover {
-  background: rgba(61, 220, 132, 1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
+    .android-btn:hover {
+      background: rgba(61, 220, 132, 1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
 
-.ios-btn {
-  background: rgba(0, 122, 255, 0.9);
-  color: white;
-}
+    .ios-btn {
+      background: rgba(0, 122, 255, 0.9);
+      color: white;
+    }
 
-.ios-btn:hover {
-  background: rgba(0, 122, 255, 1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
+    .ios-btn:hover {
+      background: rgba(0, 122, 255, 1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
 
-.web-btn {
-  background: rgba(255, 149, 0, 0.9);
-  color: white;
-}
+    .web-btn {
+      background: rgba(255, 149, 0, 0.9);
+      color: white;
+    }
 
-.web-btn:hover {
-  background: rgba(255, 149, 0, 1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
+    .web-btn:hover {
+      background: rgba(255, 149, 0, 1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
 
-/* Coming Soon Style */
-.coming-soon {
-  color: #aaa;
-  font-style: italic;
-  font-size: 0.9em;
-  padding: 10px 15px;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 10px;
-  text-align: center;
-}
+    /* Coming Soon Style */
+    .coming-soon {
+      color: #aaa;
+      font-style: italic;
+      font-size: 0.9em;
+      padding: 10px 15px;
+      background: rgba(255, 255, 255, 0.05);
+      border-radius: 10px;
+      text-align: center;
+    }
 
-/* Hide the table on mobile, show cards */
-@media (max-width: 768px) {
-  .products-table-container {
-    display: none; /* Hide table on mobile */
-  }
-  
-  .products-container {
-    display: block; /* Use block layout for mobile cards */
-  }
-  
-  .product-card {
-    margin-bottom: 25px;
-  }
-}
-
-/* Show table only on desktop */
-@media (min-width: 769px) {
-  .products-container {
-    display: none; /* Hide cards on desktop */
-  }
-  
-  .products-table-container {
-    display: block; /* Show table on desktop */
-  }
-}
-
-/* Desktop table styles (keep existing table styles but add responsive) */
-.products-table-container {
-  background: rgba(255, 255, 255, 0.08);
-  backdrop-filter: blur(25px);
-  border-radius: 20px;
-  padding: 20px;
-  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow-x: auto;
-  opacity: 0;
-  transform: translateY(80px);
-  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
-  width: 100%;
-  max-width: 100%;
-}
-
-.products-table-container.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.products-table-container.hidden {
-  opacity: 0;
-  transform: translateY(80px);
-}
-
-.products-table {
-  width: 100%;
-  border-collapse: separate;
-  border-spacing: 0;
-  min-width: 1000px;
-}
-
-/* Keep existing table styles... */
-/* (All your existing table CSS can remain here) */
-
-/* Mobile responsive adjustments */
-@media (max-width: 768px) {
-  #products {
-    padding: 120px 5% 80px;
-  }
-  
-  #products h2 {
-    font-size: 2em;
-    margin-bottom: 30px;
-  }
-  
-  .product-card {
-    padding: 20px;
-  }
-  
-  .product-logo {
-    width: 50px;
-    height: 50px;
-  }
-  
-  .product-title h3 {
-    font-size: 1.2em;
-  }
-  
-  .platform-btn {
-    padding: 8px 15px;
-    min-width: 110px;
-    font-size: 0.85em;
-  }
-  
-  .platform-buttons {
-    gap: 8px;
-  }
-}
-
-@media (max-width: 480px) {
-  #products {
-    padding: 100px 3% 60px;
-  }
-  
-  #products h2 {
-    font-size: 1.8em;
-  }
-  
-  .product-header {
-    flex-direction: column;
-    text-align: center;
-    gap: 15px;
-  }
-  
-  .product-logo {
-    margin-right: 0;
-  }
-  
-  .product-title {
-    text-align: center;
-  }
-  
-  .platform-buttons {
-    justify-content: center;
-  }
-  
-  .platform-btn {
-    min-width: 100px;
-    padding: 8px 12px;
-  }
-}
-
-@media (max-width: 320px) {
-  .platform-btn {
-    min-width: 90px;
-    padding: 7px 10px;
-    font-size: 0.8em;
-  }
-}
+    /* Desktop table - Hidden on all devices */
+    .products-table-container {
+      display: none;
+    }
 
     /* ===== Contact Section ===== */
     #contact {
@@ -892,7 +757,7 @@
       backdrop-filter: blur(10px);
     }
 
-    /* ===== Mobile ===== */
+    /* ===== Mobile Responsive ===== */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
@@ -946,32 +811,37 @@
         min-height: 250px;
       }
 
-      /* Products table mobile */
+      /* Products section mobile */
       #products {
-        padding: 120px 3% 80px;
+        padding: 120px 5% 80px;
       }
-
-      .products-table-container {
-        padding: 15px;
+      
+      #products h2 {
+        font-size: 2em;
+        margin-bottom: 30px;
       }
-
-      .products-table th {
-        padding: 15px 10px;
-        font-size: 0.9em;
+      
+      .product-card {
+        padding: 20px;
       }
-
-      .products-table td {
-        padding: 15px 10px;
+      
+      .product-logo {
+        width: 50px;
+        height: 50px;
       }
-
-      .download-btn {
-        padding: 6px 10px;
-        font-size: 0.8em;
-        min-width: 90px;
+      
+      .product-title h3 {
+        font-size: 1.2em;
       }
-
-      .description-cell {
-        min-width: 250px;
+      
+      .platform-btn {
+        padding: 8px 15px;
+        min-width: 110px;
+        font-size: 0.85em;
+      }
+      
+      .platform-buttons {
+        gap: 8px;
       }
 
       /* Contact section responsive */
@@ -1028,20 +898,35 @@
         font-size: 45px;
       }
 
-      /* Scroll controls mobile */
-      .scroll-controls {
+      /* Products section extra small */
+      #products h2 {
+        font-size: 1.8em;
+      }
+      
+      .product-header {
         flex-direction: column;
-        align-items: center;
+        text-align: center;
         gap: 15px;
       }
-
-      .scroll-btn {
-        width: 200px;
+      
+      .product-logo {
+        margin-right: 0;
+      }
+      
+      .product-title {
+        text-align: center;
+      }
+      
+      .platform-buttons {
         justify-content: center;
+      }
+      
+      .platform-btn {
+        min-width: 100px;
+        padding: 8px 12px;
       }
     }
 
-    /* Extra small devices */
     @media (max-width: 320px) {
       header h1 {
         font-size: 1.2em;
@@ -1058,6 +943,12 @@
       .contact-btn {
         width: 220px;
         height: 160px;
+      }
+
+      .platform-btn {
+        min-width: 90px;
+        padding: 7px 10px;
+        font-size: 0.8em;
       }
     }
   </style>
@@ -1160,386 +1051,211 @@
     </div>
   </section>
 
- 
-   <!-- ===== Products ===== -->
-<section id="products">
-  <h2>Our Products</h2>
-  
-  <!-- Desktop Table View -->
-  <div class="products-table-container">
-    <table class="products-table">
-      <thead>
-        <tr>
-          <th>SL No</th>
-          <th>Logo</th>
-          <th>Description</th>
-          <th>Windows (.exe)</th>
-          <th>Android (.apk)</th>
-          <th>iOS (.ipa)</th>
-          <th>Web</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- Product 1 -->
-        <tr>
-          <td class="sl-no">01</td>
-          <td class="logo-cell">
-            <img src="learndartlogo.png" alt="LearnDart Logo">
-          </td>
-          <td class="description-cell">
-            <h3>LearnDart</h3>
-            <p>Complete learning platform for Dart programming with interactive lessons, examples, and practice exercises.</p>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="downloads/LearnDartWindows.zip" class="download-btn windows-btn" download>
-                <i class="fab fa-windows"></i> Download
-              </a>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="https://github.com/tnhisecure/LearnDart/releases/latest/download/LearnDart.apk" 
-                 class="download-btn android-btn" 
-                 target="_blank">
-                <i class="fab fa-android"></i> Download
-              </a>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <span class="coming-soon">Coming Soon</span>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="https://learndart.netlify.app/" 
-                 class="download-btn web-btn" 
-                 target="_blank">
-                <i class="fas fa-globe"></i> Visit
-              </a>
-            </div>
-          </td>
-        </tr>
-        
-        <!-- Product 2 -->
-        <tr>
-          <td class="sl-no">02</td>
-          <td class="logo-cell">
-            <img src="images/logo.png" alt="ISS App Builder Logo">
-          </td>
-          <td class="description-cell">
-            <h3>ISS App Builder</h3>
-            <p>Drag-and-drop mobile app builder for creating Android and iOS applications without coding.</p>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="#" class="download-btn windows-btn">
-                <i class="fab fa-windows"></i> Coming Soon
-              </a>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="#" class="download-btn android-btn">
-                <i class="fab fa-android"></i> Coming Soon
-              </a>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <span class="coming-soon">Coming Soon</span>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="#" class="download-btn web-btn">
-                <i class="fas fa-globe"></i> Coming Soon
-              </a>
-            </div>
-          </td>
-        </tr>
-        
-        <!-- Product 3 -->
-        <tr>
-          <td class="sl-no">03</td>
-          <td class="logo-cell">
-            <img src="images/logo.png" alt="CodeSync Logo">
-          </td>
-          <td class="description-cell">
-            <h3>CodeSync</h3>
-            <p>Real-time collaborative code editor with syntax highlighting and version control for remote teams.</p>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="#" class="download-btn windows-btn">
-                <i class="fab fa-windows"></i> Coming Soon
-              </a>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="#" class="download-btn android-btn">
-                <i class="fab fa-android"></i> Coming Soon
-              </a>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <span class="coming-soon">Coming Soon</span>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="#" class="download-btn web-btn">
-                <i class="fas fa-globe"></i> Coming Soon
-              </a>
-            </div>
-          </td>
-        </tr>
-        
-        <!-- Product 4 -->
-        <tr>
-          <td class="sl-no">04</td>
-          <td class="logo-cell">
-            <img src="images/logo.png" alt="SecureVault Logo">
-          </td>
-          <td class="description-cell">
-            <h3>SecureVault</h3>
-            <p>End-to-end encrypted password manager with biometric authentication and cross-platform sync.</p>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="#" class="download-btn windows-btn">
-                <i class="fab fa-windows"></i> Coming Soon
-              </a>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="#" class="download-btn android-btn">
-                <i class="fab fa-android"></i> Coming Soon
-              </a>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <span class="coming-soon">Coming Soon</span>
-            </div>
-          </td>
-          <td>
-            <div class="download-buttons">
-              <a href="#" class="download-btn web-btn">
-                <i class="fas fa-globe"></i> Coming Soon
-              </a>
-            </div>
-          </td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  <!-- ===== Products ===== -->
+  <section id="products">
+    <h2>Our Products</h2>
 
-  <!-- Mobile Card View -->
-  <div class="products-container">
-    <!-- Product 1 Card -->
-    <div class="product-card">
-      <div class="product-header">
-        <div class="product-logo">
-          <img src="learndartlogo.png" alt="LearnDart Logo">
+    <!-- Products Cards Container -->
+    <div class="products-container">
+      <!-- Product 1 Card -->
+      <div class="product-card">
+        <div class="product-header">
+          <div class="product-logo">
+            <img src="learndartlogo.png" alt="LearnDart Logo">
+          </div>
+          <div class="product-title">
+            <h3>LearnDart</h3>
+            <span class="product-sl">01</span>
+          </div>
         </div>
-        <div class="product-title">
-          <h3>LearnDart</h3>
-          <span class="product-sl">01</span>
+        
+        <div class="product-description">
+          <p>Complete learning platform for Dart programming with interactive lessons, examples, and practice exercises. Perfect for beginners and intermediate developers.</p>
+        </div>
+        
+        <div class="download-platforms">
+          <div class="platform-title">
+            <i class="fab fa-windows"></i> Windows
+          </div>
+          <div class="platform-buttons">
+            <a href="downloads/LearnDartWindows.zip" class="platform-btn windows-btn" download>
+              <i class="fas fa-download"></i> Download
+            </a>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fab fa-android"></i> Android
+          </div>
+          <div class="platform-buttons">
+            <a href="https://github.com/tnhisecure/LearnDart/releases/latest/download/LearnDart.apk" 
+               class="platform-btn android-btn" 
+               target="_blank">
+              <i class="fas fa-download"></i> Download
+            </a>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fab fa-apple"></i> iOS
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fas fa-globe"></i> Web
+          </div>
+          <div class="platform-buttons">
+            <a href="https://learndart.netlify.app/" 
+               class="platform-btn web-btn" 
+               target="_blank">
+              <i class="fas fa-external-link-alt"></i> Visit Website
+            </a>
+          </div>
         </div>
       </div>
       
-      <div class="product-description">
-        <p>Complete learning platform for Dart programming with interactive lessons, examples, and practice exercises. Perfect for beginners and intermediate developers.</p>
+      <!-- Product 2 Card -->
+      <div class="product-card">
+        <div class="product-header">
+          <div class="product-logo">
+            <img src="images/logo.png" alt="ISS App Builder Logo">
+          </div>
+          <div class="product-title">
+            <h3>ISS App Builder</h3>
+            <span class="product-sl">02</span>
+          </div>
+        </div>
+        
+        <div class="product-description">
+          <p>Drag-and-drop mobile app builder for creating Android and iOS applications without coding. Includes templates, plugins, and cloud deployment.</p>
+        </div>
+        
+        <div class="download-platforms">
+          <div class="platform-title">
+            <i class="fab fa-windows"></i> Windows
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fab fa-android"></i> Android
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fab fa-apple"></i> iOS
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fas fa-globe"></i> Web
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+        </div>
       </div>
       
-      <div class="download-platforms">
-        <div class="platform-title">
-          <i class="fab fa-windows"></i> Windows
-        </div>
-        <div class="platform-buttons">
-          <a href="downloads/LearnDartWindows.zip" class="platform-btn windows-btn" download>
-            <i class="fas fa-download"></i> Download
-          </a>
-        </div>
-        
-        <div class="platform-title">
-          <i class="fab fa-android"></i> Android
-        </div>
-        <div class="platform-buttons">
-          <a href="https://github.com/tnhisecure/LearnDart/releases/latest/download/LearnDart.apk" 
-             class="platform-btn android-btn" 
-             target="_blank">
-            <i class="fas fa-download"></i> Download
-          </a>
+      <!-- Product 3 Card -->
+      <div class="product-card">
+        <div class="product-header">
+          <div class="product-logo">
+            <img src="images/logo.png" alt="CodeSync Logo">
+          </div>
+          <div class="product-title">
+            <h3>CodeSync</h3>
+            <span class="product-sl">03</span>
+          </div>
         </div>
         
-        <div class="platform-title">
-          <i class="fab fa-apple"></i> iOS
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
+        <div class="product-description">
+          <p>Real-time collaborative code editor with syntax highlighting, version control, and team management features for remote development teams.</p>
         </div>
         
-        <div class="platform-title">
-          <i class="fas fa-globe"></i> Web
+        <div class="download-platforms">
+          <div class="platform-title">
+            <i class="fab fa-windows"></i> Windows
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fab fa-android"></i> Android
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fab fa-apple"></i> iOS
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fas fa-globe"></i> Web
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
         </div>
-        <div class="platform-buttons">
-          <a href="https://learndart.netlify.app/" 
-             class="platform-btn web-btn" 
-             target="_blank">
-            <i class="fas fa-external-link-alt"></i> Visit Website
-          </a>
+      </div>
+      
+      <!-- Product 4 Card -->
+      <div class="product-card">
+        <div class="product-header">
+          <div class="product-logo">
+            <img src="images/logo.png" alt="SecureVault Logo">
+          </div>
+          <div class="product-title">
+            <h3>SecureVault</h3>
+            <span class="product-sl">04</span>
+          </div>
+        </div>
+        
+        <div class="product-description">
+          <p>End-to-end encrypted password manager and digital vault with biometric authentication, cross-platform sync, and secure sharing.</p>
+        </div>
+        
+        <div class="download-platforms">
+          <div class="platform-title">
+            <i class="fab fa-windows"></i> Windows
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fab fa-android"></i> Android
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fab fa-apple"></i> iOS
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
+          
+          <div class="platform-title">
+            <i class="fas fa-globe"></i> Web
+          </div>
+          <div class="platform-buttons">
+            <span class="coming-soon">Coming Soon</span>
+          </div>
         </div>
       </div>
     </div>
-    
-    <!-- Product 2 Card -->
-    <div class="product-card">
-      <div class="product-header">
-        <div class="product-logo">
-          <img src="images/logo.png" alt="ISS App Builder Logo">
-        </div>
-        <div class="product-title">
-          <h3>ISS App Builder</h3>
-          <span class="product-sl">02</span>
-        </div>
-      </div>
-      
-      <div class="product-description">
-        <p>Drag-and-drop mobile app builder for creating Android and iOS applications without coding. Includes templates, plugins, and cloud deployment.</p>
-      </div>
-      
-      <div class="download-platforms">
-        <div class="platform-title">
-          <i class="fab fa-windows"></i> Windows
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-        
-        <div class="platform-title">
-          <i class="fab fa-android"></i> Android
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-        
-        <div class="platform-title">
-          <i class="fab fa-apple"></i> iOS
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-        
-        <div class="platform-title">
-          <i class="fas fa-globe"></i> Web
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Product 3 Card -->
-    <div class="product-card">
-      <div class="product-header">
-        <div class="product-logo">
-          <img src="images/logo.png" alt="CodeSync Logo">
-        </div>
-        <div class="product-title">
-          <h3>CodeSync</h3>
-          <span class="product-sl">03</span>
-        </div>
-      </div>
-      
-      <div class="product-description">
-        <p>Real-time collaborative code editor with syntax highlighting, version control, and team management features for remote development teams.</p>
-      </div>
-      
-      <div class="download-platforms">
-        <div class="platform-title">
-          <i class="fab fa-windows"></i> Windows
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-        
-        <div class="platform-title">
-          <i class="fab fa-android"></i> Android
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-        
-        <div class="platform-title">
-          <i class="fab fa-apple"></i> iOS
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-        
-        <div class="platform-title">
-          <i class="fas fa-globe"></i> Web
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-      </div>
-    </div>
-    
-    <!-- Product 4 Card -->
-    <div class="product-card">
-      <div class="product-header">
-        <div class="product-logo">
-          <img src="images/logo.png" alt="SecureVault Logo">
-        </div>
-        <div class="product-title">
-          <h3>SecureVault</h3>
-          <span class="product-sl">04</span>
-        </div>
-      </div>
-      
-      <div class="product-description">
-        <p>End-to-end encrypted password manager and digital vault with biometric authentication, cross-platform sync, and secure sharing.</p>
-      </div>
-      
-      <div class="download-platforms">
-        <div class="platform-title">
-          <i class="fab fa-windows"></i> Windows
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-        
-        <div class="platform-title">
-          <i class="fab fa-android"></i> Android
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-        
-        <div class="platform-title">
-          <i class="fab fa-apple"></i> iOS
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-        
-        <div class="platform-title">
-          <i class="fas fa-globe"></i> Web
-        </div>
-        <div class="platform-buttons">
-          <span class="coming-soon">Coming Soon</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
 
   <!-- ===== Contact ===== -->
   <section id="contact">
@@ -1596,58 +1312,9 @@
       // ===== ELEMENT SELECTORS =====
       const aboutBoxes = document.querySelectorAll(".about-box");
       const services = document.querySelectorAll(".service-card");
-      const productContainer = document.querySelector(".products-table-container");
-      const tableRows = document.querySelectorAll(".products-table tbody tr");
+      const productsContainer = document.querySelector(".products-container");
+      const productCards = document.querySelectorAll(".product-card");
       
-      // ===== PRODUCTS TABLE SCROLL CONTROLS =====
-      const scrollUpBtn = document.getElementById("scrollUp");
-      const scrollDownBtn = document.getElementById("scrollDown");
-      
-      let currentRowIndex = 0;
-      const totalRows = tableRows.length;
-      const rowHeight = 80; // Approximate row height in pixels
-
-      // Function to scroll to specific row
-      function scrollToRow(index) {
-        if (index >= 0 && index < totalRows) {
-          const tableContainer = document.querySelector('.products-table-container');
-          const scrollPosition = index * rowHeight;
-          
-          // Smooth scroll animation
-          tableContainer.scrollTo({
-            top: scrollPosition,
-            behavior: 'smooth'
-          });
-          
-          // Update current index
-          currentRowIndex = index;
-          
-          // Update button states
-          scrollUpBtn.disabled = (currentRowIndex === 0);
-          scrollDownBtn.disabled = (currentRowIndex >= totalRows - 3); // Show 3 rows at a time
-        }
-      }
-
-      // Initialize button states
-      scrollUpBtn.disabled = true;
-      scrollDownBtn.disabled = (totalRows <= 3);
-
-     
-
-      // Keyboard navigation
-      document.addEventListener("keydown", (e) => {
-        if (document.querySelector("#products").getBoundingClientRect().top < window.innerHeight * 0.8 &&
-            document.querySelector("#products").getBoundingClientRect().bottom > 0) {
-          if (e.key === "ArrowUp") {
-            e.preventDefault();
-            scrollUpBtn.click();
-          } else if (e.key === "ArrowDown") {
-            e.preventDefault();
-            scrollDownBtn.click();
-          }
-        }
-      });
-
       // ===== INTERSECTION OBSERVER =====
       const observer = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
@@ -1680,49 +1347,46 @@
             }
           }
             
-          /* ✅ PRODUCTS TABLE CONTAINER ANIMATION */
-          if (el.classList.contains("products-table-container")) {
+          /* ✅ PRODUCTS CONTAINER ANIMATION */
+          if (el.classList.contains("products-container")) {
             if (entry.isIntersecting) {
               el.classList.add("visible");
               el.classList.remove("hidden");
+              
+              // Animate product cards with delay
+              const cards = document.querySelectorAll('.product-card');
+              cards.forEach((card, index) => {
+                setTimeout(() => {
+                  card.classList.add('visible');
+                }, index * 200);
+              });
             } else {
               el.classList.remove("visible");
               el.classList.add("hidden");
+              
+              // Reset product cards animation
+              productCards.forEach(card => {
+                card.classList.remove('visible');
+              });
+            }
+          }
+          
+          /* ✅ PRODUCT CARD ANIMATION */
+          if (el.classList.contains("product-card")) {
+            if (entry.isIntersecting) {
+              el.classList.add("visible");
+            } else {
+              el.classList.remove("visible");
             }
           }
         });
       }, { threshold: 0.3 });
-// In your JavaScript, add these lines after the existing observer code:
-
-// Observe product cards
-const productCards = document.querySelectorAll(".product-card");
-const productsContainer = document.querySelector(".products-container");
-
-if (productsContainer) {
-  observer.observe(productsContainer);
-  productCards.forEach(card => observer.observe(card));
-}
-
-// Add staggered animation for product cards
-productCards.forEach((card, index) => {
-  card.style.transitionDelay = `${index * 0.1}s`;
-});
-      // Observer for table rows animation
-      const rowObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add("visible");
-          } else {
-            entry.target.classList.remove("visible");
-          }
-        });
-      }, { threshold: 0.5 });
 
       // ===== OBSERVE ALL ELEMENTS =====
       aboutBoxes.forEach(box => observer.observe(box));
       services.forEach(card => observer.observe(card));
-      observer.observe(productContainer);
-      tableRows.forEach(row => rowObserver.observe(row));
+      if (productsContainer) observer.observe(productsContainer);
+      productCards.forEach(card => observer.observe(card));
 
       // ===== MOBILE DETECTION FOR CALL BUTTON =====
       function isMobileDevice() {
@@ -1756,6 +1420,11 @@ productCards.forEach((card, index) => {
       }, { threshold: 0.5 });
 
       contactButtons.forEach(btn => contactObserver.observe(btn));
+      
+      // Add staggered animation for product cards
+      productCards.forEach((card, index) => {
+        card.style.transitionDelay = `${index * 0.1}s`;
+      });
     });
   </script>
 </body>
