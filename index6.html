@@ -379,89 +379,257 @@
 
     /* ===== Products Section ===== */
     #products {
-      padding: 140px 10% 120px;
+      padding: 140px 5% 120px;
       position: relative;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
     }
 
     #products h2 {
       text-align: center;
-      font-size: 2.2em;
+      font-size: 2.5em;
       color: #ff9500;
-      margin-bottom: 50px;
-      text-shadow: 0 0 10px rgba(255, 149, 0, 0.4);
+      margin-bottom: 40px;
+      text-shadow: 0 0 15px rgba(255, 149, 0, 0.5);
     }
 
-    /* Product Card */
-    .product-card {
-      max-width: 520px;
-      margin: auto;
+    /* Products Table Container */
+    .products-table-container {
       background: rgba(255, 255, 255, 0.08);
-      backdrop-filter: blur(20px);
+      backdrop-filter: blur(25px);
       border-radius: 20px;
-      padding: 35px 30px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
-
+      padding: 30px;
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      overflow-x: auto;
       opacity: 0;
-      transform: translateY(120px) scale(0.95);
-      transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+      transform: translateY(80px);
+      transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
     }
 
-    /* Visible (scroll down) */
-    .product-card.visible {
+    .products-table-container.visible {
       opacity: 1;
-      transform: translateY(0) scale(1);
+      transform: translateY(0);
     }
 
-    /* Hidden again (scroll up) */
-    .product-card.hidden {
+    .products-table-container.hidden {
       opacity: 0;
-      transform: translateY(120px) scale(0.95);
+      transform: translateY(80px);
     }
 
-    /* Logo */
-    .product-card img {
-      width: 120px;
-      display: block;
-      margin: 0 auto 20px;
+    /* Products Table */
+    .products-table {
+      width: 100%;
+      border-collapse: separate;
+      border-spacing: 0;
+      min-width: 1000px;
     }
 
-    /* Title */
-    .product-card h3 {
+    /* Table Headers */
+    .products-table thead {
+      background: rgba(255, 149, 0, 0.2);
+      backdrop-filter: blur(10px);
+    }
+
+    .products-table th {
+      padding: 20px 15px;
+      text-align: center;
       color: #ff9500;
-      text-align: center;
-      margin-bottom: 12px;
-      font-size: 1.6em;
+      font-weight: 600;
+      font-size: 1.1em;
+      border-bottom: 2px solid rgba(255, 149, 0, 0.3);
+      position: sticky;
+      top: 0;
+      z-index: 10;
     }
 
-    /* Text */
-    .product-card p {
-      color: #fff;
-      text-align: center;
-      line-height: 1.6;
-      margin-bottom: 25px;
+    /* Table Rows */
+    .products-table tbody tr {
+      transition: all 0.3s ease;
+      opacity: 0;
+      transform: translateY(20px);
     }
 
-    /* Buttons */
-    .product-buttons {
+    .products-table tbody tr.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .products-table tbody tr:nth-child(even) {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .products-table tbody tr:nth-child(odd) {
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .products-table tbody tr:hover {
+      background: rgba(255, 149, 0, 0.15);
+      transform: scale(1.01);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    /* Table Cells */
+    .products-table td {
+      padding: 20px 15px;
+      text-align: center;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+      vertical-align: middle;
+    }
+
+    /* Serial Number */
+    .sl-no {
+      font-weight: 600;
+      font-size: 1.2em;
+      color: #ff9500;
+      width: 80px;
+    }
+
+    /* Logo Cell */
+    .logo-cell {
+      width: 100px;
+    }
+
+    .logo-cell img {
+      width: 60px;
+      height: 60px;
+      object-fit: contain;
+      border-radius: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      padding: 5px;
+    }
+
+    /* Description Cell */
+    .description-cell {
+      text-align: left;
+      max-width: 400px;
+      min-width: 300px;
+    }
+
+    .description-cell h3 {
+      color: #ff9500;
+      margin-bottom: 8px;
+      font-size: 1.2em;
+    }
+
+    .description-cell p {
+      color: #ddd;
+      font-size: 0.95em;
+      line-height: 1.5;
+    }
+
+    /* Download Buttons Container */
+    .download-buttons {
       display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
+      flex-direction: column;
+      gap: 10px;
+      align-items: center;
+      min-width: 120px;
     }
 
-    .product-btn {
-      padding: 10px 22px;
-      border-radius: 30px;
-      background: rgba(255, 149, 0, 0.9);
-      color: #000;
+    /* Download Buttons */
+    .download-btn {
+      padding: 8px 15px;
+      border-radius: 20px;
       text-decoration: none;
       font-weight: 600;
-      transition: 0.3s;
+      font-size: 0.85em;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.3s ease;
+      min-width: 110px;
+      border: 1px solid transparent;
     }
 
-    .product-btn:hover {
-      background: #fff;
-      transform: translateY(-4px);
+    .download-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Platform-specific button colors */
+    .windows-btn {
+      background: rgba(0, 120, 212, 0.8);
+      color: white;
+    }
+
+    .windows-btn:hover {
+      background: rgba(0, 120, 212, 1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .android-btn {
+      background: rgba(61, 220, 132, 0.8);
+      color: white;
+    }
+
+    .android-btn:hover {
+      background: rgba(61, 220, 132, 1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .ios-btn {
+      background: rgba(0, 122, 255, 0.8);
+      color: white;
+    }
+
+    .ios-btn:hover {
+      background: rgba(0, 122, 255, 1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    .web-btn {
+      background: rgba(255, 149, 0, 0.8);
+      color: white;
+    }
+
+    .web-btn:hover {
+      background: rgba(255, 149, 0, 1);
+      border-color: rgba(255, 255, 255, 0.3);
+    }
+
+    /* Coming Soon Style */
+    .coming-soon {
+      color: #aaa;
+      font-style: italic;
+      font-size: 0.9em;
+    }
+
+    /* Scroll Animation Controls */
+    .scroll-controls {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .scroll-btn {
+      background: rgba(255, 149, 0, 0.2);
+      border: 1px solid rgba(255, 149, 0, 0.4);
+      color: #ff9500;
+      padding: 12px 25px;
+      border-radius: 30px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      backdrop-filter: blur(10px);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scroll-btn:hover {
+      background: rgba(255, 149, 0, 0.4);
+      transform: translateY(-3px);
+    }
+
+    .scroll-btn:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+      transform: none;
     }
 
     /* ===== Contact Section ===== */
@@ -596,6 +764,20 @@
       background: linear-gradient(135deg, rgba(211, 52, 39, 0.95), rgba(176, 58, 46, 0.95));
     }
 
+    /* Centered response message */
+    .response-message {
+      margin-top: 60px;
+      color: #fff;
+      font-size: 0.95em;
+      background: rgba(0,0,0,0.4);
+      padding: 12px 20px;
+      border-radius: 10px;
+      display: block;
+      text-align: center;
+      width: 100%;
+      backdrop-filter: blur(5px);
+    }
+
     /* ===== Footer ===== */
     footer {
       text-align: center;
@@ -659,6 +841,34 @@
         min-height: 250px;
       }
 
+      /* Products table mobile */
+      #products {
+        padding: 120px 3% 80px;
+      }
+
+      .products-table-container {
+        padding: 15px;
+      }
+
+      .products-table th {
+        padding: 15px 10px;
+        font-size: 0.9em;
+      }
+
+      .products-table td {
+        padding: 15px 10px;
+      }
+
+      .download-btn {
+        padding: 6px 10px;
+        font-size: 0.8em;
+        min-width: 90px;
+      }
+
+      .description-cell {
+        min-width: 250px;
+      }
+
       /* Contact section responsive */
       .contact-buttons {
         flex-direction: column;
@@ -711,6 +921,18 @@
 
       .contact-btn i {
         font-size: 45px;
+      }
+
+      /* Scroll controls mobile */
+      .scroll-controls {
+        flex-direction: column;
+        align-items: center;
+        gap: 15px;
+      }
+
+      .scroll-btn {
+        width: 200px;
+        justify-content: center;
       }
     }
 
@@ -835,34 +1057,189 @@
 
   <!-- ===== Products ===== -->
   <section id="products">
-    <h2>Our Product</h2>
+    <h2>Our Products</h2>
+    
+    <div class="products-table-container">
+      <table class="products-table">
+        <thead>
+          <tr>
+            <th>SL No</th>
+            <th>Logo</th>
+            <th>Description</th>
+            <th>Windows (.exe)</th>
+            <th>Android (.apk)</th>
+            <th>iOS (.ipa)</th>
+            <th>Web</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Product 1 -->
+          <tr>
+            <td class="sl-no">01</td>
+            <td class="logo-cell">
+              <img src="learndartlogo.png" alt="LearnDart Logo">
+            </td>
+            <td class="description-cell">
+              <h3>LearnDart</h3>
+              <p>Complete learning platform for Dart programming with interactive lessons, examples, and practice exercises. Perfect for beginners and intermediate developers.</p>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="downloads/LearnDartWindows.zip" class="download-btn windows-btn" download>
+                  <i class="fab fa-windows"></i> Download
+                </a>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="https://github.com/tnhisecure/LearnDart/releases/latest/download/LearnDart.apk" 
+                   class="download-btn android-btn" 
+                   target="_blank">
+                  <i class="fab fa-android"></i> Download
+                </a>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <span class="coming-soon">Coming Soon</span>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="https://learndart.netlify.app/" 
+                   class="download-btn web-btn" 
+                   target="_blank">
+                  <i class="fas fa-globe"></i> Visit
+                </a>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- Product 2 -->
+          <tr>
+            <td class="sl-no">02</td>
+            <td class="logo-cell">
+              <img src="images/logo.png" alt="ISS App Builder Logo">
+            </td>
+            <td class="description-cell">
+              <h3>ISS App Builder</h3>
+              <p>Drag-and-drop mobile app builder for creating Android and iOS applications without coding. Includes templates, plugins, and cloud deployment.</p>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="#" class="download-btn windows-btn">
+                  <i class="fab fa-windows"></i> Coming Soon
+                </a>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="#" class="download-btn android-btn">
+                  <i class="fab fa-android"></i> Coming Soon
+                </a>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <span class="coming-soon">Coming Soon</span>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="#" class="download-btn web-btn">
+                  <i class="fas fa-globe"></i> Coming Soon
+                </a>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- Product 3 -->
+          <tr>
+            <td class="sl-no">03</td>
+            <td class="logo-cell">
+              <img src="images/logo.png" alt="CodeSync Logo">
+            </td>
+            <td class="description-cell">
+              <h3>CodeSync</h3>
+              <p>Real-time collaborative code editor with syntax highlighting, version control, and team management features for remote development teams.</p>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="#" class="download-btn windows-btn">
+                  <i class="fab fa-windows"></i> Coming Soon
+                </a>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="#" class="download-btn android-btn">
+                  <i class="fab fa-android"></i> Coming Soon
+                </a>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <span class="coming-soon">Coming Soon</span>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="#" class="download-btn web-btn">
+                  <i class="fas fa-globe"></i> Coming Soon
+                </a>
+              </div>
+            </td>
+          </tr>
+          
+          <!-- Product 4 -->
+          <tr>
+            <td class="sl-no">04</td>
+            <td class="logo-cell">
+              <img src="images/logo.png" alt="SecureVault Logo">
+            </td>
+            <td class="description-cell">
+              <h3>SecureVault</h3>
+              <p>End-to-end encrypted password manager and digital vault with biometric authentication, cross-platform sync, and secure sharing.</p>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="#" class="download-btn windows-btn">
+                  <i class="fab fa-windows"></i> Coming Soon
+                </a>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="#" class="download-btn android-btn">
+                  <i class="fab fa-android"></i> Coming Soon
+                </a>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <span class="coming-soon">Coming Soon</span>
+              </div>
+            </td>
+            <td>
+              <div class="download-buttons">
+                <a href="#" class="download-btn web-btn">
+                  <i class="fas fa-globe"></i> Coming Soon
+                </a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
 
-    <div class="product-card">
-      <img src="learndartlogo.png" alt="LearnDart Logo">
-
-      <h3>LearnDart</h3>
-
-      <p>
-        LearnDart is a beginner-friendly learning platform designed to help students
-        master Dart programming with examples, explanations, and practice.
-      </p>
-
-      <div class="product-buttons">
-        <a href="https://learndart.netlify.app/" class="product-btn" target="_blank">
-          🌐 Open Web App
-        </a>
-
-        <a href="downloads/LearnDartWindows.zip"
-           class="product-btn windows"
-           download>
-          🖥 Download for Windows
-        </a>
-
-        <a href="https://github.com/tnhisecure/LearnDart/releases/latest/download/LearnDart.apk"
-           class="product-btn">
-          📱 Android APK
-        </a>
-      </div>
+    <!-- Scroll Controls -->
+    <div class="scroll-controls">
+      <button class="scroll-btn" id="scrollUp">
+        <i class="fas fa-arrow-up"></i> Scroll Up
+      </button>
+      <button class="scroll-btn" id="scrollDown">
+        <i class="fas fa-arrow-down"></i> Scroll Down
+      </button>
     </div>
   </section>
 
@@ -897,13 +1274,13 @@
       </a>
     </div>
     
-   <p style="margin-top: 60px; color: #fff; font-size: 0.95em; background: rgba(0,0,0,0.4); padding: 12px 20px; border-radius: 10px; display: block; text-align: center; width: 100%; backdrop-filter: blur(5px); ">
-  We typically respond 24/7 during business days.
-</p>
+    <p class="response-message">
+      We typically respond 24/7 during business days.
+    </p>
   </section>
 
   <footer>
-    © 2026 India Soft Solutions | All Rights Reserved
+    © 2025 India Soft Solutions | All Rights Reserved
   </footer>
 
   <!-- AOS Animation JS -->
@@ -921,7 +1298,69 @@
       // ===== ELEMENT SELECTORS =====
       const aboutBoxes = document.querySelectorAll(".about-box");
       const services = document.querySelectorAll(".service-card");
-      const productCard = document.querySelector(".product-card");
+      const productContainer = document.querySelector(".products-table-container");
+      const tableRows = document.querySelectorAll(".products-table tbody tr");
+      
+      // ===== PRODUCTS TABLE SCROLL CONTROLS =====
+      const scrollUpBtn = document.getElementById("scrollUp");
+      const scrollDownBtn = document.getElementById("scrollDown");
+      
+      let currentRowIndex = 0;
+      const totalRows = tableRows.length;
+      const rowHeight = 80; // Approximate row height in pixels
+
+      // Function to scroll to specific row
+      function scrollToRow(index) {
+        if (index >= 0 && index < totalRows) {
+          const tableContainer = document.querySelector('.products-table-container');
+          const scrollPosition = index * rowHeight;
+          
+          // Smooth scroll animation
+          tableContainer.scrollTo({
+            top: scrollPosition,
+            behavior: 'smooth'
+          });
+          
+          // Update current index
+          currentRowIndex = index;
+          
+          // Update button states
+          scrollUpBtn.disabled = (currentRowIndex === 0);
+          scrollDownBtn.disabled = (currentRowIndex >= totalRows - 3); // Show 3 rows at a time
+        }
+      }
+
+      // Initialize button states
+      scrollUpBtn.disabled = true;
+      scrollDownBtn.disabled = (totalRows <= 3);
+
+      // Scroll Up button click
+      scrollUpBtn.addEventListener("click", () => {
+        if (currentRowIndex > 0) {
+          scrollToRow(currentRowIndex - 1);
+        }
+      });
+
+      // Scroll Down button click
+      scrollDownBtn.addEventListener("click", () => {
+        if (currentRowIndex < totalRows - 1) {
+          scrollToRow(currentRowIndex + 1);
+        }
+      });
+
+      // Keyboard navigation
+      document.addEventListener("keydown", (e) => {
+        if (document.querySelector("#products").getBoundingClientRect().top < window.innerHeight * 0.8 &&
+            document.querySelector("#products").getBoundingClientRect().bottom > 0) {
+          if (e.key === "ArrowUp") {
+            e.preventDefault();
+            scrollUpBtn.click();
+          } else if (e.key === "ArrowDown") {
+            e.preventDefault();
+            scrollDownBtn.click();
+          }
+        }
+      });
 
       // ===== INTERSECTION OBSERVER =====
       const observer = new IntersectionObserver((entries) => {
@@ -955,8 +1394,8 @@
             }
           }
             
-          /* ✅ PRODUCT SECTION BOTH-DIRECTION ANIMATION */
-          if (el.classList.contains("product-card")) {
+          /* ✅ PRODUCTS TABLE CONTAINER ANIMATION */
+          if (el.classList.contains("products-table-container")) {
             if (entry.isIntersecting) {
               el.classList.add("visible");
               el.classList.remove("hidden");
@@ -968,10 +1407,22 @@
         });
       }, { threshold: 0.3 });
 
+      // Observer for table rows animation
+      const rowObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+          } else {
+            entry.target.classList.remove("visible");
+          }
+        });
+      }, { threshold: 0.5 });
+
       // ===== OBSERVE ALL ELEMENTS =====
       aboutBoxes.forEach(box => observer.observe(box));
       services.forEach(card => observer.observe(card));
-      observer.observe(productCard);
+      observer.observe(productContainer);
+      tableRows.forEach(row => rowObserver.observe(row));
 
       // ===== MOBILE DETECTION FOR CALL BUTTON =====
       function isMobileDevice() {
