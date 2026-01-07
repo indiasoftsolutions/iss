@@ -140,6 +140,7 @@
       align-items: center;
       text-align: center;
       padding: 0 20px;
+      position: relative;
     }
 
     #home h1 {
@@ -465,24 +466,27 @@
 
     /* ===== Contact Section ===== */
     #contact {
-      background: #f8f8ff;
-      padding: 120px 15%;
-      text-align: center;
+      padding: 140px 10% 100px;
+      position: relative;
     }
 
     #contact h2 {
+      text-align: center;
       font-size: 2.2em;
-      color: #4d10f2;
-      margin-bottom: 40px;
+      color: #ff9500;
+      margin-bottom: 50px;
+      text-shadow: 0 0 10px rgba(255, 149, 0, 0.4);
     }
 
     .contact-subtitle {
       font-size: 1.1em;
-      color: #666;
+      color: #fff;
       margin-bottom: 50px;
       max-width: 600px;
       margin-left: auto;
       margin-right: auto;
+      text-align: center;
+      opacity: 0.9;
     }
 
     /* ===== Contact Buttons Container ===== */
@@ -490,8 +494,8 @@
       display: flex;
       justify-content: center;
       flex-wrap: wrap;
-      gap: 25px;
-      max-width: 800px;
+      gap: 30px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
@@ -501,18 +505,33 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      width: 200px;
-      height: 200px;
+      width: 220px;
+      height: 220px;
       border-radius: 20px;
       text-decoration: none;
       color: white;
       font-weight: 600;
       font-size: 1.2em;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-      transform: translateY(30px);
+      transition: all 0.4s ease;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.1);
       opacity: 0;
+      transform: translateY(30px);
       animation: fadeInUp 0.8s ease forwards;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.05);
+      z-index: -1;
     }
 
     .contact-btn:nth-child(1) { animation-delay: 0.1s; }
@@ -527,45 +546,54 @@
     }
 
     .contact-btn i {
-      font-size: 50px;
+      font-size: 60px;
       margin-bottom: 15px;
+      filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.3));
     }
 
     .contact-btn span {
       margin-top: 5px;
-      font-size: 0.9em;
+      font-size: 1em;
+      text-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .contact-btn .contact-detail {
+      font-size: 0.85em;
       opacity: 0.9;
+      margin-top: 8px;
+      font-weight: 400;
     }
 
     /* ===== Button Colors ===== */
     .contact-btn.call {
-      background: linear-gradient(135deg, #25D366, #128C7E);
+      background: linear-gradient(135deg, rgba(37, 211, 102, 0.9), rgba(18, 140, 126, 0.9));
     }
 
     .contact-btn.whatsapp {
-      background: linear-gradient(135deg, #4d10f2, #7c3aed);
+      background: linear-gradient(135deg, rgba(77, 16, 242, 0.9), rgba(124, 58, 237, 0.9));
     }
 
     .contact-btn.email {
-      background: linear-gradient(135deg, #EA4335, #D14836);
+      background: linear-gradient(135deg, rgba(234, 67, 53, 0.9), rgba(209, 72, 54, 0.9));
     }
 
     /* ===== Hover Effects ===== */
     .contact-btn:hover {
       transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
     .contact-btn.call:hover {
-      background: linear-gradient(135deg, #1DA851, #0E7C6F);
+      background: linear-gradient(135deg, rgba(29, 168, 81, 0.95), rgba(14, 124, 111, 0.95));
     }
 
     .contact-btn.whatsapp:hover {
-      background: linear-gradient(135deg, #3b0ec9, #5b21b6);
+      background: linear-gradient(135deg, rgba(59, 14, 201, 0.95), rgba(91, 33, 182, 0.95));
     }
 
     .contact-btn.email:hover {
-      background: linear-gradient(135deg, #D33427, #B03A2E);
+      background: linear-gradient(135deg, rgba(211, 52, 39, 0.95), rgba(176, 58, 46, 0.95));
     }
 
     /* ===== Footer ===== */
@@ -635,15 +663,21 @@
       .contact-buttons {
         flex-direction: column;
         align-items: center;
+        gap: 20px;
       }
       
       .contact-btn {
-        width: 250px;
+        width: 280px;
         height: 180px;
       }
       
       .contact-btn i {
-        font-size: 40px;
+        font-size: 50px;
+      }
+
+      .contact-subtitle {
+        font-size: 1em;
+        padding: 0 15px;
       }
     }
 
@@ -669,6 +703,15 @@
       section {
         padding: 100px 5% 60px;
       }
+
+      .contact-btn {
+        width: 250px;
+        height: 170px;
+      }
+
+      .contact-btn i {
+        font-size: 45px;
+      }
     }
 
     /* Extra small devices */
@@ -683,6 +726,11 @@
       
       section {
         padding: 90px 5% 50px;
+      }
+
+      .contact-btn {
+        width: 220px;
+        height: 160px;
       }
     }
   </style>
@@ -828,7 +876,7 @@
       <a href="tel:+918250227952" class="contact-btn call">
         <i class="fas fa-phone-alt"></i>
         <span>CALL US</span>
-        <span style="font-size: 0.8em; opacity: 0.8;">+91 8250227952</span>
+        <span class="contact-detail">+91 8250227952</span>
       </a>
       
       <!-- WhatsApp Button -->
@@ -837,7 +885,7 @@
          target="_blank">
         <i class="fab fa-whatsapp"></i>
         <span>WHATSAPP</span>
-        <span style="font-size: 0.8em; opacity: 0.8;">Quick Chat</span>
+        <span class="contact-detail">Quick Chat</span>
       </a>
       
       <!-- Email Button -->
@@ -845,11 +893,11 @@
          class="contact-btn email">
         <i class="fas fa-envelope"></i>
         <span>EMAIL US</span>
-        <span style="font-size: 0.8em; opacity: 0.8;">indiasoftsolutions2025@gmail.com</span>
+        <span class="contact-detail">indiasoftsolutions2025@gmail.com</span>
       </a>
     </div>
     
-    <p style="margin-top: 50px; color: #fff; font-size: 0.95em; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px; display: inline-block;">
+    <p style="margin-top: 60px; color: #fff; font-size: 0.95em; background: rgba(0,0,0,0.4); padding: 12px 20px; border-radius: 10px; display: inline-block; backdrop-filter: blur(5px);">
       We typically respond 24/7 during business days.
     </p>
   </section>
@@ -945,6 +993,18 @@
           }
         });
       }
+
+      // ===== ADD SCROLL ANIMATION TO CONTACT BUTTONS =====
+      const contactButtons = document.querySelectorAll('.contact-btn');
+      const contactObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.style.animationPlayState = 'running';
+          }
+        });
+      }, { threshold: 0.5 });
+
+      contactButtons.forEach(btn => contactObserver.observe(btn));
     });
   </script>
 </body>
