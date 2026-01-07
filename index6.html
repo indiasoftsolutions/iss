@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>India Soft Solutions</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      overflow-x: hidden;
+      background: #f9f9f9;
+    }
+
+    /* ===== Header ===== */
+    header {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      padding: 12px 40px;
+      background: rgba(255,255,255,0.95);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+
+    header h1 {
+      color: #4d10f2;
+      font-size: 1.6rem;
+    }
+
+    nav a {
+      margin-left: 20px;
+      text-decoration: none;
+      color: #333;
+      font-weight: 500;
+    }
+
+    nav a:hover {
+      color: #4d10f2;
+    }
+
+    /* ===== Video Hero ===== */
+    .video-hero {
+      position: relative;
+      height: 100vh;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    .video-hero video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: -2;
+    }
+
+    .video-overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: -1;
+    }
+
+    .hero-content {
+      color: #fff;
+      padding: 0 20px;
+    }
+
+    .hero-content h1 {
+      font-size: 3rem;
+      margin-bottom: 15px;
+    }
+
+    .hero-content span {
+      color: #ffe600;
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      max-width: 650px;
+      margin: auto;
+      margin-bottom: 30px;
+    }
+
+    .hero-btn {
+      padding: 14px 30px;
+      background: #fff;
+      color: #4d10f2;
+      text-decoration: none;
+      font-weight: 600;
+      border-radius: 50px;
+      transition: 0.3s;
+    }
+
+    .hero-btn:hover {
+      background: #ffe600;
+      color: #000;
+    }
+
+    /* ===== Section ===== */
+    section {
+      padding: 120px 10%;
+    }
+
+    h2 {
+      text-align: center;
+      font-size: 2.4rem;
+      color: #4d10f2;
+      margin-bottom: 60px;
+    }
+
+    /* ===== Services ===== */
+    .services {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .service-box {
+      width: 260px;
+      padding: 30px;
+      background: #fff;
+      border-radius: 20px;
+      box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+      text-align: center;
+    }
+
+    .service-box i {
+      font-size: 40px;
+      color: #4d10f2;
+      margin-bottom: 15px;
+    }
+
+    /* ===== Contact ===== */
+    #contact {
+      background: #f0f0ff;
+      text-align: center;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 25px;
+      flex-wrap: wrap;
+    }
+
+    .contact-btn {
+      width: 200px;
+      height: 180px;
+      border-radius: 20px;
+      color: #fff;
+      text-decoration: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .contact-btn i {
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    .call { background: linear-gradient(135deg,#25d366,#128c7e); }
+    .whatsapp { background: linear-gradient(135deg,#4d10f2,#7c3aed); }
+    .email { background: linear-gradient(135deg,#ea4335,#d14836); }
+
+    .contact-btn:hover {
+      transform: translateY(-10px) scale(1.05);
+    }
+
+    footer {
+      background: #4d10f2;
+      color: #fff;
+      text-align: center;
+      padding: 20px;
+    }
+
+    @media (max-width: 768px) {
+      header {
+        flex-direction: column;
+      }
+
+      .hero-content h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1>India Soft Solutions</h1>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#services">Services</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<!-- ===== HOME WITH VIDEO ===== -->
+<section id="home" class="video-hero">
+  <video autoplay muted loop playsinline>
+    <source src="background.mp4" type="video/mp4">
+  </video>
+  <div class="video-overlay"></div>
+
+  <div class="hero-content">
+    <h1>Welcome to <span>India Soft Solutions</span></h1>
+    <p>We design and develop powerful digital experiences for modern businesses.</p>
+    <a href="#services" class="hero-btn">Explore Services</a>
+  </div>
+</section>
+
+<!-- ===== SERVICES ===== -->
+<section id="services">
+  <h2>Our Services</h2>
+  <div class="services">
+    <div class="service-box">
+      <i class="fas fa-code"></i>
+      <h3>Web Development</h3>
+      <p>Modern & responsive websites</p>
+    </div>
+
+    <div class="service-box">
+      <i class="fas fa-mobile-alt"></i>
+      <h3>App Development</h3>
+      <p>Android & iOS apps</p>
+    </div>
+
+    <div class="service-box">
+      <i class="fas fa-paint-brush"></i>
+      <h3>UI / UX Design</h3>
+      <p>Clean & user-friendly design</p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== CONTACT ===== -->
+<section id="contact">
+  <h2>Contact Us</h2>
+  <div class="contact-buttons">
+    <a href="tel:+918250227952" class="contact-btn call">
+      <i class="fas fa-phone"></i>Call
+    </a>
+
+    <a href="https://wa.me/918250227952" class="contact-btn whatsapp">
+      <i class="fab fa-whatsapp"></i>WhatsApp
+    </a>
+
+    <a href="mailto:indiasoftsolutions2025@gmail.com" class="contact-btn email">
+      <i class="fas fa-envelope"></i>Email
+    </a>
+  </div>
+</section>
+
+<footer>
+  © 2025 India Soft Solutions | All Rights Reserved
+</footer>
+
+</body>
+</html>
