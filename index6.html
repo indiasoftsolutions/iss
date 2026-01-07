@@ -2,337 +2,950 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>India Soft Solutions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>India Soft Solutions (ISS)</title>
+    
+  <!-- ✅ Favicon -->
+  <link rel="icon" type="image/x-icon" href="logo.ico" />
 
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+  <!-- ✅ AOS Animation -->
+  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+
+  <!-- ✅ Font Awesome for Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
 
   <style>
+    /* Fix anchor scroll offset for fixed header */
+    :target {
+      scroll-margin-top: 185px;
+    }
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       font-family: "Poppins", sans-serif;
+      user-select: none;
     }
 
     body {
-      color: #fff;
+      color: white;
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+      background-color: #000;
+    }
+
+    /* Hide scrollbar for all devices - Chrome, Safari and Opera */
+    body::-webkit-scrollbar {
+      display: none;
+    }
+    
+    /* Hide scrollbar for all devices - IE, Edge and Firefox */
+    body {
+      -ms-overflow-style: none;  /* IE and Edge */
+      scrollbar-width: none;  /* Firefox */
+    }
+
+    html {
       overflow-x: hidden;
     }
 
-    /* ===== FULL PAGE VIDEO BACKGROUND ===== */
-    .video-bg {
-      position: fixed;
-      inset: 0;
-      z-index: -2;
-      overflow: hidden;
+    img {
+      -webkit-user-drag: none;
+      pointer-events: none;
     }
 
-    .video-bg video {
+    /* ===== Background Video ===== */
+    .video-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
       width: 100%;
       height: 100%;
       object-fit: cover;
+      z-index: -2;
     }
 
-    .video-overlay {
+    .overlay {
       position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.6);
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.55);
       z-index: -1;
     }
 
-    /* ===== GLASS NAVBAR ===== */
+    /* ===== Navbar ===== */
     header {
       position: fixed;
       top: 0;
+      left: 0;
       width: 100%;
-      padding: 14px 50px;
+      backdrop-filter: blur(12px);
+      background: rgba(0, 0, 0, 0.4);
+      box-shadow: 0 2px 15px rgba(0, 0, 0, 0.4);
+      padding: 12px 40px;
       display: flex;
       justify-content: space-between;
       align-items: center;
       z-index: 1000;
+      transition: all 0.4s ease;
+    }
 
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.25);
+    .logo-container {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
     }
 
     header h1 {
-      font-size: 1.5rem;
+      font-size: 1.8em;
+      color: #fff;
       font-weight: 700;
-      color: #ffe600;
+      text-shadow: 0 0 8px rgba(255, 255, 255, 0.4);
+    }
+
+    header img {
+      height: 70px;
+      margin-right: 10px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
     }
 
     nav a {
-      margin-left: 25px;
       text-decoration: none;
-      color: #fff;
+      color: white;
+      margin: 0 15px;
       font-weight: 500;
-      position: relative;
+      transition: color 0.3s;
     }
 
-    nav a::after {
-      content: "";
-      position: absolute;
-      left: 0;
-      bottom: -6px;
-      width: 0;
-      height: 2px;
-      background: #ffe600;
-      transition: 0.3s;
+    nav a:hover {
+      color: #ff9500;
     }
 
-    nav a:hover::after {
-      width: 100%;
-    }
-
-    /* ===== SECTIONS ===== */
-    section {
-      min-height: 100vh;
-      padding: 140px 10% 80px;
+    /* ===== Hero Section ===== */
+    #home {
+      height: 100vh;
       display: flex;
       flex-direction: column;
       justify-content: center;
-    }
-
-    h2 {
-      font-size: 2.6rem;
-      margin-bottom: 40px;
-      color: #ffe600;
+      align-items: center;
       text-align: center;
+      padding: 0 20px;
     }
 
-    p {
-      max-width: 850px;
-      line-height: 1.8;
-      opacity: 0.9;
+    #home h1 {
+      font-size: 3em;
+      margin-bottom: 15px;
+      text-shadow: 0 0 15px rgba(0, 0, 0, 0.6);
     }
 
-    /* ===== HOME ===== */
-    #home {
-      text-align: center;
+    #home p {
+      font-size: 1.2em;
+      max-width: 650px;
+      margin-bottom: 30px;
+      color: #ddd;
     }
 
-    #home h2 {
-      font-size: 3.2rem;
+    #home h1 span {
+      color: red;
     }
 
-    .hero-btn {
-      margin-top: 35px;
-      display: inline-block;
-      padding: 14px 32px;
-      background: #ffe600;
-      color: #000;
-      font-weight: 600;
+    .home-btn {
+      background: rgba(255, 255, 255, 0.15);
+      border: 1px solid rgba(255, 255, 255, 0.3);
+      backdrop-filter: blur(10px);
+      padding: 12px 30px;
       border-radius: 50px;
+      color: #fff;
+      font-weight: 600;
       text-decoration: none;
       transition: 0.3s;
     }
 
-    .hero-btn:hover {
+    .home-btn:hover {
+      background: rgba(255, 149, 0, 0.3);
       transform: scale(1.05);
     }
 
-    /* ===== GLASS CARDS ===== */
-    .glass-box {
-      background: rgba(255, 255, 255, 0.15);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border: 1px solid rgba(255, 255, 255, 0.25);
-      border-radius: 25px;
-      padding: 40px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+    /* ===== Glass Section Base ===== */
+    section {
+      padding: 140px 10% 100px;
+      position: relative;
     }
 
-    /* ===== SERVICES ===== */
-    .services {
+    section h2 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #ff9500;
+      margin-bottom: 50px;
+      text-shadow: 0 0 10px rgba(255, 149, 0, 0.4);
+    }
+
+    .glass-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 25px 20px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      transition: transform 0.4s ease, background 0.4s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* ===== Enhanced About Animations ===== */
+    #about {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .about-box {
+      opacity: 0;
+      transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+      will-change: transform, opacity;
+    }
+
+    /* Direction-based entry */
+    .from-left { transform: translateX(-100px); }
+    .from-center { transform: scale(0.8); }
+    .from-right { transform: translateX(100px); }
+
+    /* When visible on screen */
+    .about-box.visible {
+      opacity: 1;
+      transform: translateX(0) scale(1);
+    }
+
+    /* When scrolled out */
+    .about-box.hidden-left { opacity: 0; transform: translateX(-100px); }
+    .about-box.hidden-center { opacity: 0; transform: scale(0.8); }
+    .about-box.hidden-right { opacity: 0; transform: translateX(100px); }
+
+    /* Hover effect (slight lift) */
+    .about-box:hover {
+      transform: translateY(-8px) scale(1.02);
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    /* ===== About ===== */
+    #about .about-content {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
       gap: 30px;
     }
 
-    .service-card i {
-      font-size: 42px;
-      color: #ffe600;
-      margin-bottom: 15px;
+    #about .about-box h3 {
+      color: #ff9500;
+      margin-bottom: 10px;
+      font-size: 1.3em;
+      text-align: center;
+      position: relative;
+      padding-bottom: 12px;
     }
 
-    /* ===== PRODUCTS ===== */
-    .product-card {
+    #about .about-box h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(to right, #ff9500, #ff5500);
+      border-radius: 2px;
+    }
+
+    #about .about-box p {
+      color: #fff;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    /* ===== Services Section ===== */
+    #services .services-container {
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+
+    /* ===== Service Card Base ===== */
+    .service-card {
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 40px 25px;
+      min-height: 280px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+      opacity: 0;
+      transform-style: preserve-3d;
+      transform-origin: center;
+      transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+      will-change: transform, opacity;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
     }
 
-    .product-btn {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 12px 26px;
-      background: #4d10f2;
-      border-radius: 50px;
-      color: #fff;
-      text-decoration: none;
-      font-weight: 600;
+    /* ===== Service Card Icons ===== */
+    .service-card .icon {
+      margin-bottom: 20px;
+      display: block;
+      text-align: center;
     }
 
-    /* ===== CONTACT ===== */
-    .contact-buttons {
+    .service-card .icon img {
+      width: 80px;
+      height: 80px;
+      margin-bottom: 20px;
+      object-fit: contain;
+      display: block;
+    }
+
+    /* ===== Service Card Headings ===== */
+    .service-card h3 {
+      color: #ff9500;
+      margin-bottom: 10px;
+      font-size: 1.5em;
+      position: relative;
+      padding-bottom: 12px;
+    }
+
+    .service-card h3::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 50px;
+      height: 3px;
+      background: linear-gradient(to right, #ff9500, #ff5500);
+      border-radius: 2px;
+    }
+
+    /* ===== Service Card Paragraphs ===== */
+    .service-card p {
+      color: #fff;
+      line-height: 1.6;
+      font-size: 1.05em;
+    }
+
+    /* ===== Flip Directions ===== */
+    .flip-clockwise {
+      transform: rotateY(90deg) scale(0.9);
+    }
+
+    .flip-anticlockwise {
+      transform: rotateY(-90deg) scale(0.9);
+    }
+
+    /* ===== Visible (Flipped Into View) ===== */
+    .service-card.visible {
+      transform: rotateY(0deg) scale(1);
+      opacity: 1;
+    }
+
+    /* ===== Hidden States (When Scrolling Back Up) ===== */
+    .service-card.hidden-clockwise {
+      transform: rotateY(90deg) scale(0.9);
+      opacity: 0;
+    }
+
+    .service-card.hidden-anticlockwise {
+      transform: rotateY(-90deg) scale(0.9);
+      opacity: 0;
+    }
+
+    /* ===== Hover Effect ===== */
+    .service-card:hover {
+      transform: rotateY(0deg) translateY(-8px);
+      background: rgba(255, 255, 255, 0.15);
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.4);
+      transition: all 0.4s ease;
+    }
+
+    /* ===== Products Section ===== */
+    #products {
+      padding: 140px 10% 120px;
+      position: relative;
+    }
+
+    #products h2 {
+      text-align: center;
+      font-size: 2.2em;
+      color: #ff9500;
+      margin-bottom: 50px;
+      text-shadow: 0 0 10px rgba(255, 149, 0, 0.4);
+    }
+
+    /* Product Card */
+    .product-card {
+      max-width: 520px;
+      margin: auto;
+      background: rgba(255, 255, 255, 0.08);
+      backdrop-filter: blur(20px);
+      border-radius: 20px;
+      padding: 35px 30px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+      opacity: 0;
+      transform: translateY(120px) scale(0.95);
+      transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
+    }
+
+    /* Visible (scroll down) */
+    .product-card.visible {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    /* Hidden again (scroll up) */
+    .product-card.hidden {
+      opacity: 0;
+      transform: translateY(120px) scale(0.95);
+    }
+
+    /* Logo */
+    .product-card img {
+      width: 120px;
+      display: block;
+      margin: 0 auto 20px;
+    }
+
+    /* Title */
+    .product-card h3 {
+      color: #ff9500;
+      text-align: center;
+      margin-bottom: 12px;
+      font-size: 1.6em;
+    }
+
+    /* Text */
+    .product-card p {
+      color: #fff;
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 25px;
+    }
+
+    /* Buttons */
+    .product-buttons {
       display: flex;
+      gap: 15px;
       justify-content: center;
-      gap: 25px;
       flex-wrap: wrap;
     }
 
+    .product-btn {
+      padding: 10px 22px;
+      border-radius: 30px;
+      background: rgba(255, 149, 0, 0.9);
+      color: #000;
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    .product-btn:hover {
+      background: #fff;
+      transform: translateY(-4px);
+    }
+
+    /* ===== Contact Section ===== */
+    #contact {
+      background: #f8f8ff;
+      padding: 120px 15%;
+      text-align: center;
+    }
+
+    #contact h2 {
+      font-size: 2.2em;
+      color: #4d10f2;
+      margin-bottom: 40px;
+    }
+
+    .contact-subtitle {
+      font-size: 1.1em;
+      color: #666;
+      margin-bottom: 50px;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    /* ===== Contact Buttons Container ===== */
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 25px;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+
+    /* ===== Individual Contact Button ===== */
     .contact-btn {
-      width: 200px;
-      height: 180px;
-      border-radius: 20px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      font-weight: 600;
+      width: 200px;
+      height: 200px;
+      border-radius: 20px;
       text-decoration: none;
-      color: #fff;
-      transition: 0.3s;
+      color: white;
+      font-weight: 600;
+      font-size: 1.2em;
+      transition: all 0.3s ease;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+      transform: translateY(30px);
+      opacity: 0;
+      animation: fadeInUp 0.8s ease forwards;
+    }
+
+    .contact-btn:nth-child(1) { animation-delay: 0.1s; }
+    .contact-btn:nth-child(2) { animation-delay: 0.2s; }
+    .contact-btn:nth-child(3) { animation-delay: 0.3s; }
+
+    @keyframes fadeInUp {
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
     }
 
     .contact-btn i {
-      font-size: 40px;
-      margin-bottom: 10px;
+      font-size: 50px;
+      margin-bottom: 15px;
     }
 
-    .call { background: linear-gradient(135deg,#25d366,#128c7e); }
-    .whatsapp { background: linear-gradient(135deg,#4d10f2,#7c3aed); }
-    .email { background: linear-gradient(135deg,#ea4335,#d14836); }
+    .contact-btn span {
+      margin-top: 5px;
+      font-size: 0.9em;
+      opacity: 0.9;
+    }
 
+    /* ===== Button Colors ===== */
+    .contact-btn.call {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+    }
+
+    .contact-btn.whatsapp {
+      background: linear-gradient(135deg, #4d10f2, #7c3aed);
+    }
+
+    .contact-btn.email {
+      background: linear-gradient(135deg, #EA4335, #D14836);
+    }
+
+    /* ===== Hover Effects ===== */
     .contact-btn:hover {
-      transform: translateY(-10px);
+      transform: translateY(-10px) scale(1.05);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
     }
 
+    .contact-btn.call:hover {
+      background: linear-gradient(135deg, #1DA851, #0E7C6F);
+    }
+
+    .contact-btn.whatsapp:hover {
+      background: linear-gradient(135deg, #3b0ec9, #5b21b6);
+    }
+
+    .contact-btn.email:hover {
+      background: linear-gradient(135deg, #D33427, #B03A2E);
+    }
+
+    /* ===== Footer ===== */
     footer {
       text-align: center;
-      padding: 30px;
-      background: rgba(0,0,0,0.4);
+      padding: 20px;
+      color: white;
+      background: rgba(0, 0, 0, 0.3);
       backdrop-filter: blur(10px);
     }
 
+    /* ===== Mobile ===== */
     @media (max-width: 768px) {
       header {
         flex-direction: column;
-        gap: 10px;
+        padding: 10px 15px;
+      }
+      
+      .logo-container {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+      }
+      
+      header h1 {
+        font-size: 1.5em;
+        white-space: nowrap;
+      }
+      
+      header img {
+        height: 50px;
+        margin-right: 8px;
+      }
+      
+      nav {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        margin-top: 0;
+      }
+      
+      nav a {
+        margin: 5px 10px;
+        display: inline-block;
+        font-size: 0.9em;
+      }
+      
+      #home h1 {
+        font-size: 2em;
+      }
+      
+      #home p {
+        font-size: 1em;
+      }
+      
+      section {
+        padding: 120px 5% 80px;
       }
 
-      .product-card {
-        grid-template-columns: 1fr;
+      .service-card {
+        padding: 30px 20px;
+        min-height: 250px;
       }
 
-      h2 {
-        font-size: 2.2rem;
+      /* Contact section responsive */
+      .contact-buttons {
+        flex-direction: column;
+        align-items: center;
+      }
+      
+      .contact-btn {
+        width: 250px;
+        height: 180px;
+      }
+      
+      .contact-btn i {
+        font-size: 40px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .logo-container {
+        justify-content: center;
+      }
+      
+      header h1 {
+        font-size: 1.3em;
+      }
+      
+      header img {
+        height: 45px;
+        margin-right: 6px;
+      }
+      
+      nav a {
+        margin: 5px 8px;
+        font-size: 0.85em;
+      }
+      
+      section {
+        padding: 100px 5% 60px;
+      }
+    }
+
+    /* Extra small devices */
+    @media (max-width: 320px) {
+      header h1 {
+        font-size: 1.2em;
+      }
+      
+      header img {
+        height: 40px;
+      }
+      
+      section {
+        padding: 90px 5% 50px;
       }
     }
   </style>
 </head>
 
 <body>
+  <!-- Disable Right Click -->
+  <script>
+    document.addEventListener("contextmenu", e => e.preventDefault());
+  </script>
 
-<!-- ===== VIDEO BACKGROUND ===== -->
-<div class="video-bg">
-  <video autoplay muted loop playsinline>
-    <source src="background.mp4" type="video/mp4">
+  <!-- Background Video -->
+  <video autoplay muted loop playsinline class="video-bg">
+    <source src="video/mobile-app-development.mp4" type="video/mp4" />
   </video>
-</div>
-<div class="video-overlay"></div>
+  <div class="overlay"></div>
+  
+  <!-- Navbar --> 
+  <header> 
+    <div class="logo-container"> 
+      <img src="images/logo.png" alt="ISS Logo" /> 
+      <h1>India Soft Solutions</h1> 
+    </div> 
+    <nav> 
+      <a href="#home">Home</a> 
+      <a href="#about">About</a> 
+      <a href="#services">Services</a> 
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a> 
+    </nav> 
+  </header>
 
-<!-- ===== NAVBAR ===== -->
-<header>
-  <h1>India Soft Solutions</h1>
-  <nav>
-    <a href="#home">Home</a>
-    <a href="#about">About</a>
-    <a href="#services">Services</a>
-    <a href="#products">Products</a>
-    <a href="#contact">Contact</a>
-  </nav>
-</header>
-
-<!-- ===== HOME ===== -->
-<section id="home">
-  <h2>We Build <span style="color:#ffe600">Digital Solutions</span></h2>
-  <p>Modern web, mobile & software solutions crafted for growth-focused businesses.</p>
-  <a href="#services" class="hero-btn">Explore Services</a>
-</section>
-
-<!-- ===== ABOUT ===== -->
-<section id="about">
-  <div class="glass-box">
-    <h2>About Us</h2>
+  <!-- Hero -->
+  <section id="home">
+    <h1>Welcome to <span>I</span>ndia <span>S</span>oft <span>S</span>olutions</h1>
     <p>
-      India Soft Solutions is a technology-driven company delivering scalable,
-      secure and modern digital products for startups and enterprises.
+      We design and develop powerful digital experiences — from mobile apps to web platforms — to help businesses grow with technology.
     </p>
-  </div>
-</section>
+    <a href="#services" class="home-btn">Explore Our Work</a>
+  </section>
 
-<!-- ===== SERVICES ===== -->
-<section id="services">
-  <h2>Our Services</h2>
-  <div class="services">
-    <div class="glass-box service-card">
-      <i class="fas fa-code"></i>
-      <h3>Web Development</h3>
-      <p>Fast, responsive & SEO-friendly websites.</p>
+  <!-- ===== About ===== -->
+  <section id="about">
+    <h2>About Us</h2>
+    <div class="about-content">
+      <!-- Static About Content -->
+      <div class="glass-card about-box from-left">
+        <h3>🏢 Who We Are</h3>
+        <p>India Soft Solutions (ISS) is a creative and technology-driven SaaS company focused on delivering modern, high-quality digital solutions for businesses and individuals. We specialize in web development, mobile apps, and customized software designed to enhance user experience and business growth. With innovation, precision, and customer satisfaction at our core, ISS transforms ideas into impactful digital realities.</p>
+      </div>
+
+      <div class="glass-card about-box from-center">
+        <h3>🎯 Our Mission</h3>
+        <p>To provide reliable, scalable, and high-performance digital solutions that empower clients to reach new heights through technology and innovation. We strive to blend creativity with technical excellence, ensuring every project reflects quality, precision, and long-term value. Our mission is to help businesses evolve and stay ahead in an ever-changing digital world.</p>
+      </div>
+
+      <div class="glass-card about-box from-right">
+        <h3>🌟 Our Vision</h3>
+        <p>To be a global leader in digital innovation — inspiring change through smart technology, sustainable growth, and creative transformation. We envision a connected world where every business, regardless of size, can harness the power of technology to thrive, innovate, and make a positive impact on society.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="glass-box service-card">
-      <i class="fas fa-mobile-alt"></i>
-      <h3>App Development</h3>
-      <p>Android & iOS mobile applications.</p>
+  <!-- ===== Services ===== -->
+  <section id="services">
+    <h2>Our Services</h2>
+    <div class="services-container">
+      <!-- Static Services Content -->
+      <div class="glass-card service-card flip-clockwise">
+        <div class="icon">
+          <img src="images/www.png" alt="Web Development Icon">
+        </div>
+        <h3>Web Development</h3>
+        <p>Custom websites with responsive design, modern frameworks, and SEO optimization.</p>
+      </div>
+      
+      <div class="glass-card service-card flip-anticlockwise">
+        <div class="icon">
+          <img src="images/appDev.png" alt="Mobile App Development Icon">
+        </div>
+        <h3>Mobile App Development</h3>
+        <p>Android and iOS mobile app solutions with native and cross-platform development.</p>
+      </div>
+      
+      <div class="glass-card service-card flip-clockwise">
+        <div class="icon">
+          <img src="images/ux-ui.jpg" alt="UI/UX Design Icon">
+        </div>
+        <h3>UI/UX Design</h3>
+        <p>Beautiful and user-friendly interface designs that enhance user experience.</p>
+      </div>
+      
+      <div class="glass-card service-card flip-anticlockwise">
+        <div class="icon">
+          <img src="images/Support___Maintenance.png" alt="Support & Maintenance Icon">
+        </div>
+        <h3>Support & Maintenance</h3>
+        <p>24/7 technical support and regular maintenance for all your digital products.</p>
+      </div>
     </div>
+  </section>
 
-    <div class="glass-box service-card">
-      <i class="fas fa-paint-brush"></i>
-      <h3>UI / UX Design</h3>
-      <p>Clean, modern and user-friendly interfaces.</p>
+  <!-- ===== Products ===== -->
+  <section id="products">
+    <h2>Our Product</h2>
+
+    <div class="product-card">
+      <img src="images/learndartlogo.png" alt="LearnDart Logo">
+
+      <h3>LearnDart</h3>
+
+      <p>
+        LearnDart is a beginner-friendly learning platform designed to help students
+        master Dart programming with examples, explanations, and practice.
+      </p>
+
+      <div class="product-buttons">
+        <a href="https://learndart.netlify.app/" class="product-btn" target="_blank">
+          🌐 Open Web App
+        </a>
+
+        <a href="downloads/LearnDartWindows.zip"
+           class="product-btn windows"
+           download>
+          🖥 Download for Windows
+        </a>
+
+        <a href="https://github.com/tnhisecure/LearnDart/releases/latest/download/LearnDart.apk"
+           class="product-btn">
+          📱 Android APK
+        </a>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ===== PRODUCTS ===== -->
-<section id="products">
-  <div class="glass-box product-card">
-    <div>
-      <h2>LearnDart</h2>
-      <p>Learn Dart programming with structured lessons and practical examples.</p>
-      <a href="https://learndartweb.netlify.app" target="_blank" class="product-btn">
-        Visit Website
+  <!-- ===== Contact ===== -->
+  <section id="contact">
+    <h2>Contact Us</h2>
+    <p class="contact-subtitle">Get in touch with us through any of these convenient methods</p>
+    
+    <div class="contact-buttons">
+      <!-- Call Button -->
+      <a href="tel:+918250227952" class="contact-btn call">
+        <i class="fas fa-phone-alt"></i>
+        <span>CALL US</span>
+        <span style="font-size: 0.8em; opacity: 0.8;">+91 8250227952</span>
+      </a>
+      
+      <!-- WhatsApp Button -->
+      <a href="https://wa.me/918250227952?text=Hello%20India%20Soft%20Solutions,%20I%20would%20like%20to%20discuss%20a%20project" 
+         class="contact-btn whatsapp" 
+         target="_blank">
+        <i class="fab fa-whatsapp"></i>
+        <span>WHATSAPP</span>
+        <span style="font-size: 0.8em; opacity: 0.8;">Quick Chat</span>
+      </a>
+      
+      <!-- Email Button -->
+      <a href="mailto:indiasoftsolutions2025@gmail.com?subject=Enquiry%20from%20Website&body=Hello%20India%20Soft%20Solutions,%0A%0AI%20would%20like%20to%20get%20more%20information%20about%20your%20services." 
+         class="contact-btn email">
+        <i class="fas fa-envelope"></i>
+        <span>EMAIL US</span>
+        <span style="font-size: 0.8em; opacity: 0.8;">indiasoftsolutions2025@gmail.com</span>
       </a>
     </div>
-  </div>
-</section>
+    
+    <p style="margin-top: 50px; color: #fff; font-size: 0.95em; background: rgba(0,0,0,0.3); padding: 10px; border-radius: 10px; display: inline-block;">
+      We typically respond 24/7 during business days.
+    </p>
+  </section>
 
-<!-- ===== CONTACT ===== -->
-<section id="contact">
-  <h2>Contact Us</h2>
-  <div class="contact-buttons">
-    <a href="tel:+918250227952" class="contact-btn call">
-      <i class="fas fa-phone"></i>Call
-    </a>
-    <a href="https://wa.me/918250227952" class="contact-btn whatsapp">
-      <i class="fab fa-whatsapp"></i>WhatsApp
-    </a>
-    <a href="mailto:indiasoftsolutions2025@gmail.com" class="contact-btn email">
-      <i class="fas fa-envelope"></i>Email
-    </a>
-  </div>
-</section>
+  <footer>
+    © 2025 India Soft Solutions | All Rights Reserved
+  </footer>
 
-<footer>
-  © 2025 India Soft Solutions | All Rights Reserved
-</footer>
+  <!-- AOS Animation JS -->
+  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+  <script>
+    // Initialize AOS
+    AOS.init({
+      duration: 1000,
+      once: false,
+      mirror: true,
+      anchorPlacement: 'top-bottom'
+    });
 
+    document.addEventListener("DOMContentLoaded", () => {
+      // ===== ELEMENT SELECTORS =====
+      const aboutBoxes = document.querySelectorAll(".about-box");
+      const services = document.querySelectorAll(".service-card");
+      const productCard = document.querySelector(".product-card");
+
+      // ===== INTERSECTION OBSERVER =====
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          const el = entry.target;
+
+          /* ✅ ABOUT SECTION ANIMATION (From left, center, right) */
+          if (el.classList.contains("about-box")) {
+            if (entry.isIntersecting) {
+              el.classList.add("visible");
+              el.classList.remove("hidden-left", "hidden-center", "hidden-right");
+            } else {
+              if (el.classList.contains("from-left")) el.classList.add("hidden-left");
+              else if (el.classList.contains("from-center")) el.classList.add("hidden-center");
+              else if (el.classList.contains("from-right")) el.classList.add("hidden-right");
+              el.classList.remove("visible");
+            }
+          }
+
+          /* ✅ SERVICE SECTION FLIP ANIMATION */
+          if (el.classList.contains("service-card")) {
+            if (entry.isIntersecting) {
+              el.classList.add("visible");
+              el.classList.remove("hidden-clockwise", "hidden-anticlockwise");
+            } else {
+              if (el.classList.contains("flip-clockwise"))
+                el.classList.add("hidden-clockwise");
+              else if (el.classList.contains("flip-anticlockwise"))
+                el.classList.add("hidden-anticlockwise");
+              el.classList.remove("visible");
+            }
+          }
+            
+          /* ✅ PRODUCT SECTION BOTH-DIRECTION ANIMATION */
+          if (el.classList.contains("product-card")) {
+            if (entry.isIntersecting) {
+              el.classList.add("visible");
+              el.classList.remove("hidden");
+            } else {
+              el.classList.remove("visible");
+              el.classList.add("hidden");
+            }
+          }
+        });
+      }, { threshold: 0.3 });
+
+      // ===== OBSERVE ALL ELEMENTS =====
+      aboutBoxes.forEach(box => observer.observe(box));
+      services.forEach(card => observer.observe(card));
+      observer.observe(productCard);
+
+      // ===== MOBILE DETECTION FOR CALL BUTTON =====
+      function isMobileDevice() {
+        return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      }
+
+      // Optional: Add confirmation for call button on desktop
+      const callBtn = document.querySelector('.contact-btn.call');
+      if (callBtn) {
+        callBtn.addEventListener('click', function(e) {
+          if (!isMobileDevice()) {
+            if (!confirm("You're on a desktop device. Would you like to copy the phone number instead?")) {
+              e.preventDefault();
+              // Copy phone number to clipboard
+              navigator.clipboard.writeText("+918250227952").then(() => {
+                alert("Phone number copied to clipboard: +91 8250227952");
+              });
+            }
+          }
+        });
+      }
+    });
+  </script>
 </body>
 </html>
