@@ -377,11 +377,11 @@
       transition: all 0.4s ease;
     }
 
-   /* ===== Products Section ===== */
+/* ===== Products Section ===== */
 #products {
   padding: 140px 5% 120px;
   position: relative;
-  min-height: auto; /* Changed from 100vh to auto for better mobile display */
+  min-height: auto;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -395,7 +395,237 @@
   text-shadow: 0 0 15px rgba(255, 149, 0, 0.5);
 }
 
-/* Products Table Container - Responsive */
+/* Products Container - Use grid for desktop, cards for mobile */
+.products-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 25px;
+  opacity: 0;
+  transform: translateY(80px);
+  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.products-container.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.products-container.hidden {
+  opacity: 0;
+  transform: translateY(80px);
+}
+
+/* Product Card for mobile/desktop */
+.product-card {
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(25px);
+  border-radius: 20px;
+  padding: 25px;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s ease;
+  display: flex;
+  flex-direction: column;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.product-card.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.product-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255, 255, 255, 0.12);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5);
+}
+
+/* Product Header */
+.product-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  border-bottom: 1px solid rgba(255, 149, 0, 0.3);
+  padding-bottom: 15px;
+}
+
+.product-logo {
+  width: 60px;
+  height: 60px;
+  margin-right: 15px;
+}
+
+.product-logo img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 5px;
+}
+
+.product-title {
+  flex: 1;
+}
+
+.product-title h3 {
+  color: #ff9500;
+  font-size: 1.4em;
+  margin-bottom: 5px;
+}
+
+.product-sl {
+  color: #ff9500;
+  font-weight: 600;
+  font-size: 1.1em;
+  background: rgba(255, 149, 0, 0.1);
+  padding: 4px 12px;
+  border-radius: 20px;
+  display: inline-block;
+}
+
+/* Product Description */
+.product-description {
+  margin-bottom: 25px;
+  flex: 1;
+}
+
+.product-description p {
+  color: #ddd;
+  line-height: 1.6;
+  font-size: 0.95em;
+}
+
+/* Download Platforms */
+.download-platforms {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.platform-title {
+  color: #ff9500;
+  font-weight: 600;
+  font-size: 1em;
+  margin-bottom: 5px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.platform-title i {
+  font-size: 1.2em;
+}
+
+/* Platform Buttons Container */
+.platform-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Platform Button */
+.platform-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+  border: 1px solid transparent;
+  min-width: 120px;
+  justify-content: center;
+}
+
+.platform-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+}
+
+/* Platform-specific button colors */
+.windows-btn {
+  background: rgba(0, 120, 212, 0.9);
+  color: white;
+}
+
+.windows-btn:hover {
+  background: rgba(0, 120, 212, 1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.android-btn {
+  background: rgba(61, 220, 132, 0.9);
+  color: white;
+}
+
+.android-btn:hover {
+  background: rgba(61, 220, 132, 1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.ios-btn {
+  background: rgba(0, 122, 255, 0.9);
+  color: white;
+}
+
+.ios-btn:hover {
+  background: rgba(0, 122, 255, 1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+.web-btn {
+  background: rgba(255, 149, 0, 0.9);
+  color: white;
+}
+
+.web-btn:hover {
+  background: rgba(255, 149, 0, 1);
+  border-color: rgba(255, 255, 255, 0.3);
+}
+
+/* Coming Soon Style */
+.coming-soon {
+  color: #aaa;
+  font-style: italic;
+  font-size: 0.9em;
+  padding: 10px 15px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Hide the table on mobile, show cards */
+@media (max-width: 768px) {
+  .products-table-container {
+    display: none; /* Hide table on mobile */
+  }
+  
+  .products-container {
+    display: block; /* Use block layout for mobile cards */
+  }
+  
+  .product-card {
+    margin-bottom: 25px;
+  }
+}
+
+/* Show table only on desktop */
+@media (min-width: 769px) {
+  .products-container {
+    display: none; /* Hide cards on desktop */
+  }
+  
+  .products-table-container {
+    display: block; /* Show table on desktop */
+  }
+}
+
+/* Desktop table styles (keep existing table styles but add responsive) */
 .products-table-container {
   background: rgba(255, 255, 255, 0.08);
   backdrop-filter: blur(25px);
@@ -403,7 +633,7 @@
   padding: 20px;
   box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow-x: auto; /* Allows horizontal scrolling on mobile */
+  overflow-x: auto;
   opacity: 0;
   transform: translateY(80px);
   transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
@@ -421,264 +651,48 @@
   transform: translateY(80px);
 }
 
-/* Products Table - Make it responsive */
 .products-table {
   width: 100%;
   border-collapse: separate;
   border-spacing: 0;
-  min-width: 800px; /* Reduced minimum width for better mobile */
+  min-width: 1000px;
 }
 
-/* Table Headers */
-.products-table thead {
-  background: rgba(255, 149, 0, 0.2);
-  backdrop-filter: blur(10px);
-}
+/* Keep existing table styles... */
+/* (All your existing table CSS can remain here) */
 
-.products-table th {
-  padding: 15px 10px;
-  text-align: center;
-  color: #ff9500;
-  font-weight: 600;
-  font-size: 1em;
-  border-bottom: 2px solid rgba(255, 149, 0, 0.3);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  white-space: nowrap;
-}
-
-/* Table Rows */
-.products-table tbody tr {
-  transition: all 0.3s ease;
-  opacity: 0;
-  transform: translateY(20px);
-}
-
-.products-table tbody tr.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.products-table tbody tr:nth-child(even) {
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.products-table tbody tr:nth-child(odd) {
-  background: rgba(255, 255, 255, 0.06);
-}
-
-.products-table tbody tr:hover {
-  background: rgba(255, 149, 0, 0.15);
-  transform: scale(1.01);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-/* Table Cells */
-.products-table td {
-  padding: 15px 10px;
-  text-align: center;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  vertical-align: middle;
-}
-
-/* Serial Number */
-.sl-no {
-  font-weight: 600;
-  font-size: 1.1em;
-  color: #ff9500;
-  width: 60px;
-}
-
-/* Logo Cell */
-.logo-cell {
-  width: 80px;
-}
-
-.logo-cell img {
-  width: 50px;
-  height: 50px;
-  object-fit: contain;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.1);
-  padding: 5px;
-}
-
-/* Description Cell */
-.description-cell {
-  text-align: left;
-  max-width: 300px;
-  min-width: 250px;
-}
-
-.description-cell h3 {
-  color: #ff9500;
-  margin-bottom: 8px;
-  font-size: 1.1em;
-}
-
-.description-cell p {
-  color: #ddd;
-  font-size: 0.9em;
-  line-height: 1.4;
-}
-
-/* Download Buttons Container */
-.download-buttons {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  align-items: center;
-  min-width: 100px;
-}
-
-/* Download Buttons */
-.download-btn {
-  padding: 6px 12px;
-  border-radius: 20px;
-  text-decoration: none;
-  font-weight: 600;
-  font-size: 0.8em;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 5px;
-  transition: all 0.3s ease;
-  min-width: 90px;
-  border: 1px solid transparent;
-  white-space: nowrap;
-}
-
-.download-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-}
-
-/* Platform-specific button colors */
-.windows-btn {
-  background: rgba(0, 120, 212, 0.8);
-  color: white;
-}
-
-.windows-btn:hover {
-  background: rgba(0, 120, 212, 1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.android-btn {
-  background: rgba(61, 220, 132, 0.8);
-  color: white;
-}
-
-.android-btn:hover {
-  background: rgba(61, 220, 132, 1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.ios-btn {
-  background: rgba(0, 122, 255, 0.8);
-  color: white;
-}
-
-.ios-btn:hover {
-  background: rgba(0, 122, 255, 1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-.web-btn {
-  background: rgba(255, 149, 0, 0.8);
-  color: white;
-}
-
-.web-btn:hover {
-  background: rgba(255, 149, 0, 1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
-
-/* Coming Soon Style */
-.coming-soon {
-  color: #aaa;
-  font-style: italic;
-  font-size: 0.85em;
-  white-space: nowrap;
-}
-
-/* Remove scroll controls */
-.scroll-controls {
-  display: none; /* Hide scroll controls as requested */
-}
-
-/* ===== Mobile Responsive Styles ===== */
+/* Mobile responsive adjustments */
 @media (max-width: 768px) {
   #products {
-    padding: 120px 3% 80px;
-    min-height: auto;
+    padding: 120px 5% 80px;
   }
-
+  
   #products h2 {
     font-size: 2em;
     margin-bottom: 30px;
   }
-
-  .products-table-container {
-    padding: 15px;
-    border-radius: 15px;
+  
+  .product-card {
+    padding: 20px;
   }
-
-  .products-table {
-    min-width: 700px; /* Further reduced for mobile */
+  
+  .product-logo {
+    width: 50px;
+    height: 50px;
   }
-
-  .products-table th {
-    padding: 12px 8px;
+  
+  .product-title h3 {
+    font-size: 1.2em;
+  }
+  
+  .platform-btn {
+    padding: 8px 15px;
+    min-width: 110px;
     font-size: 0.85em;
   }
-
-  .products-table td {
-    padding: 12px 8px;
-  }
-
-  .sl-no {
-    font-size: 1em;
-    width: 50px;
-  }
-
-  .logo-cell {
-    width: 70px;
-  }
-
-  .logo-cell img {
-    width: 45px;
-    height: 45px;
-  }
-
-  .description-cell {
-    min-width: 200px;
-    max-width: 250px;
-  }
-
-  .description-cell h3 {
-    font-size: 1em;
-  }
-
-  .description-cell p {
-    font-size: 0.8em;
-    line-height: 1.3;
-  }
-
-  .download-buttons {
-    min-width: 85px;
-    gap: 6px;
-  }
-
-  .download-btn {
-    padding: 5px 10px;
-    font-size: 0.75em;
-    min-width: 80px;
-  }
-
-  .coming-soon {
-    font-size: 0.8em;
+  
+  .platform-buttons {
+    gap: 8px;
   }
 }
 
@@ -686,81 +700,40 @@
   #products {
     padding: 100px 3% 60px;
   }
-
+  
   #products h2 {
     font-size: 1.8em;
   }
-
-  .products-table-container {
-    padding: 12px;
-    border-radius: 12px;
+  
+  .product-header {
+    flex-direction: column;
+    text-align: center;
+    gap: 15px;
   }
-
-  .products-table {
-    min-width: 650px; /* Minimum width for very small screens */
+  
+  .product-logo {
+    margin-right: 0;
   }
-
-  .products-table th,
-  .products-table td {
-    padding: 10px 6px;
+  
+  .product-title {
+    text-align: center;
   }
-
-  .products-table th {
-    font-size: 0.8em;
+  
+  .platform-buttons {
+    justify-content: center;
   }
-
-  .sl-no {
-    font-size: 0.9em;
-    width: 45px;
-  }
-
-  .logo-cell {
-    width: 60px;
-  }
-
-  .logo-cell img {
-    width: 40px;
-    height: 40px;
-  }
-
-  .description-cell {
-    min-width: 180px;
-    max-width: 220px;
-  }
-
-  .description-cell h3 {
-    font-size: 0.95em;
-    margin-bottom: 5px;
-  }
-
-  .description-cell p {
-    font-size: 0.75em;
-  }
-
-  .download-buttons {
-    min-width: 75px;
-  }
-
-  .download-btn {
-    padding: 4px 8px;
-    font-size: 0.7em;
-    min-width: 70px;
+  
+  .platform-btn {
+    min-width: 100px;
+    padding: 8px 12px;
   }
 }
 
 @media (max-width: 320px) {
-  #products {
-    padding: 90px 2% 50px;
-  }
-
-  .products-table {
-    min-width: 600px;
-  }
-
-  .download-btn {
-    min-width: 65px;
-    padding: 4px 6px;
-    font-size: 0.65em;
+  .platform-btn {
+    min-width: 90px;
+    padding: 7px 10px;
+    font-size: 0.8em;
   }
 }
 
@@ -1187,184 +1160,386 @@
     </div>
   </section>
 
-  <!-- ===== Products ===== -->
-  <section id="products">
-    <h2>Our Products</h2>
-    
-    <div class="products-table-container">
-      <table class="products-table">
-        <thead>
-          <tr>
-            <th>SL No</th>
-            <th>Logo</th>
-            <th>Description</th>
-            <th>Windows (.exe)</th>
-            <th>Android (.apk)</th>
-            <th>iOS (.ipa)</th>
-            <th>Web</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Product 1 -->
-          <tr>
-            <td class="sl-no">01</td>
-            <td class="logo-cell">
-              <img src="learndartlogo.png" alt="LearnDart Logo">
-            </td>
-            <td class="description-cell">
-              <h3>LearnDart</h3>
-              <p>Complete learning platform for Dart programming with interactive lessons, examples, and practice exercises. Perfect for beginners and intermediate developers.</p>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="downloads/LearnDartWindows.zip" class="download-btn windows-btn" download>
-                  <i class="fab fa-windows"></i> Download
-                </a>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="https://github.com/tnhisecure/LearnDart/releases/latest/download/LearnDart.apk" 
-                   class="download-btn android-btn" 
-                   target="_blank">
-                  <i class="fab fa-android"></i> Download
-                </a>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <span class="coming-soon">Coming Soon</span>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="https://learndart.netlify.app/" 
-                   class="download-btn web-btn" 
-                   target="_blank">
-                  <i class="fas fa-globe"></i> Visit
-                </a>
-              </div>
-            </td>
-          </tr>
-          
-          <!-- Product 2 -->
-          <tr>
-            <td class="sl-no">02</td>
-            <td class="logo-cell">
-              <img src="images/logo.png" alt="ISS App Builder Logo">
-            </td>
-            <td class="description-cell">
-              <h3>ISS App Builder</h3>
-              <p>Drag-and-drop mobile app builder for creating Android and iOS applications without coding. Includes templates, plugins, and cloud deployment.</p>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="#" class="download-btn windows-btn">
-                  <i class="fab fa-windows"></i> Coming Soon
-                </a>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="#" class="download-btn android-btn">
-                  <i class="fab fa-android"></i> Coming Soon
-                </a>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <span class="coming-soon">Coming Soon</span>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="#" class="download-btn web-btn">
-                  <i class="fas fa-globe"></i> Coming Soon
-                </a>
-              </div>
-            </td>
-          </tr>
-          
-          <!-- Product 3 -->
-          <tr>
-            <td class="sl-no">03</td>
-            <td class="logo-cell">
-              <img src="images/logo.png" alt="CodeSync Logo">
-            </td>
-            <td class="description-cell">
-              <h3>CodeSync</h3>
-              <p>Real-time collaborative code editor with syntax highlighting, version control, and team management features for remote development teams.</p>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="#" class="download-btn windows-btn">
-                  <i class="fab fa-windows"></i> Coming Soon
-                </a>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="#" class="download-btn android-btn">
-                  <i class="fab fa-android"></i> Coming Soon
-                </a>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <span class="coming-soon">Coming Soon</span>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="#" class="download-btn web-btn">
-                  <i class="fas fa-globe"></i> Coming Soon
-                </a>
-              </div>
-            </td>
-          </tr>
-          
-          <!-- Product 4 -->
-          <tr>
-            <td class="sl-no">04</td>
-            <td class="logo-cell">
-              <img src="images/logo.png" alt="SecureVault Logo">
-            </td>
-            <td class="description-cell">
-              <h3>SecureVault</h3>
-              <p>End-to-end encrypted password manager and digital vault with biometric authentication, cross-platform sync, and secure sharing.</p>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="#" class="download-btn windows-btn">
-                  <i class="fab fa-windows"></i> Coming Soon
-                </a>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="#" class="download-btn android-btn">
-                  <i class="fab fa-android"></i> Coming Soon
-                </a>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <span class="coming-soon">Coming Soon</span>
-              </div>
-            </td>
-            <td>
-              <div class="download-buttons">
-                <a href="#" class="download-btn web-btn">
-                  <i class="fas fa-globe"></i> Coming Soon
-                </a>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+ 
+   <!-- ===== Products ===== -->
+<section id="products">
+  <h2>Our Products</h2>
+  
+  <!-- Desktop Table View -->
+  <div class="products-table-container">
+    <table class="products-table">
+      <thead>
+        <tr>
+          <th>SL No</th>
+          <th>Logo</th>
+          <th>Description</th>
+          <th>Windows (.exe)</th>
+          <th>Android (.apk)</th>
+          <th>iOS (.ipa)</th>
+          <th>Web</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Product 1 -->
+        <tr>
+          <td class="sl-no">01</td>
+          <td class="logo-cell">
+            <img src="learndartlogo.png" alt="LearnDart Logo">
+          </td>
+          <td class="description-cell">
+            <h3>LearnDart</h3>
+            <p>Complete learning platform for Dart programming with interactive lessons, examples, and practice exercises.</p>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="downloads/LearnDartWindows.zip" class="download-btn windows-btn" download>
+                <i class="fab fa-windows"></i> Download
+              </a>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="https://github.com/tnhisecure/LearnDart/releases/latest/download/LearnDart.apk" 
+                 class="download-btn android-btn" 
+                 target="_blank">
+                <i class="fab fa-android"></i> Download
+              </a>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <span class="coming-soon">Coming Soon</span>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="https://learndart.netlify.app/" 
+                 class="download-btn web-btn" 
+                 target="_blank">
+                <i class="fas fa-globe"></i> Visit
+              </a>
+            </div>
+          </td>
+        </tr>
+        
+        <!-- Product 2 -->
+        <tr>
+          <td class="sl-no">02</td>
+          <td class="logo-cell">
+            <img src="images/logo.png" alt="ISS App Builder Logo">
+          </td>
+          <td class="description-cell">
+            <h3>ISS App Builder</h3>
+            <p>Drag-and-drop mobile app builder for creating Android and iOS applications without coding.</p>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="#" class="download-btn windows-btn">
+                <i class="fab fa-windows"></i> Coming Soon
+              </a>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="#" class="download-btn android-btn">
+                <i class="fab fa-android"></i> Coming Soon
+              </a>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <span class="coming-soon">Coming Soon</span>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="#" class="download-btn web-btn">
+                <i class="fas fa-globe"></i> Coming Soon
+              </a>
+            </div>
+          </td>
+        </tr>
+        
+        <!-- Product 3 -->
+        <tr>
+          <td class="sl-no">03</td>
+          <td class="logo-cell">
+            <img src="images/logo.png" alt="CodeSync Logo">
+          </td>
+          <td class="description-cell">
+            <h3>CodeSync</h3>
+            <p>Real-time collaborative code editor with syntax highlighting and version control for remote teams.</p>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="#" class="download-btn windows-btn">
+                <i class="fab fa-windows"></i> Coming Soon
+              </a>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="#" class="download-btn android-btn">
+                <i class="fab fa-android"></i> Coming Soon
+              </a>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <span class="coming-soon">Coming Soon</span>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="#" class="download-btn web-btn">
+                <i class="fas fa-globe"></i> Coming Soon
+              </a>
+            </div>
+          </td>
+        </tr>
+        
+        <!-- Product 4 -->
+        <tr>
+          <td class="sl-no">04</td>
+          <td class="logo-cell">
+            <img src="images/logo.png" alt="SecureVault Logo">
+          </td>
+          <td class="description-cell">
+            <h3>SecureVault</h3>
+            <p>End-to-end encrypted password manager with biometric authentication and cross-platform sync.</p>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="#" class="download-btn windows-btn">
+                <i class="fab fa-windows"></i> Coming Soon
+              </a>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="#" class="download-btn android-btn">
+                <i class="fab fa-android"></i> Coming Soon
+              </a>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <span class="coming-soon">Coming Soon</span>
+            </div>
+          </td>
+          <td>
+            <div class="download-buttons">
+              <a href="#" class="download-btn web-btn">
+                <i class="fas fa-globe"></i> Coming Soon
+              </a>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
-   
+  <!-- Mobile Card View -->
+  <div class="products-container">
+    <!-- Product 1 Card -->
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-logo">
+          <img src="learndartlogo.png" alt="LearnDart Logo">
+        </div>
+        <div class="product-title">
+          <h3>LearnDart</h3>
+          <span class="product-sl">01</span>
+        </div>
+      </div>
+      
+      <div class="product-description">
+        <p>Complete learning platform for Dart programming with interactive lessons, examples, and practice exercises. Perfect for beginners and intermediate developers.</p>
+      </div>
+      
+      <div class="download-platforms">
+        <div class="platform-title">
+          <i class="fab fa-windows"></i> Windows
+        </div>
+        <div class="platform-buttons">
+          <a href="downloads/LearnDartWindows.zip" class="platform-btn windows-btn" download>
+            <i class="fas fa-download"></i> Download
+          </a>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fab fa-android"></i> Android
+        </div>
+        <div class="platform-buttons">
+          <a href="https://github.com/tnhisecure/LearnDart/releases/latest/download/LearnDart.apk" 
+             class="platform-btn android-btn" 
+             target="_blank">
+            <i class="fas fa-download"></i> Download
+          </a>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fab fa-apple"></i> iOS
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fas fa-globe"></i> Web
+        </div>
+        <div class="platform-buttons">
+          <a href="https://learndart.netlify.app/" 
+             class="platform-btn web-btn" 
+             target="_blank">
+            <i class="fas fa-external-link-alt"></i> Visit Website
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Product 2 Card -->
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-logo">
+          <img src="images/logo.png" alt="ISS App Builder Logo">
+        </div>
+        <div class="product-title">
+          <h3>ISS App Builder</h3>
+          <span class="product-sl">02</span>
+        </div>
+      </div>
+      
+      <div class="product-description">
+        <p>Drag-and-drop mobile app builder for creating Android and iOS applications without coding. Includes templates, plugins, and cloud deployment.</p>
+      </div>
+      
+      <div class="download-platforms">
+        <div class="platform-title">
+          <i class="fab fa-windows"></i> Windows
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fab fa-android"></i> Android
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fab fa-apple"></i> iOS
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fas fa-globe"></i> Web
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Product 3 Card -->
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-logo">
+          <img src="images/logo.png" alt="CodeSync Logo">
+        </div>
+        <div class="product-title">
+          <h3>CodeSync</h3>
+          <span class="product-sl">03</span>
+        </div>
+      </div>
+      
+      <div class="product-description">
+        <p>Real-time collaborative code editor with syntax highlighting, version control, and team management features for remote development teams.</p>
+      </div>
+      
+      <div class="download-platforms">
+        <div class="platform-title">
+          <i class="fab fa-windows"></i> Windows
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fab fa-android"></i> Android
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fab fa-apple"></i> iOS
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fas fa-globe"></i> Web
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Product 4 Card -->
+    <div class="product-card">
+      <div class="product-header">
+        <div class="product-logo">
+          <img src="images/logo.png" alt="SecureVault Logo">
+        </div>
+        <div class="product-title">
+          <h3>SecureVault</h3>
+          <span class="product-sl">04</span>
+        </div>
+      </div>
+      
+      <div class="product-description">
+        <p>End-to-end encrypted password manager and digital vault with biometric authentication, cross-platform sync, and secure sharing.</p>
+      </div>
+      
+      <div class="download-platforms">
+        <div class="platform-title">
+          <i class="fab fa-windows"></i> Windows
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fab fa-android"></i> Android
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fab fa-apple"></i> iOS
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+        
+        <div class="platform-title">
+          <i class="fas fa-globe"></i> Web
+        </div>
+        <div class="platform-buttons">
+          <span class="coming-soon">Coming Soon</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
   <!-- ===== Contact ===== -->
   <section id="contact">
@@ -1457,19 +1632,7 @@
       scrollUpBtn.disabled = true;
       scrollDownBtn.disabled = (totalRows <= 3);
 
-      // Scroll Up button click
-      scrollUpBtn.addEventListener("click", () => {
-        if (currentRowIndex > 0) {
-          scrollToRow(currentRowIndex - 1);
-        }
-      });
-
-      // Scroll Down button click
-      scrollDownBtn.addEventListener("click", () => {
-        if (currentRowIndex < totalRows - 1) {
-          scrollToRow(currentRowIndex + 1);
-        }
-      });
+     
 
       // Keyboard navigation
       document.addEventListener("keydown", (e) => {
@@ -1529,7 +1692,21 @@
           }
         });
       }, { threshold: 0.3 });
+// In your JavaScript, add these lines after the existing observer code:
 
+// Observe product cards
+const productCards = document.querySelectorAll(".product-card");
+const productsContainer = document.querySelector(".products-container");
+
+if (productsContainer) {
+  observer.observe(productsContainer);
+  productCards.forEach(card => observer.observe(card));
+}
+
+// Add staggered animation for product cards
+productCards.forEach((card, index) => {
+  card.style.transitionDelay = `${index * 0.1}s`;
+});
       // Observer for table rows animation
       const rowObserver = new IntersectionObserver((entries) => {
         entries.forEach(entry => {
