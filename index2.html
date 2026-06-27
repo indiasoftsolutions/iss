@@ -5,732 +5,441 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>India Soft Solutions (ISS)</title>
 
-  <!-- ✅ Favicon -->
+  <!-- Favicon -->
   <link rel="icon" type="image/x-icon" href="logo.ico" />
 
-  <!-- ✅ AOS Animation -->
-  <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
 
-  <!-- ✅ Font Awesome for Icons -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Google Fonts: Space Grotesk for a high-tech feel -->
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
 
   <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: 'Poppins', sans-serif;
-      user-select: none;
+    :root {
+      --bg-dark: #020617; /* Very dark slate */
+      --accent: #2dd4bf;  /* Neon Teal */
+      --accent-dark: #0f766e;
+      --card-bg: rgba(15, 23, 42, 0.65);
+      --card-border: rgba(45, 212, 191, 0.15);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
     }
 
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Space Grotesk', sans-serif; user-select: none; }
+    
     body {
+      background-color: var(--bg-dark);
+      color: var(--text-main);
       overflow-x: hidden;
       scroll-behavior: smooth;
-      background: #f0f9ff;
-      color: #1e293b;
     }
 
-    img {
-      -webkit-user-drag: none;
-      pointer-events: none;
-    }
+    body::-webkit-scrollbar { display: none; }
+    body { -ms-overflow-style: none; scrollbar-width: none; }
+    html { overflow-x: hidden; }
+    img { -webkit-user-drag: none; pointer-events: none; }
 
-    /* ===== Navbar ===== */
-    header {
+    /* Canvas Background */
+    #honeycomb-canvas {
       position: fixed;
       top: 0;
       left: 0;
-      width: 100%;
-      background: rgba(255, 255, 255, 0.98);
-      backdrop-filter: blur(6px);
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
-      padding: 12px 40px;
+      width: 100vw;
+      height: 100vh;
+      z-index: -2;
+      background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+    }
+
+    /* Floating Navbar */
+    header {
+      position: fixed;
+      top: 25px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1100px;
+      background: rgba(2, 6, 23, 0.7);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--card-border);
+      border-radius: 20px;
+      padding: 12px 30px;
       display: flex;
-      align-items: center;
       justify-content: space-between;
-      z-index: 1000;
-      transition: all 0.3s ease;
-    }
-
-    header h1 {
-      font-size: 1.8em;
-      color: #0f766e;
-      font-weight: 700;
-    }
-
-    header img {
-      height: 75px;
-      margin-right: 10px;
-    }
-
-    nav {
-      display: flex;
-      gap: 25px;
       align-items: center;
-      justify-content: center;
+      z-index: 1000;
+      transition: all 0.4s ease;
     }
 
-    nav a {
-      text-decoration: none;
-      color: #334155;
-      font-weight: 500;
-      transition: color 0.3s;
+    .logo-container { display: flex; align-items: center; }
+    header h1 { font-size: 1.4em; color: var(--text-main); font-weight: 700; letter-spacing: 0.5px; }
+    header img { height: 45px; margin-right: 12px; }
+
+    nav { display: flex; align-items: center; gap: 30px; }
+    nav a { 
+      text-decoration: none; 
+      color: var(--text-muted); 
+      font-weight: 500; 
+      transition: all 0.3s; 
+      font-size: 0.95em;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    nav a:hover { 
+      color: var(--accent); 
+      text-shadow: 0 0 10px rgba(45, 212, 191, 0.5);
     }
 
-    nav a:hover {
-      color: #0f766e;
-    }
-
-    /* ===== Home Section ===== */
+    /* Hero Section */
     #home {
       height: 100vh;
-      background: linear-gradient(135deg, #0d9488, #0e7490);
-      color: white;
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       text-align: center;
-      flex-direction: column;
       padding: 0 20px;
       position: relative;
-      overflow: hidden;
     }
 
-    #home::after {
-      content: "";
-      position: absolute;
-      bottom: 0;
-      width: 100%;
-      height: 150px;
-      background: linear-gradient(to top, #f0f9ff, transparent);
+    .hero-content {
+      background: radial-gradient(circle, rgba(2,6,23,0.8) 0%, transparent 70%);
+      padding: 60px;
+      border-radius: 50%;
+      animation: pulseGlow 4s infinite alternate;
+    }
+
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 40px rgba(45, 212, 191, 0.0); }
+      100% { box-shadow: 0 0 80px rgba(45, 212, 191, 0.1); }
     }
 
     #home h1 {
-      font-size: 3em;
+      font-size: 4em;
       font-weight: 700;
-      margin-bottom: 15px;
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+      text-shadow: 0 10px 30px rgba(0,0,0,0.8);
     }
 
     #home h1 span {
-      color: #fef08a;
+      color: var(--accent);
+      text-shadow: 0 0 20px rgba(45, 212, 191, 0.4);
     }
 
     #home p {
       font-size: 1.2em;
-      max-width: 650px;
-      margin: 0 auto 25px;
-      line-height: 1.6em;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      color: var(--text-muted);
+      line-height: 1.6;
     }
 
     .home-btn {
-      background: white;
-      color: #0d9488;
-      padding: 12px 28px;
-      border-radius: 50px;
+      background: transparent;
+      color: var(--accent);
+      padding: 16px 40px;
+      border-radius: 4px;
       font-weight: 600;
+      font-size: 1.1em;
       text-decoration: none;
+      border: 1px solid var(--accent);
+      box-shadow: 0 0 15px rgba(45, 212, 191, 0.2), inset 0 0 10px rgba(45, 212, 191, 0.1);
       transition: all 0.3s ease;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      position: relative;
+      overflow: hidden;
     }
 
     .home-btn:hover {
-      background: #fef08a;
-      color: #0c4a6e;
-      transform: scale(1.05);
+      background: var(--accent);
+      color: var(--bg-dark);
+      box-shadow: 0 0 30px rgba(45, 212, 191, 0.6);
     }
 
-   /* ===== About Section ===== */
-#about {
-  background: #ffffff;
-  padding: 160px 10% 180px;
-  overflow: hidden;
-  position: relative;
-}
-
-.about-header {
-  text-align: center;
-  margin-bottom: 70px;
-}
-
-.about-header h2 {
-  font-size: 2.5em;
-  color: #0f766e;
-  font-weight: 700;
-  background: linear-gradient(135deg, #f0fdfa, #ecfeff);
-  display: inline-block;
-  padding: 12px 40px;
-  border-radius: 40px;
-  box-shadow: 0 4px 20px rgba(15, 118, 110, 0.1);
-}
-
-.about-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-  gap: 40px;
-  position: relative;
-  overflow-x: clip;
-}
-
-/* ===== Card Styling ===== */
-.about-box {
-  background: linear-gradient(135deg, #f0fdfa, #e0f2fe);
-  border-radius: 20px;
-  padding: 35px 28px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
-  opacity: 0;
-  transform: translateY(50px);
-  transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
-  will-change: transform, opacity;
-  overflow: hidden;
-  border: 1px solid #bae6fd;
-}
-
-/* ===== Card Headings ===== */
-.about-box h3 {
-  text-align: center;
-  color: #0f766e;
-  font-size: 1.5em;
-  margin-bottom: 20px;
-  font-weight: 600;
-  position: relative;
-  padding-bottom: 12px;
-}
-
-.about-box h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 50px;
-  height: 3px;
-  background: linear-gradient(to right, #0f766e, #0d9488);
-  border-radius: 2px;
-}
-
-/* ===== Card Paragraphs ===== */
-.about-box p {
-  line-height: 1.8;
-  color: #475569;
-  font-size: 1.05em;
-  text-align: center;
-}
-
-/* ===== Entry Animations ===== */
-.from-left { transform: translateX(-80px); }
-.from-center { transform: scale(0.85); }
-.from-right { transform: translateX(80px); }
-
-.about-box.visible {
-  opacity: 1;
-  transform: translateX(0) scale(1);
-}
-
-/* ===== Hover Effect ===== */
-.about-box:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 15px 30px rgba(15, 118, 110, 0.12);
-  transition: all 0.4s ease;
-  background: linear-gradient(135deg, #e0f2fe, #cffafe);
-}
-
-/* ===== Responsive Fix ===== */
-@media (max-width: 768px) {
-  .about-header h2 {
-    font-size: 1.9em;
-    padding: 10px 25px;
-  }
-  .about-box {
-    padding: 25px 20px;
-  }
-}
-
-/* ===== Global Overflow Fix ===== */
-html, body {
-  width: 100%;
-  overflow-x: clip !important;
-}
-
-section, header, footer {
-  max-width: 100%;
-  overflow-x: clip;
-}
-
-    /* ===== Services Section CSS ===== */
-#services {
-  padding: 100px 5%;
-  background: #f8fafc;
-  text-align: center;
-  width: 100%;
-  overflow: hidden;
-}
-
-#services h2 {
-  font-size: 2.2em;
-  color: #0f766e;
-  margin-bottom: 50px;
-  font-weight: 700;
-}
-
-.services-container {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 25px;
-  width: 100%;
-  max-width: 1400px;
-  margin: 0 auto;
-}
-
-/* ===== Service Card Base ===== */
-.service-card {
-  background: linear-gradient(135deg, #f0fdfa, #e0f2fe);
-  border-radius: 15px;
-  padding: 25px 20px;
-  min-height: 220px;
-  width: 240px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06);
-  opacity: 0;
-  transform-style: preserve-3d;
-  transform-origin: center;
-  transition: all 1s cubic-bezier(0.19, 1, 0.22, 1);
-  will-change: transform, opacity;
-  border: 1px solid #bae6fd;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
-}
-
-/* ===== Service Card Icons ===== */
-.service-card .icon {
-  margin-bottom: 15px;
-  display: block;
-  text-align: center;
-}
-
-.service-card .icon img {
-  width: 60px;
-  height: 60px;
-  margin-bottom: 15px;
-  object-fit: contain;
-  display: block;
-}
-
-/* ===== Service Card Headings ===== */
-.service-card h3 {
-  text-align: center;
-  color: #0f766e;
-  font-size: 1.3em;
-  margin-bottom: 15px;
-  font-weight: 600;
-  position: relative;
-  padding-bottom: 10px;
-}
-
-.service-card h3::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 40px;
-  height: 3px;
-  background: linear-gradient(to right, #0f766e, #0d9488);
-  border-radius: 2px;
-}
-
-/* ===== Service Card Paragraphs ===== */
-.service-card p {
-  line-height: 1.6;
-  color: #475569;
-  font-size: 0.95em;
-  text-align: center;
-  margin-top: 5px;
-}
-
-/* ===== Flip Directions ===== */
-.flip-clockwise {
-  transform: rotateY(90deg) scale(0.9);
-}
-
-.flip-anticlockwise {
-  transform: rotateY(-90deg) scale(0.9);
-}
-
-/* ===== Visible (Flipped Into View) ===== */
-.service-card.visible {
-  transform: rotateY(0deg) scale(1);
-  opacity: 1;
-}
-
-/* ===== Hidden States ===== */
-.service-card.hidden-clockwise {
-  transform: rotateY(90deg) scale(0.9);
-  opacity: 0;
-}
-
-.service-card.hidden-anticlockwise {
-  transform: rotateY(-90deg) scale(0.9);
-  opacity: 0;
-}
-
-/* ===== Hover Effect ===== */
-.service-card:hover {
-  transform: rotateY(0deg) translateY(-5px) scale(1.02);
-  box-shadow: 0 12px 25px rgba(15, 118, 110, 0.12);
-  transition: all 0.3s ease;
-  background: linear-gradient(135deg, #e0f2fe, #cffafe);
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  #services {
-    padding: 80px 20px;
-  }
-  
-  #services h2 {
-    font-size: 1.8em;
-    margin-bottom: 40px;
-  }
-  
-  .service-card {
-    width: 100%;
-    max-width: 280px;
-    padding: 25px 20px;
-    min-height: 200px;
-  }
-  
-  .services-container {
-    flex-direction: column;
-    align-items: center;
-  }
-}
-
-@media (min-width: 769px) and (max-width: 1200px) {
-  .services-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-  }
-  
-  .service-card {
-    width: 280px;
-  }
-}
-
-@media (min-width: 1201px) {
-  .services-container {
-    display: flex;
-    justify-content: center;
-    flex-wrap: nowrap;
-  }
-  
-  .service-card {
-    flex: 0 0 auto;
-    width: 230px;
-  }
-}
-
-@media (min-width: 1400px) {
-  .service-card {
-    width: 250px;
-  }
-}
-
-    /* ===== Contact Section ===== */
-    #contact {
-      background: #f8fafc;
-      padding: 120px 15%;
-      text-align: center;
+    /* Section Global Styles */
+    section:not(#home) {
+      padding: 120px 8%;
+      position: relative;
     }
 
-    #contact h2 {
-      font-size: 2.2em;
-      color: #0f766e;
-      margin-bottom: 40px;
-    }
-
-    .contact-subtitle {
-      font-size: 1.1em;
-      color: #64748b;
+    .section-title {
+      font-size: 2.5em;
+      font-weight: 700;
+      color: var(--text-main);
       margin-bottom: 50px;
-      max-width: 600px;
-      margin-left: auto;
-      margin-right: auto;
+      display: inline-block;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 10px;
     }
 
-    /* ===== Contact Buttons Container ===== */
-    .contact-buttons {
-      display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
-      gap: 25px;
-      max-width: 800px;
-      margin: 0 auto;
+    /* Bento Box Grid System */
+    .bento-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      grid-auto-rows: minmax(180px, auto);
     }
 
-    /* ===== Individual Contact Button ===== */
-    .contact-btn {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      width: 200px;
-      height: 200px;
-      border-radius: 20px;
-      text-decoration: none;
-      color: white;
-      font-weight: 600;
-      font-size: 1.2em;
-      transition: all 0.3s ease;
-      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
-      transform: translateY(30px);
+    .bento-item {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 40px 30px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .bento-item::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: radial-gradient(circle at top left, rgba(45, 212, 191, 0.1), transparent 50%);
       opacity: 0;
-      animation: fadeInUp 0.8s ease forwards;
+      transition: opacity 0.4s;
     }
 
-    .contact-btn:nth-child(1) { animation-delay: 0.1s; }
-    .contact-btn:nth-child(2) { animation-delay: 0.2s; }
-    .contact-btn:nth-child(3) { animation-delay: 0.3s; }
-
-    @keyframes fadeInUp {
-      to {
-        transform: translateY(0);
-        opacity: 1;
-      }
+    .bento-item:hover {
+      transform: translateY(-5px);
+      border-color: rgba(45, 212, 191, 0.5);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4), 0 0 20px rgba(45, 212, 191, 0.1);
     }
 
-    .contact-btn i {
-      font-size: 50px;
+    .bento-item:hover::before { opacity: 1; }
+
+    /* About Bento Spans */
+    #about .bento-item:nth-child(1) { grid-column: span 4; }
+    #about .bento-item:nth-child(2) { grid-column: span 2; }
+    #about .bento-item:nth-child(3) { grid-column: span 2; }
+
+    /* Services Bento Spans */
+    #services .bento-item { grid-column: span 2; text-align: center; }
+
+    .bento-item h3 {
+      color: var(--accent);
+      font-size: 1.4em;
       margin-bottom: 15px;
+      position: relative;
+      z-index: 2;
     }
 
-    .contact-btn span {
-      margin-top: 5px;
-      font-size: 0.9em;
-      opacity: 0.9;
+    .bento-item p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 1.05em;
+      position: relative;
+      z-index: 2;
     }
 
-    /* ===== Button Colors ===== */
-    .contact-btn.call {
-      background: linear-gradient(135deg, #059669, #047857);
+    .bento-item .icon-wrapper {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      background: rgba(45, 212, 191, 0.1);
+      border-radius: 12px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: 1px solid rgba(45, 212, 191, 0.3);
     }
 
-    .contact-btn.whatsapp {
-      background: linear-gradient(135deg, #0f766e, #0d9488);
+    .bento-item .icon-wrapper img {
+      width: 30px;
+      filter: brightness(0) invert(1);
     }
 
-    .contact-btn.email {
-      background: linear-gradient(135deg, #dc2626, #b91c1c);
+    /* Products Glass Terminal */
+    .terminal-container {
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(24px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 30px 60px rgba(0,0,0,0.6);
     }
 
-    /* ===== Hover Effects ===== */
-    .contact-btn:hover {
-      transform: translateY(-10px) scale(1.05);
-      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+    .terminal-header {
+      background: rgba(15, 23, 42, 0.9);
+      padding: 15px 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      border-bottom: 1px solid var(--card-border);
     }
 
-    .contact-btn.call:hover {
-      background: linear-gradient(135deg, #047857, #065f46);
-    }
+    .dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot.red { background: #ef4444; }
+    .dot.yellow { background: #eab308; }
+    .dot.green { background: #22c55e; }
 
-    .contact-btn.whatsapp:hover {
-      background: linear-gradient(135deg, #0d9488, #0f766e);
-    }
-
-    .contact-btn.email:hover {
-      background: linear-gradient(135deg, #b91c1c, #991b1b);
-    }
-
-    /* ===== Footer ===== */
-    footer {
-      background: #0f766e;
-      color: white;
-      text-align: center;
+    .product-table-wrap {
+      overflow-x: auto;
       padding: 20px;
+    }
+
+    .product-table {
+      width: 100%;
+      min-width: 1000px;
+      border-collapse: collapse;
       font-size: 0.95em;
     }
 
-    @media (max-width: 768px) {
-      header { flex-direction: column; padding: 8px 10px; }
-      header img { height: 60px; }
-      header h1 { font-size: 1.3em; }
-      nav { gap: 14px; flex-wrap: nowrap; }
-      #home h1 { font-size: 2em; }
-      #home p { font-size: 1em; }
-      .service-card {
-        padding: 30px 20px;
-        min-height: 250px;
-      }
-      
-      /* Contact section responsive */
-      .contact-buttons {
-        flex-direction: column;
-        align-items: center;
-      }
-      
-      .contact-btn {
-        width: 250px;
-        height: 180px;
-      }
-      
-      .contact-btn i {
-        font-size: 40px;
-      }
+    .product-table th {
+      padding: 15px;
+      text-align: left;
+      font-weight: 600;
+      color: var(--accent);
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      font-size: 0.8em;
+      border-bottom: 1px solid var(--card-border);
     }
-      /* ===== Fix Right Side Extra Space on Mobile ===== */
-html, body {
-  width: 100%;
-  overflow-x: hidden !important;
-}
 
-section, header, footer, .about-content, .services-container {
-  max-width: 100%;
-  overflow-x: hidden;
-}
+    .product-table td {
+      padding: 15px;
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      vertical-align: middle;
+    }
 
-img, iframe, video {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
-html, body {
-  width: 100%;
-  overflow-x: hidden !important;
-}
+    .product-table tr:hover {
+      background: rgba(255,255,255,0.02);
+    }
 
-header, footer, .services-container {
-  max-width: 100%;
-  overflow-x: hidden;
-}
-/* ===== Products Section ===== */
-#products {
-  padding: 140px 10%;
-  background: #ffffff;
-  text-align: center;
-}
+    .product-table .logo-cell img {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: contain;
+    }
 
-#products h2 {
-  font-size: 2.4em;
-  color: #0f766e;
-  margin-bottom: 60px;
-  font-weight: 700;
-}
+    .product-table .name-cell { font-weight: 700; color: #fff; }
+    .product-table .desc-cell { color: var(--text-muted); font-size: 0.9em; }
 
-/* ===== Product Card ===== */
-.product-card {
-  max-width: 900px;
-  margin: auto;
-  background: linear-gradient(135deg, #f0fdfa, #e0f2fe);
-  border-radius: 25px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.06);
-  padding: 50px 40px;
-  display: grid;
-  grid-template-columns: 1fr 1.2fr;
-  gap: 40px;
-  align-items: center;
-  border: 1px solid #bae6fd;
+    .dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 4px;
+      font-size: 0.8em;
+      font-weight: 600;
+      text-decoration: none;
+      color: white;
+      background: rgba(255,255,255,0.1);
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.2s ease;
+    }
 
-  /* Animation base */
-  opacity: 0;
-  transform: translateY(80px) scale(0.95);
-  transition: all 0.9s cubic-bezier(0.19, 1, 0.22, 1);
-  will-change: transform, opacity;
-}
+    .dl-btn:hover { background: var(--accent); color: var(--bg-dark); border-color: var(--accent); }
 
-/* ===== Visible State ===== */
-.product-card.visible {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
+    .visit-link {
+      color: var(--accent);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9em;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .visit-link:hover { text-shadow: 0 0 10px rgba(45,212,191,0.5); }
 
-/* ===== Hover Effect ===== */
-.product-card:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 0 15px 35px rgba(15, 118, 110, 0.12);
-}
+    .coming-soon-tag {
+      font-size: 0.75em;
+      color: var(--text-muted);
+      border: 1px dashed var(--text-muted);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
 
-/* ===== Logo ===== */
-.product-logo img {
-  width: 180px;
-  margin: auto;
-}
+    /* Contact Section */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
 
-/* ===== Info ===== */
-.product-info h3 {
-  font-size: 2em;
-  color: #0f766e;
-  margin-bottom: 15px;
-}
+    .contact-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(20px);
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 50px 20px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.4s ease;
+      color: var(--text-main);
+    }
+    
+    .contact-card i {
+      font-size: 3em;
+      margin-bottom: 20px;
+      color: var(--accent);
+      transition: transform 0.4s ease;
+    }
 
-.product-info p {
-  font-size: 1.1em;
-  line-height: 1.8;
-  color: #475569;
-  margin-bottom: 30px;
-}
+    .contact-card span {
+      display: block;
+      font-size: 1.2em;
+      font-weight: 600;
+      letter-spacing: 1px;
+    }
 
-/* ===== Buttons ===== */
-.product-buttons {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 15px;
-}
+    .contact-card:hover {
+      background: rgba(45, 212, 191, 0.1);
+      border-color: var(--accent);
+      transform: translateY(-10px);
+      box-shadow: 0 10px 30px rgba(45, 212, 191, 0.2);
+    }
+    
+    .contact-card:hover i { transform: scale(1.2); }
 
-.product-btn {
-  padding: 14px 22px;
-  border-radius: 50px;
-  text-decoration: none;
-  font-weight: 600;
-  color: white;
-  background: linear-gradient(135deg, #0f766e, #0d9488);
-  transition: all 0.3s ease;
-}
+    footer {
+      text-align: center;
+      padding: 30px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--card-border);
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(10px);
+    }
 
-.product-btn:hover {
-  transform: translateY(-4px) scale(1.05);
-}
+    /* Fade-in Animation Classes */
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s ease;
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
-.product-btn.web {
-  background: linear-gradient(135deg, #0891b2, #0e7490);
-}
+    /* Responsive */
+    @media (max-width: 992px) {
+      .bento-grid { grid-template-columns: repeat(2, 1fr); }
+      #about .bento-item:nth-child(1) { grid-column: span 2; }
+      .contact-grid { grid-template-columns: 1fr; }
+    }
 
-.product-btn.android {
-  background: linear-gradient(135deg, #059669, #047857);
-}
-
-.product-btn.windows {
-  background: linear-gradient(135deg, #2563eb, #1d4ed8);
-}
-
-/* ===== Responsive ===== */
-@media (max-width: 768px) {
-  .product-card {
-    grid-template-columns: 1fr;
-    padding: 40px 25px;
-  }
-
-  .product-logo img {
-    width: 140px;
-  }
-
-  .product-info h3 {
-    font-size: 1.6em;
-  }
-}
-
+    @media (max-width: 768px) {
+      header { flex-direction: column; border-radius: 16px; padding: 15px; }
+      nav { margin-top: 15px; flex-wrap: wrap; justify-content: center; }
+      #home h1 { font-size: 2.5em; }
+      .bento-grid { grid-template-columns: 1fr; }
+      #about .bento-item:nth-child(1), #about .bento-item:nth-child(2), #about .bento-item:nth-child(3), #services .bento-item { grid-column: span 1; }
+    }
   </style>
 </head>
 
 <body>
-  <!-- Disable Right Click -->
-  <script>
-    document.addEventListener("contextmenu", e => e.preventDefault());
-  </script>
 
-  <!-- ===== Navbar ===== -->
+  <!-- Interactive Honeycomb Canvas -->
+  <canvas id="honeycomb-canvas"></canvas>
+
   <header>
-    <div style="display:flex;align-items:center;">
+    <div class="logo-container">
       <img src="logo.png" alt="ISS Logo" />
       <h1>India Soft Solutions</h1>
     </div>
@@ -738,239 +447,314 @@ header, footer, .services-container {
       <a href="#home">Home</a>
       <a href="#about">About</a>
       <a href="#services">Services</a>
-      <a href="#products">Products</a>  
+      <a href="#products">Products</a>
       <a href="#contact">Contact</a>
     </nav>
   </header>
 
-  <!-- ===== Home ===== -->
+  <!-- Hero -->
   <section id="home">
-    <h1>Welcome to <span>India Soft Solutions</span></h1>
-    <p>We design and develop powerful digital experiences — from mobile apps to web platforms — to help businesses grow with technology.</p>
-    <a href="#services" class="home-btn">Explore Our Work</a>
+    <div class="hero-content">
+      <h1>Welcome to <span>I</span>ndia <span>S</span>oft <span>S</span>olutions</h1>
+      <p>We design and develop powerful digital experiences — from mobile apps to web platforms — to help businesses grow with technology.</p>
+      <a href="#services" class="home-btn">Explore Our Work</a>
+    </div>
   </section>
 
-  <!-- ===== About ===== -->
+  <!-- About -->
   <section id="about">
-    <div class="about-header">
-      <h2>About Us</h2>
-    </div>
-    <div class="about-content">
-      <!-- Static About Content -->
-      <div class="about-box from-left">
+    <h2 class="section-title reveal">About Us</h2>
+    <div class="bento-grid">
+      <div class="bento-item reveal">
         <h3>🏢 Who We Are</h3>
         <p>India Soft Solutions (ISS) is a creative and technology-driven SaaS company focused on delivering modern, high-quality digital solutions for businesses and individuals. We specialize in web development, mobile apps, and customized software designed to enhance user experience and business growth. With innovation, precision, and customer satisfaction at our core, ISS transforms ideas into impactful digital realities.</p>
       </div>
-      <div class="about-box from-center">
+      <div class="bento-item reveal">
         <h3>🎯 Our Mission</h3>
-        <p>To provide reliable, scalable, and high-performance digital solutions that empower clients to reach new heights through technology and innovation. We strive to blend creativity with technical excellence, ensuring every project reflects quality, precision, and long-term value. Our mission is to help businesses evolve and stay ahead in an ever-changing digital world.</p>
+        <p>To provide reliable, scalable, and high-performance digital solutions that empower clients to reach new heights through technology and innovation. We strive to blend creativity with technical excellence, ensuring every project reflects quality, precision, and long-term value.</p>
       </div>
-      <div class="about-box from-right">
+      <div class="bento-item reveal">
         <h3>🌟 Our Vision</h3>
-        <p>To be a global leader in digital innovation — inspiring change through smart technology, sustainable growth, and creative transformation. We envision a connected world where every business, regardless of size, can harness the power of technology to thrive, innovate, and make a positive impact on society.</p>
+        <p>To be a global leader in digital innovation — inspiring change through smart technology, sustainable growth, and creative transformation. We envision a connected world where every business can harness the power of technology to thrive.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== Services ===== -->
+  <!-- Services -->
   <section id="services">
-    <h2>Our Services</h2>
-    <div class="services-container">
-      <!-- Static Services Content -->
-      <div class="service-card flip-clockwise">
-        <div class="icon">
-          <img src="www.png" alt="Web Development Icon">
-        </div>
+    <h2 class="section-title reveal">Our Services</h2>
+    <div class="bento-grid">
+      <div class="bento-item reveal">
+        <div class="icon-wrapper"><img src="www.png" alt="Web"></div>
         <h3>Web Development</h3>
-        <p>Custom websites with responsive design.</p>
+        <p>Custom websites with responsive design, modern frameworks, and SEO optimization.</p>
       </div>
-      
-      <div class="service-card flip-anticlockwise">
-        <div class="icon">
-          <img src="appDev.png" alt="Mobile App Development Icon">
-        </div>
+      <div class="bento-item reveal">
+        <div class="icon-wrapper"><img src="appDev.png" alt="App"></div>
         <h3>Mobile App Development</h3>
-        <p>Android and iOS mobile app solutions.</p>
+        <p>Android and iOS mobile app solutions with native and cross-platform development.</p>
       </div>
-      
-      <div class="service-card flip-clockwise">
-        <div class="icon">
-          <img src="ux-ui.jpg" alt="Software Solutions Icon">
-        </div>
+      <div class="bento-item reveal">
+        <div class="icon-wrapper"><img src="ux-ui.jpg" alt="UI/UX"></div>
         <h3>UI/UX Design</h3>
-        <p>Beautiful and user-friendly interface designs.</p>
+        <p>Beautiful and user-friendly interface designs that enhance user experience.</p>
       </div>
-      
-      <div class="service-card flip-anticlockwise">
-        <div class="icon">
-          <img src="Support___Maintenance.png" alt="Support & Maintenance Icon">
-        </div>
+      <div class="bento-item reveal">
+        <div class="icon-wrapper"><img src="Support___Maintenance.png" alt="Support"></div>
         <h3>Support & Maintenance</h3>
-        <p>24/7 support for clients</p>
+        <p>24/7 technical support and regular maintenance for all your digital products.</p>
       </div>
     </div>
   </section>
 
-  <!-- ===== Products ===== -->
+  <!-- Products -->
   <section id="products">
-    <h2>Our Products</h2>
-    <div class="product-card">
-      <div class="product-logo">
-        <img src="learndartlogo.png" alt="LearnDart Logo">
+    <h2 class="section-title reveal">Our Products</h2>
+    <div class="terminal-container reveal">
+      <div class="terminal-header">
+        <div class="dot red"></div>
+        <div class="dot yellow"></div>
+        <div class="dot green"></div>
       </div>
-      <div class="product-info">
-        <h3>LearnDart</h3>
-        <p>
-          LearnDart is a complete learning platform for mastering the Dart programming language.
-          It includes structured lessons, code examples, and practice questions —
-          available on Web, Windows, and Android.
-        </p>
-        <div class="product-buttons">
-          <a href="https://learndartweb.netlify.app"
-             class="product-btn web"
-             target="_blank"
-             rel="noopener noreferrer">
-            🌐 Open Web App
-          </a>
-         <a href="https://github.com/tnhisecure/LearnDart_Windows/releases/download/v1.0.0/LearnDart_windows_v1.0.0.zip"
-             class="product-btn windows"
-             download>
-            🖥 Download for Windows
-          </a>
-          <a href="https://github.com/tnhisecure/LearnDart/releases/download/v1.0.0/LearnDart.apk"
-             class="product-btn android"
-             target="_blank"
-             rel="noopener noreferrer">
-            📱 Download APK
-          </a>
-        </div> 
+      <div class="product-table-wrap">
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>SL</th>
+              <th>Logo</th>
+              <th>Name</th>
+              <th>Sort Description</th>
+              <th>Download .exe</th>
+              <th>Download .apk</th>
+              <th>Download .dmg</th>
+              <th>Visit Website</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td class="logo-cell"><img src="nestlogo.png" alt="Nest" /></td>
+              <td class="name-cell">Nest Communication</td>
+              <td class="desc-cell">Video Communication App, It support Meeting Creation, Joining via ID and live camera/mic control.</td>
+              <td><a href="https://github.com/jayantadutta-code/nestEXEfile/releases/download/v2.1.0/nest_communication.zip" class="dl-btn"><i class="fab fa-windows"></i> .exe</a></td>
+              <td><a href="https://github.com/jayantadutta-code/nestAPKfile/releases/download/v2.1.0/app-release.apk" class="dl-btn" target="_blank"><i class="fab fa-android"></i> .apk</a></td>
+              <td><a href="https://github.com/jayantadutta-code/nestDMGfile/releases/download/v2.1.0/Nest.Communication.app.zip" class="dl-btn" target="_blank"><i class="fa-brands fa-apple"></i> .dmg</a></td>
+              <td><a href="https://nestcomm.netlify.app/" class="visit-link" target="_blank"><i class="fas fa-external-link-alt"></i> Visit</a></td>
+            </tr>
+            <!-- Placeholders for rest -->
+            <tr>
+              <td>02</td>
+              <td class="logo-cell"><img src="logo.png" alt="CodeSync" /></td>
+              <td class="name-cell">CodeSync</td>
+              <td class="desc-cell">Real-time collaborative code editor</td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td class="logo-cell"><img src="logo.png" alt="SecureVault" /></td>
+              <td class="name-cell">SecureVault</td>
+              <td class="desc-cell">Encrypted password manager</td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+            </tr>
+            <tr>
+              <td>04</td>
+              <td class="logo-cell"><img src="logo.png" alt="DataFlow" /></td>
+              <td class="name-cell">DataFlow</td>
+              <td class="desc-cell">Real-time data sync &amp; analytics</td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+            </tr>
+            <tr>
+              <td>05</td>
+              <td class="logo-cell"><img src="logo.png" alt="CloudNest" /></td>
+              <td class="name-cell">CloudNest</td>
+              <td class="desc-cell">Cloud storage &amp; file sharing</td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+            </tr>
+            <tr>
+              <td>06</td>
+              <td class="logo-cell"><img src="logo.png" alt="SwiftCart" /></td>
+              <td class="name-cell">SwiftCart</td>
+              <td class="desc-cell">E-commerce platform for SMEs</td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+            </tr>
+            <tr>
+              <td>07</td>
+              <td class="logo-cell"><img src="logo.png" alt="HealthTrack" /></td>
+              <td class="name-cell">HealthTrack</td>
+              <td class="desc-cell">Patient health monitoring system</td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+            </tr>
+            <tr>
+              <td>08</td>
+              <td class="logo-cell"><img src="logo.png" alt="EduSmart" /></td>
+              <td class="name-cell">EduSmart</td>
+              <td class="desc-cell">AI-powered learning management</td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+            </tr>
+            <tr>
+              <td>09</td>
+              <td class="logo-cell"><img src="logo.png" alt="FinSecure" /></td>
+              <td class="name-cell">FinSecure</td>
+              <td class="desc-cell">Blockchain-based financial security</td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+            </tr>
+            <tr>
+              <td>10</td>
+              <td class="logo-cell"><img src="logo.png" alt="FinSecure" /></td>
+              <td class="name-cell">FinSecure</td>
+              <td class="desc-cell">Blockchain-based financial security</td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+              <td><span class="coming-soon-tag">Coming Soon</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
     </div>
   </section>
 
-  <!-- ===== Contact ===== -->
+  <!-- Contact -->
   <section id="contact">
-    <h2>Contact Us</h2>
-    <p class="contact-subtitle">Get in touch with us through any of these convenient methods</p>
-    
-    <div class="contact-buttons">
-      <!-- Call Button -->
-      <a href="tel:+918250227952" class="contact-btn call">
+    <h2 class="section-title reveal">Contact Us</h2>
+    <div class="contact-grid">
+      <a href="tel:+918250227952" class="contact-card reveal">
         <i class="fas fa-phone-alt"></i>
         <span>CALL US</span>
-       
       </a>
-      
-      <!-- WhatsApp Button -->
-      <a href="https://wa.me/918250227952?text=Hello%20India%20Soft%20Solutions,%20I%20would%20like%20to%20discuss%20a%20project" 
-         class="contact-btn whatsapp" 
-         target="_blank">
+      <a href="https://wa.me/918250227952" class="contact-card reveal" target="_blank">
         <i class="fab fa-whatsapp"></i>
         <span>WHATSAPP</span>
-       
       </a>
-      
-      <!-- Email Button -->
-      <a href="mailto:indiasoftsolutions2025@gmail.com?subject=Enquiry%20from%20Website&body=Hello%20India%20Soft%20Solutions,%0A%0AI%20would%20like%20to%20get%20more%20information%20about%20your%20services." 
-         class="contact-btn email">
+      <a href="mailto:indiasoftsolutions2025@gmail.com" class="contact-card reveal">
         <i class="fas fa-envelope"></i>
         <span>EMAIL US</span>
-        
       </a>
     </div>
-    
-    <p style="margin-top: 50px; color: #64748b; font-size: 0.95em;">
-      We typically respond 24/7 during business days.
-    </p>
   </section>
 
-  <footer>&copy; 2025 India Soft Solutions | All Rights Reserved.</footer>
+  <footer>
+    <p>© 2025 India Soft Solutions | All Rights Reserved</p>
+  </footer>
 
-  <!-- ===== Scripts ===== -->
-  <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
   <script>
-    // Initialize AOS
-    AOS.init({ duration: 1000, once: false });
-
-    // Product Card Animation
-    document.addEventListener("DOMContentLoaded", () => {
-      const productCard = document.querySelector(".product-card");
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) {
-            productCard.classList.add("visible");
-          } else {
-            productCard.classList.remove("visible");
-          }
-        });
-      }, { threshold: 0.35 });
-      observer.observe(productCard);
-    });
-
-    // Scroll Animations for other sections
-    document.addEventListener("DOMContentLoaded", () => {
-      const aboutBoxes = document.querySelectorAll(".about-box");
-      const services = document.querySelectorAll(".service-card");
-
-      const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-          const el = entry.target;
-
-          // About Section Animation
-          if (el.classList.contains("about-box")) {
-            if (entry.isIntersecting) {
-              el.classList.add("visible");
-              el.classList.remove("hidden-left", "hidden-center", "hidden-right");
-            } else {
-              if (el.classList.contains("from-left")) el.classList.add("hidden-left");
-              else if (el.classList.contains("from-center")) el.classList.add("hidden-center");
-              else if (el.classList.contains("from-right")) el.classList.add("hidden-right");
-              el.classList.remove("visible");
-            }
-          }
-
-          // Service Section Animation
-          if (el.classList.contains("service-card")) {
-            if (entry.isIntersecting) {
-              el.classList.add("visible");
-              el.classList.remove("hidden-clockwise", "hidden-anticlockwise");
-            } else {
-              if (el.classList.contains("flip-clockwise"))
-                el.classList.add("hidden-clockwise");
-              else if (el.classList.contains("flip-anticlockwise"))
-                el.classList.add("hidden-anticlockwise");
-              el.classList.remove("visible");
-            }
-          }
-        });
-      }, { threshold: 0.3 });
-
-      // Observe all elements
-      aboutBoxes.forEach(box => observer.observe(box));
-      services.forEach(card => observer.observe(card));
-    });
-
-    // Detect if device is mobile for better call experience
-    function isMobileDevice() {
-      return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-    }
-
-    // Optional: Add confirmation for call button on desktop
-    document.querySelector('.contact-btn.call').addEventListener('click', function(e) {
-      if (!isMobileDevice()) {
-        if (!confirm("You're on a desktop device. Would you like to copy the phone number instead?")) {
-          e.preventDefault();
-          // Copy phone number to clipboard
-          navigator.clipboard.writeText("+918250227952").then(() => {
-            alert("Phone number copied to clipboard: +91 8250227952");
-          });
+    /* --- Intersection Observer for Fade In --- */
+    function reveal() {
+      var reveals = document.querySelectorAll(".reveal");
+      for (var i = 0; i < reveals.length; i++) {
+        var windowHeight = window.innerHeight;
+        var elementTop = reveals[i].getBoundingClientRect().top;
+        var elementVisible = 100;
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add("active");
         }
       }
+    }
+    window.addEventListener("scroll", reveal);
+    reveal();
+
+    /* --- Interactive Honeycomb Canvas --- */
+    const canvas = document.getElementById('honeycomb-canvas');
+    const ctx = canvas.getContext('2d');
+    let width, height;
+    
+    // Hexagon parameters
+    const hexRadius = 40;
+    const hexHeight = hexRadius * Math.sqrt(3);
+    const hexWidth = hexRadius * 2;
+    const xOffset = hexWidth * 0.75;
+    const yOffset = hexHeight;
+
+    let mouse = { x: null, y: null };
+    window.addEventListener('mousemove', (e) => {
+      mouse.x = e.clientX;
+      mouse.y = e.clientY;
     });
+    window.addEventListener('mouseout', () => {
+      mouse.x = null;
+      mouse.y = null;
+    });
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+    window.addEventListener('resize', resize);
+    resize();
+
+    function drawHexagon(x, y, radius, alpha) {
+      ctx.beginPath();
+      for (let i = 0; i < 6; i++) {
+        const angle = Math.PI / 3 * i;
+        const hx = x + radius * Math.cos(angle);
+        const hy = y + radius * Math.sin(angle);
+        if (i === 0) ctx.moveTo(hx, hy);
+        else ctx.lineTo(hx, hy);
+      }
+      ctx.closePath();
+      ctx.lineWidth = 1 + alpha * 3;
+      ctx.strokeStyle = `rgba(45, 212, 191, ${0.05 + alpha})`;
+      if(alpha > 0.1) {
+        ctx.fillStyle = `rgba(45, 212, 191, ${alpha * 0.15})`;
+        ctx.fill();
+      }
+      ctx.stroke();
+    }
+
+    function animate() {
+      ctx.clearRect(0, 0, width, height);
+
+      // Draw grid
+      for (let row = 0; row < height / yOffset + 2; row++) {
+        for (let col = 0; col < width / xOffset + 2; col++) {
+          let x = col * xOffset;
+          let y = row * yOffset;
+          if (col % 2 === 1) y += yOffset / 2;
+          
+          let alpha = 0;
+          if (mouse.x !== null) {
+            const dx = mouse.x - x;
+            const dy = mouse.y - y;
+            const distance = Math.sqrt(dx * dx + dy * dy);
+            const maxDist = 250;
+            if (distance < maxDist) {
+              // Closer = higher alpha
+              alpha = 1 - (distance / maxDist);
+            }
+          }
+          
+          drawHexagon(x, y, hexRadius, alpha);
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+    animate();
   </script>
 </body>
-
 </html>
-
-
-
-
