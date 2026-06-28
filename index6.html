@@ -82,6 +82,7 @@
       height: 60px;
       background: rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
       box-shadow: none;
       border: 1px solid rgba(255, 255, 255, 0.5);
     }
@@ -261,6 +262,7 @@
       background: rgba(255, 255, 255, 0.03);
       border: 1px solid rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       color: #fff;
       text-decoration: none;
       font-family: 'Outfit', sans-serif;
@@ -398,6 +400,7 @@
       height: 80vh;
       background: rgba(5, 5, 10, 0.7);
       backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
       border: 1px solid rgba(255, 255, 255, 0.1);
       border-radius: 30px;
       display: flex;
@@ -727,27 +730,35 @@
     // --- Custom Cursor Logic ---
     const cursor = document.getElementById('cursor');
     const cursorFollower = document.getElementById('cursor-follower');
-    let mouseX = window.innerWidth / 2;
-    let mouseY = window.innerHeight / 2;
-    let followerX = window.innerWidth / 2;
-    let followerY = window.innerHeight / 2;
+    const isMobile = navigator.maxTouchPoints > 0;
+    
+    if (isMobile) {
+      cursor.style.display = 'none';
+      cursorFollower.style.display = 'none';
+      document.body.style.cursor = 'default';
+    } else {
+      let mouseX = window.innerWidth / 2;
+      let mouseY = window.innerHeight / 2;
+      let followerX = window.innerWidth / 2;
+      let followerY = window.innerHeight / 2;
 
-    window.addEventListener('mousemove', (e) => {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      cursor.style.left = mouseX + 'px';
-      cursor.style.top = mouseY + 'px';
-    });
+      window.addEventListener('mousemove', (e) => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+        cursor.style.left = mouseX + 'px';
+        cursor.style.top = mouseY + 'px';
+      });
 
-    // Smooth follower interpolation
-    function renderCursor() {
-      followerX += (mouseX - followerX) * 0.15;
-      followerY += (mouseY - followerY) * 0.15;
-      cursorFollower.style.left = followerX + 'px';
-      cursorFollower.style.top = followerY + 'px';
-      requestAnimationFrame(renderCursor);
+      // Smooth follower interpolation
+      function renderCursor() {
+        followerX += (mouseX - followerX) * 0.15;
+        followerY += (mouseY - followerY) * 0.15;
+        cursorFollower.style.left = followerX + 'px';
+        cursorFollower.style.top = followerY + 'px';
+        requestAnimationFrame(renderCursor);
+      }
+      renderCursor();
     }
-    renderCursor();
 
     // Hover interactions
     const hoverTargets = document.querySelectorAll('.hover-target, a');
@@ -758,18 +769,20 @@
 
     // --- Magnetic Button Logic ---
     const magneticBtns = document.querySelectorAll('.magnetic-btn');
-    magneticBtns.forEach(btn => {
-      btn.addEventListener('mousemove', function (e) {
-        const rect = this.getBoundingClientRect();
-        const h = rect.width / 2;
-        const x = e.clientX - rect.left - h;
-        const y = e.clientY - rect.top - h;
-        this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+    if (!isMobile) {
+      magneticBtns.forEach(btn => {
+        btn.addEventListener('mousemove', function (e) {
+          const rect = this.getBoundingClientRect();
+          const h = rect.width / 2;
+          const x = e.clientX - rect.left - h;
+          const y = e.clientY - rect.top - h;
+          this.style.transform = `translate(${x * 0.3}px, ${y * 0.3}px)`;
+        });
+        btn.addEventListener('mouseleave', function () {
+          this.style.transform = `translate(0px, 0px)`;
+        });
       });
-      btn.addEventListener('mouseleave', function () {
-        this.style.transform = `translate(0px, 0px)`;
-      });
-    });
+    }
 
     // --- Smooth Scroll for Navbar Links ---
     document.querySelectorAll('nav a').forEach(anchor => {

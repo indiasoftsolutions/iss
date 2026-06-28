@@ -163,6 +163,7 @@
       transform-style: preserve-3d;
       will-change: transform;
       backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
       box-shadow: 0 30px 60px rgba(0,0,0,0.5);
     }
     .tilt-card-inner {
@@ -209,6 +210,7 @@
       width: 400px;
       background: rgba(10, 10, 12, 0.8);
       backdrop-filter: blur(30px);
+      -webkit-backdrop-filter: blur(30px);
       border: 1px solid var(--accent-glow);
       border-radius: 20px;
       padding: 30px;
@@ -442,6 +444,24 @@
         targetPos += e.deltaY;
         
         // Clamp values
+        const maxScroll = track.scrollWidth - window.innerWidth;
+        targetPos = Math.max(0, Math.min(targetPos, maxScroll));
+      }, { passive: false });
+
+      // Add touch support for large tablets
+      let touchStartX = 0;
+      window.addEventListener('touchstart', (e) => {
+        touchStartX = e.changedTouches[0].clientX;
+      }, { passive: true });
+
+      window.addEventListener('touchmove', (e) => {
+        e.preventDefault();
+        const touchX = e.changedTouches[0].clientX;
+        const deltaX = touchStartX - touchX;
+        touchStartX = touchX;
+
+        targetPos += deltaX * 2; // Multiplier for scroll speed
+        
         const maxScroll = track.scrollWidth - window.innerWidth;
         targetPos = Math.max(0, Math.min(targetPos, maxScroll));
       }, { passive: false });

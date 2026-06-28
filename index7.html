@@ -36,6 +36,7 @@
             z-index: 15;
             color: #fff;
             backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
         }
 
         #instructions {
@@ -197,6 +198,7 @@
             border: none;
             box-shadow: none;
             backdrop-filter: none;
+            -webkit-backdrop-filter: none;
         }
 
         #overlay-intro .overlay-title {
@@ -317,6 +319,25 @@
             padding: 8px 15px;
             border-radius: 5px;
         }
+
+        /* --- Mobile Controls --- */
+        #mobile-menu-btn {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            background: rgba(0, 255, 255, 0.2);
+            border: 1px solid #0ff;
+            color: #0ff;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: bold;
+            font-size: 1.2em;
+            display: none;
+            z-index: 30;
+            pointer-events: auto;
+            text-shadow: 0 0 10px #0ff;
+        }
     </style>
 
     <!-- Import Three.js Map -->
@@ -337,13 +358,15 @@
         <div id="instructions">
             <h1>SYSTEM INITIALIZED</h1>
             <p>Click to Enter Cyber-Space</p>
-            <div class="keys">
+            <div class="keys" id="instruction-keys">
                 <div class="key-btn">W A S D to Move</div>
                 <div class="key-btn">MOUSE to Look</div>
                 <div class="key-btn">ESC to Pause</div>
             </div>
         </div>
     </div>
+
+    <div id="mobile-menu-btn">MENU</div>
 
     <div id="crosshair"></div>
 
@@ -465,17 +488,54 @@
         const controls = new PointerLockControls(camera, document.body);
         const blocker = document.getElementById('blocker');
         const instructions = document.getElementById('instructions');
+        
+        const isMobile = navigator.maxTouchPoints > 0;
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const instructionKeys = document.getElementById('instruction-keys');
+
+        if (isMobile) {
+            instructionKeys.innerHTML = `
+                <div class="key-btn">Swipe Left to Move</div>
+                <div class="key-btn">Swipe Right to Look</div>
+            `;
+        }
+
+        let isLocked = false;
 
         instructions.addEventListener('click', function () {
-            controls.lock();
+            if (isMobile) {
+                isLocked = true;
+                instructions.style.display = 'none';
+                blocker.style.display = 'none';
+                mobileMenuBtn.style.display = 'block';
+                document.getElementById('crosshair').style.display = 'block';
+            } else {
+                controls.lock();
+            }
         });
+
+        mobileMenuBtn.addEventListener('click', function(e) {
+            e.preventDefault();
+            if (isMobile) {
+                isLocked = false;
+                blocker.style.display = 'flex';
+                instructions.style.display = '';
+                mobileMenuBtn.style.display = 'none';
+                document.getElementById('crosshair').style.display = 'none';
+            }
+        });
+
         controls.addEventListener('lock', function () {
+            if (isMobile) return;
+            isLocked = true;
             instructions.style.display = 'none';
             blocker.style.display = 'none';
             document.body.style.cursor = 'none';
             document.getElementById('crosshair').style.display = 'block';
         });
         controls.addEventListener('unlock', function () {
+            if (isMobile) return;
+            isLocked = false;
             blocker.style.display = 'flex';
             instructions.style.display = '';
             document.body.style.cursor = 'default';
@@ -574,6 +634,88 @@
         document.addEventListener('keydown', onKeyDown);
         document.addEventListener('keyup', onKeyUp);
 
+        // --- Touch Controls for Mobile ---
+        let touchMoveX = 0;
+        let touchMoveY = 0;
+        let moveTouchId = null;
+        let lookTouchId = null;
+        let previousLookTouch = null;
+
+        document.addEventListener('touchstart', (e) => {
+            if (!isLocked || !isMobile) return;
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                const t = e.changedTouches[i];
+                // Ignore touches on overlays or menu buttons
+                if (t.target.closest('.overlay') || t.target.closest('#mobile-menu-btn')) continue;
+
+                if (t.clientX < window.innerWidth / 2) {
+                    if (moveTouchId === null) {
+                        moveTouchId = t.identifier;
+                        touchMoveX = t.clientX;
+                        touchMoveY = t.clientY;
+                    }
+                } else {
+                    if (lookTouchId === null) {
+                        lookTouchId = t.identifier;
+                        previousLookTouch = { x: t.clientX, y: t.clientY };
+                    }
+                }
+            }
+        }, { passive: false });
+
+        document.addEventListener('touchmove', (e) => {
+            if (!isLocked || !isMobile) return;
+            // Prevent default scroll if interacting with game surface
+            if (!e.target.closest('.overlay')) {
+                e.preventDefault(); 
+            }
+            
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                const t = e.changedTouches[i];
+                if (t.identifier === moveTouchId) {
+                    const deltaX = t.clientX - touchMoveX;
+                    const deltaY = t.clientY - touchMoveY;
+                    const maxDist = 50;
+                    const dist = Math.min(Math.hypot(deltaX, deltaY), maxDist);
+                    const angle = Math.atan2(deltaY, deltaX);
+                    
+                    moveForward = Math.sin(angle) < -0.3 && dist > 10;
+                    moveBackward = Math.sin(angle) > 0.3 && dist > 10;
+                    moveLeft = Math.cos(angle) < -0.3 && dist > 10;
+                    moveRight = Math.cos(angle) > 0.3 && dist > 10;
+
+                } else if (t.identifier === lookTouchId) {
+                    const movementX = t.clientX - previousLookTouch.x;
+                    const movementY = t.clientY - previousLookTouch.y;
+                    previousLookTouch = { x: t.clientX, y: t.clientY };
+
+                    const euler = new THREE.Euler(0, 0, 0, 'YXZ');
+                    euler.setFromQuaternion(camera.quaternion);
+
+                    euler.y -= movementX * 0.005;
+                    euler.x -= movementY * 0.005;
+                    euler.x = Math.max( - Math.PI / 2, Math.min( Math.PI / 2, euler.x ) );
+
+                    camera.quaternion.setFromEuler(euler);
+                }
+            }
+        }, { passive: false });
+
+        const onTouchEnd = (e) => {
+            if (!isMobile) return;
+            for (let i = 0; i < e.changedTouches.length; i++) {
+                const t = e.changedTouches[i];
+                if (t.identifier === moveTouchId) {
+                    moveTouchId = null;
+                    moveForward = moveBackward = moveLeft = moveRight = false;
+                } else if (t.identifier === lookTouchId) {
+                    lookTouchId = null;
+                }
+            }
+        };
+        document.addEventListener('touchend', onTouchEnd);
+        document.addEventListener('touchcancel', onTouchEnd);
+
         // 6. UI Logic & Render Loop
         let prevTime = performance.now();
         const hud = document.getElementById('hud');
@@ -589,7 +731,7 @@
 
             const time = performance.now();
 
-            if (controls.isLocked === true) {
+            if (isLocked) {
                 const delta = (time - prevTime) / 1000;
 
                 // Apply friction
