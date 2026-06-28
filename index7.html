@@ -33,7 +33,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            z-index: 100;
+            z-index: 15;
             color: #fff;
             backdrop-filter: blur(10px);
         }
@@ -472,10 +472,14 @@
         controls.addEventListener('lock', function () {
             instructions.style.display = 'none';
             blocker.style.display = 'none';
+            document.body.style.cursor = 'none';
+            document.getElementById('crosshair').style.display = 'block';
         });
         controls.addEventListener('unlock', function () {
             blocker.style.display = 'flex';
             instructions.style.display = '';
+            document.body.style.cursor = 'default';
+            document.getElementById('crosshair').style.display = 'none';
         });
         scene.add(controls.getObject());
 
