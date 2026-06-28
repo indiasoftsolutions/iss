@@ -34,6 +34,10 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+    }
+
+    body.custom-cursor-enabled,
+    body.custom-cursor-enabled * {
       cursor: none;
       /* Hide default cursor */
     }
@@ -731,16 +735,33 @@
     const cursor = document.getElementById('cursor');
     const cursorFollower = document.getElementById('cursor-follower');
     const isMobile = navigator.maxTouchPoints > 0;
+
+    let mouseX = window.innerWidth / 2;
+    let mouseY = window.innerHeight / 2;
+    let followerX = window.innerWidth / 2;
+    let followerY = window.innerHeight / 2;
     
     if (isMobile) {
       cursor.style.display = 'none';
       cursorFollower.style.display = 'none';
       document.body.style.cursor = 'default';
+      // Position offscreen initially so it doesn't repel particles at start
+      followerX = -1000;
+      followerY = -1000;
+
+      // Allow touch events to interact with particles
+      window.addEventListener('touchmove', (e) => {
+        if (e.touches.length > 0) {
+          followerX = e.touches[0].clientX;
+          followerY = e.touches[0].clientY;
+        }
+      });
+      window.addEventListener('touchend', () => {
+        followerX = -1000;
+        followerY = -1000;
+      });
     } else {
-      let mouseX = window.innerWidth / 2;
-      let mouseY = window.innerHeight / 2;
-      let followerX = window.innerWidth / 2;
-      let followerY = window.innerHeight / 2;
+      document.body.classList.add('custom-cursor-enabled');
 
       window.addEventListener('mousemove', (e) => {
         mouseX = e.clientX;
