@@ -1,13 +1,13 @@
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Redirecting...</title>
 
   <script>
     // Generate random number between 1 and 5
-    const randomNumber = Math.floor(Math.random() * 6) + 1;
+    const randomNumber = Math.floor(Math.random() * 7) + 1;
 
     // Redirect based on random number
     switch (randomNumber) {
@@ -26,8 +26,11 @@
       case 5:
         window.location.href = "index5.html";
         break;
-      default:
+      case 6:
         window.location.href = "index6.html";
+        break;
+      default:
+        window.location.href = "index7.html";
         break;
     }
   </script>
@@ -36,5 +39,5 @@
 <body>
   <p>Redirecting, please wait...</p>
 </body>
-</html>
 
+</html>
