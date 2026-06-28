@@ -434,10 +434,13 @@
                         <h4>Nest Communication</h4>
                     </div>
                     <div class="prod-actions">
-                        <a href="https://nestcomm.netlify.app/" target="_blank">APP</a>
-                        <a href="https://github.com/jayantadutta-code/nestAPKfile/releases/download/v2.1.0/app-release.apk" target="_blank"><i class="fab fa-android"></i> APK</a>
-                        <a href="https://github.com/jayantadutta-code/nestDMGfile/releases/download/v2.1.0/Nest.Communication.app.zip" target="_blank"><i class="fa-brands fa-apple"></i> DMG</a>
-                        <a href="https://github.com/jayantadutta-code/nestEXEfile/releases/download/v2.1.0/nest_communication.zip" target="_blank"><i class="fab fa-windows"></i> EXE</a>
+                        <a href="https://nestcomm.netlify.app/" target="_blank">WEB</a>
+                        <a href="https://github.com/jayantadutta-code/nestAPKfile/releases/download/v2.1.0/app-release.apk"
+                            target="_blank"><i class="fab fa-android"></i> APK</a>
+                        <a href="https://github.com/jayantadutta-code/nestDMGfile/releases/download/v2.1.0/Nest.Communication.app.zip"
+                            target="_blank"><i class="fa-brands fa-apple"></i> DMG</a>
+                        <a href="https://github.com/jayantadutta-code/nestEXEfile/releases/download/v2.1.0/nest_communication.zip"
+                            target="_blank"><i class="fab fa-windows"></i> EXE</a>
                     </div>
                 </div>
                 <div class="prod-item">
@@ -491,7 +494,7 @@
         const controls = new PointerLockControls(camera, document.body);
         const blocker = document.getElementById('blocker');
         const instructions = document.getElementById('instructions');
-        
+
         const isMobile = navigator.maxTouchPoints > 0;
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const instructionKeys = document.getElementById('instruction-keys');
@@ -517,7 +520,7 @@
             }
         });
 
-        mobileMenuBtn.addEventListener('click', function(e) {
+        mobileMenuBtn.addEventListener('click', function (e) {
             e.preventDefault();
             if (isMobile) {
                 isLocked = false;
@@ -670,9 +673,9 @@
             if (!isLocked || !isMobile) return;
             // Prevent default scroll if interacting with game surface
             if (!e.target.closest('.overlay')) {
-                e.preventDefault(); 
+                e.preventDefault();
             }
-            
+
             for (let i = 0; i < e.changedTouches.length; i++) {
                 const t = e.changedTouches[i];
                 if (t.identifier === moveTouchId) {
@@ -681,7 +684,7 @@
                     const maxDist = 50;
                     const dist = Math.min(Math.hypot(deltaX, deltaY), maxDist);
                     const angle = Math.atan2(deltaY, deltaX);
-                    
+
                     moveForward = Math.sin(angle) < -0.3 && dist > 10;
                     moveBackward = Math.sin(angle) > 0.3 && dist > 10;
                     moveLeft = Math.cos(angle) < -0.3 && dist > 10;
@@ -697,7 +700,7 @@
 
                     euler.y -= movementX * 0.005;
                     euler.x -= movementY * 0.005;
-                    euler.x = Math.max( - Math.PI / 2, Math.min( Math.PI / 2, euler.x ) );
+                    euler.x = Math.max(- Math.PI / 2, Math.min(Math.PI / 2, euler.x));
 
                     camera.quaternion.setFromEuler(euler);
                 }
