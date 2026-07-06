@@ -1,0 +1,1337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>India Soft Solutions (ISS) | Next-Gen Digital Architecture</title>
+  <meta name="description" content="India Soft Solutions (ISS) specializes in responsive web development, native iOS & Android mobile apps, UI/UX design, and 24/7 maintenance SLA." />
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="logo.ico" />
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
+  <!-- Google Fonts: Outfit -->
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+
+  <style>
+    /* --- CSS Reset & Variables --- */
+    :root {
+      --bg-dark: #06060c;
+      --bg-card: rgba(13, 11, 33, 0.4);
+      --glass-border: rgba(255, 255, 255, 0.05);
+      --glass-blur: blur(16px);
+      
+      --accent-saffron: #ff6b00;
+      --accent-green: #00e676;
+      --accent-cyan: #00f0ff;
+      --accent-purple: #8b5cf6;
+      
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Outfit', sans-serif;
+      user-select: none;
+    }
+
+    /* Hide standard scrollbar */
+    body::-webkit-scrollbar {
+      display: none;
+    }
+    body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+    }
+
+    /* --- Background Cosmic / Grid Layers --- */
+    .bg-grid {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.015) 1px, transparent 1px);
+      background-size: 50px 50px;
+      background-position: center;
+      pointer-events: none;
+      z-index: -2;
+    }
+
+    .bg-glow {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: 
+        radial-gradient(circle at 10% 20%, rgba(77, 16, 242, 0.12) 0%, transparent 40%),
+        radial-gradient(circle at 90% 80%, rgba(0, 240, 255, 0.1) 0%, transparent 45%);
+      pointer-events: none;
+      z-index: -1;
+    }
+
+    /* --- Viewport & Smooth Scroll Containers --- */
+    #viewport {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      overflow: hidden;
+    }
+
+    #scroll-container {
+      width: 100%;
+      position: absolute;
+      top: 0; left: 0;
+      will-change: transform;
+      padding-bottom: 80px; /* buffer at bottom */
+    }
+
+    /* --- Plasma Cursor Canvas --- */
+    #plasma-canvas {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      pointer-events: none;
+      z-index: 9999;
+    }
+
+    /* --- Floating Pill Navbar --- */
+    header {
+      position: fixed;
+      top: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 90%;
+      max-width: 1200px;
+      background: rgba(13, 11, 33, 0.5);
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.4), inset 0 0 1px rgba(255,255,255,0.1);
+      border: 1px solid var(--glass-border);
+      border-radius: 50px;
+      padding: 12px 35px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      z-index: 1000;
+      transition: all 0.4s ease;
+    }
+
+    .logo-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-decoration: none;
+    }
+    
+    header img {
+      height: 40px;
+      width: auto;
+    }
+
+    header h1 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--text-main);
+      letter-spacing: -0.5px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 30px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: color 0.3s, text-shadow 0.3s;
+    }
+
+    nav a:hover, nav a.active {
+      color: var(--accent-cyan);
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+    }
+
+    /* --- Layout Section Standards --- */
+    section {
+      padding: 120px 8% 80px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-title-wrap {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-tag {
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      margin-bottom: 12px;
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 20px;
+      border: 1px solid currentColor;
+    }
+
+    .section-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -1px;
+      color: var(--text-main);
+    }
+
+    .section-title span {
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* --- Glassmorphic Panels & Cards --- */
+    .glass-card {
+      background: var(--bg-card);
+      border: 1px solid var(--glass-border);
+      border-radius: 24px;
+      backdrop-filter: var(--glass-blur);
+      -webkit-backdrop-filter: var(--glass-blur);
+      padding: 40px 30px;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+      transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+
+    .glass-card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(0, 240, 255, 0.25);
+      box-shadow: 0 30px 50px rgba(0, 240, 255, 0.05);
+    }
+
+    .glass-card:hover::before {
+      transform: scaleX(1);
+    }
+
+    /* --- Section 1: Hero Split Screen --- */
+    #home {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      align-items: center;
+      gap: 60px;
+      padding-top: 150px;
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      z-index: 2;
+    }
+
+    .hero-content h2 {
+      font-size: 4.2rem;
+      line-height: 1.1;
+      font-weight: 800;
+      margin-bottom: 25px;
+      letter-spacing: -2px;
+    }
+
+    .hero-content h2 span {
+      background: linear-gradient(135deg, var(--accent-cyan) 0%, var(--accent-purple) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 0 0 30px rgba(139, 92, 246, 0.1);
+    }
+
+    .hero-content p {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 40px;
+      max-width: 540px;
+    }
+
+    .hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background: linear-gradient(135deg, var(--accent-cyan), var(--accent-purple));
+      color: #06060c;
+      padding: 16px 36px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1.05rem;
+      text-decoration: none;
+      box-shadow: 0 10px 25px rgba(0, 240, 255, 0.2);
+      transition: all 0.3s ease;
+      border: none;
+      cursor: pointer;
+    }
+
+    .hero-btn:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 15px 35px rgba(0, 240, 255, 0.4);
+    }
+
+    .hero-image-wrapper {
+      position: relative;
+      width: 100%;
+      height: 480px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-image-wrapper img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 20px 40px rgba(0, 240, 255, 0.15));
+      animation: heroFloat 6s ease-in-out infinite;
+    }
+
+    @keyframes heroFloat {
+      0% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-20px) rotate(1.5deg); }
+      100% { transform: translateY(0px) rotate(0deg); }
+    }
+
+    /* --- Section 2: About Grid --- */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .about-card h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      margin-bottom: 15px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .about-card.who h3 { color: var(--accent-green); }
+    .about-card.mission h3 { color: var(--accent-cyan); }
+    .about-card.vision h3 { color: var(--accent-purple); }
+
+    .about-card p {
+      color: var(--text-muted);
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    /* --- Section 3: Services Grid --- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .service-card {
+      text-align: center;
+      border-color: rgba(255, 255, 255, 0.03);
+    }
+
+    .service-card:hover {
+      border-color: rgba(0, 240, 255, 0.2);
+    }
+
+    .service-icon-wrap {
+      width: 75px;
+      height: 75px;
+      background: rgba(0, 240, 255, 0.06);
+      border: 1px solid rgba(0, 240, 255, 0.15);
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin: 0 auto 25px;
+      transition: all 0.4s ease;
+    }
+
+    .service-card:hover .service-icon-wrap {
+      background: var(--accent-cyan);
+      box-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+      border-color: transparent;
+    }
+
+    .service-card:hover .service-icon-wrap img {
+      filter: brightness(0) invert(1);
+    }
+
+    .service-icon-wrap img {
+      width: 35px;
+      height: 35px;
+      object-fit: contain;
+      transition: all 0.4s ease;
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--text-main);
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    /* --- Section 4: Products Table --- */
+    .products-panel {
+      padding: 30px 20px;
+      overflow-x: auto;
+      border-color: rgba(139, 92, 246, 0.1);
+    }
+
+    .products-panel:hover {
+      border-color: rgba(139, 92, 246, 0.25);
+    }
+
+    .products-table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 950px;
+      text-align: left;
+    }
+
+    .products-table thead tr {
+      border-bottom: 2px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .products-table th {
+      padding: 16px;
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--text-muted);
+    }
+
+    .products-table td {
+      padding: 18px 16px;
+      vertical-align: middle;
+      color: var(--text-main);
+    }
+
+    .products-row {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+      transition: background-color 0.3s ease;
+    }
+
+    .products-row:hover {
+      background-color: rgba(255, 255, 255, 0.015);
+    }
+
+    .logo-cell img {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(0, 0, 0, 0.3);
+      padding: 4px;
+      object-fit: contain;
+    }
+
+    .name-cell {
+      font-weight: 700;
+      color: var(--text-main);
+      font-size: 1rem;
+    }
+
+    .desc-cell {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      line-height: 1.5;
+      max-width: 250px;
+    }
+
+    .dl-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-decoration: none;
+      color: white;
+      transition: all 0.3s ease;
+    }
+
+    .dl-btn:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.1);
+      box-shadow: 0 5px 12px currentColor;
+    }
+
+    .dl-btn.exe { background: rgba(0, 120, 212, 0.15); border: 1px solid #0078d4; color: #0078d4; }
+    .dl-btn.apk { background: rgba(61, 220, 132, 0.15); border: 1px solid #3ddc84; color: #3ddc84; }
+    .dl-btn.dmg { background: rgba(175, 82, 222, 0.15); border: 1px solid #af52de; color: #af52de; }
+
+    .visit-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      color: var(--accent-cyan);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.85rem;
+      transition: text-shadow 0.3s;
+    }
+
+    .visit-link:hover {
+      text-shadow: 0 0 8px rgba(0, 240, 255, 0.4);
+    }
+
+    .coming-soon-badge {
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: rgba(255, 255, 255, 0.35);
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      padding: 5px 12px;
+      border-radius: 6px;
+      display: inline-block;
+    }
+
+    /* --- Section 5: Contact Buttons --- */
+    .contact-grid {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 30px;
+      margin-top: 20px;
+    }
+
+    .contact-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      width: 260px;
+      padding: 40px 20px;
+      text-decoration: none;
+      text-align: center;
+      border-radius: 24px;
+      border-color: rgba(255, 255, 255, 0.03);
+    }
+
+    .contact-card i {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      transition: transform 0.3s ease;
+    }
+
+    .contact-card:hover i {
+      transform: scale(1.15);
+    }
+
+    .contact-card h3 {
+      font-size: 1.3rem;
+      font-family: 'Outfit', sans-serif;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .contact-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    .contact-card.call-card:hover { border-color: rgba(37, 211, 102, 0.25); box-shadow: 0 15px 30px rgba(37, 211, 102, 0.05); }
+    .contact-card.wa-card:hover { border-color: rgba(0, 240, 255, 0.25); box-shadow: 0 15px 30px rgba(0, 240, 255, 0.05); }
+    .contact-card.email-card:hover { border-color: rgba(234, 67, 53, 0.25); box-shadow: 0 15px 30px rgba(234, 67, 53, 0.05); }
+
+    .response-note {
+      text-align: center;
+      margin-top: 50px;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* --- Footer --- */
+    footer {
+      text-align: center;
+      padding: 40px 20px;
+      border-top: 1px solid rgba(255, 255, 255, 0.04);
+      background: rgba(6, 6, 12, 0.8);
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      backdrop-filter: var(--glass-blur);
+    }
+
+    /* --- CSS Interactive Robot Droid --- */
+    #robot-container {
+      position: fixed;
+      right: 3%;
+      top: 25%;
+      width: 110px;
+      height: 180px;
+      z-index: 100;
+      pointer-events: none;
+      transition: top 0.6s cubic-bezier(0.1, 0.8, 0.2, 1), transform 0.1s ease-out;
+      filter: drop-shadow(0 15px 25px rgba(0, 240, 255, 0.15));
+    }
+
+    .robot {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      animation: robotBob 3.5s ease-in-out infinite;
+    }
+
+    @keyframes robotBob {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+      100% { transform: translateY(0px); }
+    }
+
+    .robot-head {
+      width: 56px;
+      height: 44px;
+      background: linear-gradient(135deg, #1e293b, #0f172a);
+      border: 2px solid rgba(0, 240, 255, 0.5);
+      border-radius: 18px 18px 12px 12px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 3;
+    }
+
+    .robot-visor {
+      width: 40px;
+      height: 10px;
+      background: #020205;
+      border-radius: 5px;
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(0, 240, 255, 0.25);
+    }
+
+    .robot-visor::after {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: var(--accent-cyan);
+      box-shadow: 0 0 8px var(--accent-cyan);
+      animation: visorScan 1.8s linear infinite;
+    }
+
+    @keyframes visorScan {
+      0% { transform: translateX(-100%); }
+      50% { transform: translateX(100%); }
+      100% { transform: translateX(-100%); }
+    }
+
+    .robot-ears {
+      position: absolute;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      padding: 0 1px;
+      top: 16px;
+    }
+
+    .robot-ear {
+      width: 5px;
+      height: 12px;
+      background: #475569;
+      border-radius: 2px;
+    }
+
+    .robot-antenna {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 2px;
+      height: 12px;
+      background: #475569;
+    }
+
+    .robot-antenna-tip {
+      position: absolute;
+      top: -16px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 6px;
+      background: var(--accent-purple);
+      border-radius: 50%;
+      box-shadow: 0 0 8px var(--accent-purple);
+      animation: tipFlash 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes tipFlash {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+
+    .robot-body {
+      width: 72px;
+      height: 76px;
+      background: linear-gradient(135deg, #334155, #1e293b);
+      border: 2px solid rgba(139, 92, 246, 0.4);
+      border-radius: 12px 12px 22px 22px;
+      margin-top: -5px;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .robot-core {
+      width: 28px;
+      height: 28px;
+      background: #020205;
+      border-radius: 50%;
+      border: 2px solid rgba(139, 92, 246, 0.3);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .robot-core-inner {
+      width: 16px;
+      height: 16px;
+      background: radial-gradient(circle, #e040fb 0%, #8b5cf6 100%);
+      border-radius: 50%;
+      box-shadow: 0 0 10px #e040fb;
+      animation: coreGlow 1.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes coreGlow {
+      from { transform: scale(0.9); opacity: 0.7; }
+      to { transform: scale(1.1); opacity: 1; }
+    }
+
+    .robot-shoulder {
+      position: absolute;
+      width: 12px;
+      height: 12px;
+      background: #475569;
+      border-radius: 50%;
+      top: 14px;
+    }
+    .robot-shoulder.left { left: -9px; }
+    .robot-shoulder.right { right: -9px; }
+
+    .robot-arm {
+      position: absolute;
+      width: 8px;
+      height: 40px;
+      background: linear-gradient(to bottom, #475569, #1e293b);
+      border-radius: 4px;
+      top: 22px;
+      transform-origin: top center;
+    }
+    .robot-arm.left {
+      left: -7px;
+      animation: leftArm 2.5s ease-in-out infinite alternate;
+    }
+    .robot-arm.right {
+      right: -7px;
+      animation: rightArm 2.5s ease-in-out infinite alternate;
+    }
+
+    @keyframes leftArm {
+      from { transform: rotate(12deg); }
+      to { transform: rotate(22deg); }
+    }
+    @keyframes rightArm {
+      from { transform: rotate(-12deg); }
+      to { transform: rotate(-22deg); }
+    }
+
+    .robot-thruster {
+      width: 26px;
+      height: 10px;
+      background: #334155;
+      border-radius: 0 0 5px 5px;
+      margin-top: -2px;
+      z-index: 1;
+    }
+
+    .robot-flame {
+      width: 14px;
+      height: 30px;
+      background: linear-gradient(to bottom, var(--accent-cyan), rgba(0, 240, 255, 0));
+      border-radius: 50% 50% 0 0;
+      transform-origin: top center;
+      animation: fireFlicker 0.12s ease-in-out infinite alternate;
+      box-shadow: 0 8px 12px rgba(0, 240, 255, 0.4);
+    }
+
+    @keyframes fireFlicker {
+      from { transform: scaleX(0.9) scaleY(0.9); opacity: 0.75; }
+      to { transform: scaleX(1.1) scaleY(1.05); opacity: 1; }
+    }
+
+    /* --- Responsive Adjustments --- */
+    @media (max-width: 992px) {
+      #home {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 160px;
+        gap: 40px;
+      }
+      .hero-content {
+        align-items: center;
+      }
+      .hero-content p {
+        margin: 0 auto 40px;
+      }
+      .hero-image-wrapper {
+        height: 380px;
+      }
+      #robot-container {
+        display: none; /* Hide robot on tablets/mobile to preserve space */
+      }
+    }
+
+    @media (max-width: 768px) {
+      header {
+        width: 95%;
+        padding: 10px 20px;
+        flex-direction: column;
+        border-radius: 20px;
+      }
+      nav {
+        margin-top: 12px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+      .section-title {
+        font-size: 2.2rem;
+      }
+      .contact-card {
+        width: 100%;
+        max-width: 320px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Ambient Grid & Glow Layers -->
+  <div class="bg-grid"></div>
+  <div class="bg-glow"></div>
+
+  <!-- Plasma Cursor Trail Canvas -->
+  <canvas id="plasma-canvas"></canvas>
+
+  <!-- Interactive Robot Droid -->
+  <div id="robot-container">
+    <div class="robot">
+      <div class="robot-antenna"></div>
+      <div class="robot-antenna-tip"></div>
+      <div class="robot-head">
+        <div class="robot-visor"></div>
+        <div class="robot-ears">
+          <div class="robot-ear"></div>
+          <div class="robot-ear"></div>
+        </div>
+      </div>
+      <div class="robot-body">
+        <div class="robot-core">
+          <div class="robot-core-inner"></div>
+        </div>
+        <div class="robot-shoulder left"></div>
+        <div class="robot-shoulder right"></div>
+        <div class="robot-arm left"></div>
+        <div class="robot-arm right"></div>
+      </div>
+      <div class="robot-thruster"></div>
+      <div class="robot-flame"></div>
+    </div>
+  </div>
+
+  <!-- Fixed Header Navbar -->
+  <header>
+    <a href="#home" class="logo-container">
+      <img src="logo.png" alt="India Soft Solutions" />
+      <h1>India Soft Solutions</h1>
+    </a>
+    <nav>
+      <a href="#home" class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#services">Services</a>
+      <a href="#products">Products</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <!-- Viewport wrapper for Inertia Scrolling -->
+  <div id="viewport">
+    <div id="scroll-container">
+
+      <!-- Section 1: Split Screen Hero -->
+      <section id="home">
+        <div class="hero-content">
+          <h2>Welcome to<br><span>India Soft Solutions</span></h2>
+          <p>We design and develop powerful digital experiences — from mobile apps to web platforms — to help businesses grow with technology.</p>
+          <a href="#services" class="hero-btn">Explore Our Work <i class="fas fa-arrow-right"></i></a>
+        </div>
+        <div class="hero-image-wrapper">
+          <img src="hero-bg.png" alt="Futuristic Tech Core" />
+        </div>
+      </section>
+
+      <!-- Section 2: About Us -->
+      <section id="about">
+        <div class="section-title-wrap">
+          <span class="section-tag" style="color: var(--accent-green); border-color: rgba(0, 230, 118, 0.3);">About Us</span>
+          <h2 class="section-title">Who We Are &amp; <span>Our Vision</span></h2>
+        </div>
+        <div class="about-grid">
+          <div class="glass-card about-card who">
+            <h3>🏢 Who We Are</h3>
+            <p>India Soft Solutions (ISS) is a creative and technology-driven SaaS company focused on delivering modern, high-quality digital solutions for businesses and individuals. We specialize in web development, mobile apps, and customized software designed to enhance user experience and business growth. With innovation, precision, and customer satisfaction at our core, ISS transforms ideas into impactful digital realities.</p>
+          </div>
+          <div class="glass-card about-card mission">
+            <h3>🎯 Our Mission</h3>
+            <p>To provide reliable, scalable, and high-performance digital solutions that empower clients to reach new heights through technology and innovation. We strive to blend creativity with technical excellence, ensuring every project reflects quality, precision, and long-term value. Our mission is to help businesses evolve and stay ahead in an ever-changing digital world.</p>
+          </div>
+          <div class="glass-card about-card vision">
+            <h3>🌟 Our Vision</h3>
+            <p>To be a global leader in digital innovation — inspiring change through smart technology, sustainable growth, and creative transformation. We envision a connected world where every business, regardless of size, can harness the power of technology to thrive, innovate, and make a positive impact on society.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 3: Our Services -->
+      <section id="services">
+        <div class="section-title-wrap">
+          <span class="section-tag" style="color: var(--accent-cyan); border-color: rgba(0, 240, 255, 0.3);">Services</span>
+          <h2 class="section-title">Capabilities We <span>Provide</span></h2>
+        </div>
+        <div class="services-grid">
+          <div class="glass-card service-card">
+            <div class="service-icon-wrap">
+              <img src="www.png" alt="Web Dev" />
+            </div>
+            <h3>Web Development</h3>
+            <p>Custom websites with responsive design, modern frameworks, and SEO optimization.</p>
+          </div>
+          <div class="glass-card service-card">
+            <div class="service-icon-wrap">
+              <img src="appDev.png" alt="App Dev" />
+            </div>
+            <h3>Mobile App Development</h3>
+            <p>Android and iOS mobile app solutions with native and cross-platform development.</p>
+          </div>
+          <div class="glass-card service-card">
+            <div class="service-icon-wrap">
+              <img src="ux-ui.jpg" alt="UIUX Design" />
+            </div>
+            <h3>UI/UX Design</h3>
+            <p>Beautiful and user-friendly interface designs that enhance user experience.</p>
+          </div>
+          <div class="glass-card service-card">
+            <div class="service-icon-wrap">
+              <img src="Support___Maintenance.png" alt="SLA Support" />
+            </div>
+            <h3>Support &amp; Maintenance</h3>
+            <p>24/7 technical support and regular maintenance for all your digital products.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section 4: Our Products -->
+      <section id="products">
+        <div class="section-title-wrap">
+          <span class="section-tag" style="color: var(--accent-purple); border-color: rgba(139, 92, 246, 0.3);">Ecosystem</span>
+          <h2 class="section-title">Our Next-Gen <span>Products</span></h2>
+        </div>
+        <div class="glass-card products-panel">
+          <table class="products-table">
+            <thead>
+              <tr>
+                <th>SL</th>
+                <th>Logo</th>
+                <th>Name</th>
+                <th style="width: 32%;">Short Description</th>
+                <th>Download .exe</th>
+                <th>Download .apk</th>
+                <th>Download .dmg</th>
+                <th>Visit Website</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="products-row">
+                <td style="font-weight: 700; color: var(--accent-cyan);">01</td>
+                <td class="logo-cell"><img src="nestlogo.png" alt="Nest" /></td>
+                <td class="name-cell">Nest Communication</td>
+                <td class="desc-cell">Video Communication App, It support Meeting Creation, Joining via ID and live camera/mic control, with clean and responsive UI.</td>
+                <td><a href="https://github.com/jayantadutta-code/nestEXEfile/releases/download/v2.1.0/nest_communication.zip" class="dl-btn exe"><i class="fab fa-windows"></i> .exe</a></td>
+                <td><a href="https://github.com/jayantadutta-code/nestAPKfile/releases/download/v2.1.0/app-release.apk" target="_blank" class="dl-btn apk"><i class="fab fa-android"></i> .apk</a></td>
+                <td><a href="https://github.com/jayantadutta-code/nestDMGfile/releases/download/v2.1.0/Nest.Communication.app.zip" target="_blank" class="dl-btn dmg"><i class="fab fa-apple"></i> .dmg</a></td>
+                <td><a href="https://nestcomm.netlify.app/" target="_blank" class="visit-link"><i class="fas fa-external-link-alt"></i> Visit</a></td>
+              </tr>
+              <tr class="products-row">
+                <td style="font-weight: 700; color: var(--text-muted);">02</td>
+                <td class="logo-cell"><img src="logo.png" alt="CodeSync" /></td>
+                <td class="name-cell">CodeSync</td>
+                <td class="desc-cell">Real-time collaborative code editor</td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+              </tr>
+              <tr class="products-row">
+                <td style="font-weight: 700; color: var(--text-muted);">03</td>
+                <td class="logo-cell"><img src="logo.png" alt="SecureVault" /></td>
+                <td class="name-cell">SecureVault</td>
+                <td class="desc-cell">Encrypted password manager</td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+              </tr>
+              <tr class="products-row">
+                <td style="font-weight: 700; color: var(--text-muted);">04</td>
+                <td class="logo-cell"><img src="logo.png" alt="DataFlow" /></td>
+                <td class="name-cell">DataFlow</td>
+                <td class="desc-cell">Real-time data sync &amp; analytics</td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+              </tr>
+              <tr class="products-row">
+                <td style="font-weight: 700; color: var(--text-muted);">05</td>
+                <td class="logo-cell"><img src="logo.png" alt="CloudNest" /></td>
+                <td class="name-cell">CloudNest</td>
+                <td class="desc-cell">Cloud storage &amp; file sharing</td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+              </tr>
+              <tr class="products-row">
+                <td style="font-weight: 700; color: var(--text-muted);">06</td>
+                <td class="logo-cell"><img src="logo.png" alt="SwiftCart" /></td>
+                <td class="name-cell">SwiftCart</td>
+                <td class="desc-cell">E-commerce platform for SMEs</td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+              </tr>
+              <tr class="products-row">
+                <td style="font-weight: 700; color: var(--text-muted);">07</td>
+                <td class="logo-cell"><img src="logo.png" alt="HealthTrack" /></td>
+                <td class="name-cell">HealthTrack</td>
+                <td class="desc-cell">Patient health monitoring system</td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+              </tr>
+              <tr class="products-row">
+                <td style="font-weight: 700; color: var(--text-muted);">08</td>
+                <td class="logo-cell"><img src="logo.png" alt="EduSmart" /></td>
+                <td class="name-cell">EduSmart</td>
+                <td class="desc-cell">AI-powered learning management</td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+              </tr>
+              <tr class="products-row">
+                <td style="font-weight: 700; color: var(--text-muted);">09</td>
+                <td class="logo-cell"><img src="logo.png" alt="FinSecure" /></td>
+                <td class="name-cell">FinSecure</td>
+                <td class="desc-cell">Blockchain-based financial security</td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+              </tr>
+              <tr class="products-row">
+                <td style="font-weight: 700; color: var(--text-muted);">10</td>
+                <td class="logo-cell"><img src="logo.png" alt="FinSecure" /></td>
+                <td class="name-cell">FinSecure</td>
+                <td class="desc-cell">Blockchain-based financial security</td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+                <td><span class="coming-soon-badge">Coming Soon</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Section 5: Contact Channels -->
+      <section id="contact">
+        <div class="section-title-wrap">
+          <span class="section-tag" style="color: var(--text-main); border-color: rgba(255, 255, 255, 0.3);">Contact</span>
+          <h2 class="section-title">Connect with <span>Us</span></h2>
+        </div>
+        <div class="contact-grid">
+          <a href="tel:+918250227952" class="glass-card contact-card call-card">
+            <i class="fas fa-phone-alt" style="color: #00e676;"></i>
+            <h3>Call Us</h3>
+            <p>+91 8250227952</p>
+          </a>
+          <a href="https://wa.me/918250227952" target="_blank" class="glass-card contact-card wa-card">
+            <i class="fab fa-whatsapp" style="color: var(--accent-cyan);"></i>
+            <h3>WhatsApp</h3>
+            <p>Connect Live 24/7</p>
+          </a>
+          <a href="mailto:indiasoftsolutions2025@gmail.com" class="glass-card contact-card email-card">
+            <i class="fas fa-envelope" style="color: #ff3366;"></i>
+            <h3>Email Us</h3>
+            <p style="word-break: break-all;">indiasoftsolutions2025@gmail.com</p>
+          </a>
+        </div>
+        <p class="response-note">We typically respond 24/7 during business days.</p>
+      </section>
+
+      <!-- Footer -->
+      <footer>
+        <p>© 2026 India Soft Solutions | All Rights Reserved</p>
+      </footer>
+
+    </div>
+  </div>
+
+  <!-- Inertia Scroll, Plasma Cursor, and Robot Interaction Logic -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // --- 1. JS Damped Inertia Scrolling ---
+      const body = document.body;
+      const viewport = document.getElementById("viewport");
+      const scrollContainer = document.getElementById("scroll-container");
+      
+      let targetScroll = 0;
+      let currentScroll = 0;
+      const scrollEase = 0.08;
+
+      function updateHeight() {
+        const height = scrollContainer.getBoundingClientRect().height;
+        body.style.height = `${height}px`;
+      }
+      
+      window.addEventListener("resize", updateHeight);
+      window.addEventListener("load", updateHeight);
+      updateHeight();
+      
+      // Keep checking height to adapt to loading images or elements
+      setInterval(updateHeight, 1000);
+
+      window.addEventListener("scroll", () => {
+        targetScroll = window.scrollY;
+      });
+
+      // --- 2. Flying Robot Controller ---
+      const robotContainer = document.getElementById("robot-container");
+      const robot = document.querySelector(".robot");
+      const robotFlame = document.querySelector(".robot-flame");
+
+      function updateRobot(scrollVal, velocity) {
+        const maxScroll = body.getBoundingClientRect().height - window.innerHeight;
+        if (maxScroll <= 0) return;
+
+        const scrollPercent = scrollVal / maxScroll;
+        // Robot glides between 18% and 72% height of the screen
+        const robotY = 18 + scrollPercent * 54;
+        robotContainer.style.top = `${robotY}vh`;
+
+        // Body tilts in response to scroll velocity (direction + magnitude)
+        const tilt = Math.max(-20, Math.min(20, velocity * 0.18));
+        robot.style.transform = `rotate(${tilt}deg)`;
+
+        // Jet booster flame flares based on scroll speed
+        const flameScaleY = 1 + Math.min(2.5, Math.abs(velocity) * 0.07);
+        const flameScaleX = 1 + Math.min(0.4, Math.abs(velocity) * 0.02);
+        robotFlame.style.transform = `scale(${flameScaleX}, ${flameScaleY})`;
+      }
+
+      // --- 3. Animation Update Loop ---
+      function scrollLoop() {
+        currentScroll += (targetScroll - currentScroll) * scrollEase;
+        
+        // Translate the main scrolling page container
+        scrollContainer.style.transform = `translate3d(0, ${-currentScroll}px, 0)`;
+
+        const velocity = targetScroll - currentScroll;
+        updateRobot(currentScroll, velocity);
+
+        // Update active navigation class
+        updateActiveNav();
+
+        requestAnimationFrame(scrollLoop);
+      }
+      requestAnimationFrame(scrollLoop);
+
+      // --- 4. Intercept Nav Anchor Clicks for Custom Scroll ---
+      document.querySelectorAll("nav a, .hero-btn, .scroll-cue").forEach(link => {
+        link.addEventListener("click", function(e) {
+          const href = this.getAttribute("href");
+          if (href && href.startsWith("#")) {
+            e.preventDefault();
+            const targetElement = document.querySelector(href);
+            if (targetElement) {
+              // Calculate target position absolute to document
+              const rect = targetElement.getBoundingClientRect();
+              const offsetTop = rect.top + currentScroll;
+              window.scrollTo({
+                top: offsetTop,
+                behavior: "auto" // Damping loop resolves the smoothness
+              });
+            }
+          }
+        });
+      });
+
+      // --- 5. Active Section Navigation Highlighter ---
+      const sections = document.querySelectorAll("section");
+      const navLinks = document.querySelectorAll("nav a");
+
+      function updateActiveNav() {
+        let activeId = "home";
+        sections.forEach(sec => {
+          const secTop = sec.getBoundingClientRect().top + currentScroll;
+          if (currentScroll >= secTop - window.innerHeight / 3) {
+            activeId = sec.getAttribute("id");
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove("active");
+          if (link.getAttribute("href") === `#${activeId}`) {
+            link.classList.add("active");
+          }
+        });
+      }
+
+      // --- 6. Plasma Cursor Trail Engine ---
+      const canvas = document.getElementById("plasma-canvas");
+      const ctx = canvas.getContext("2d");
+
+      function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      window.addEventListener("resize", resizeCanvas);
+      resizeCanvas();
+
+      let particles = [];
+      let mouse = { x: null, y: null, active: false };
+
+      window.addEventListener("mousemove", (e) => {
+        mouse.x = e.clientX;
+        mouse.y = e.clientY;
+        mouse.active = true;
+
+        // Spawn plasma sparks on movement
+        for (let i = 0; i < 4; i++) {
+          particles.push({
+            x: e.clientX,
+            y: e.clientY,
+            vx: (Math.random() - 0.5) * 3.5,
+            vy: (Math.random() - 0.5) * 3.5 - 0.5, // gentle vertical lift
+            size: Math.random() * 8 + 4,
+            hue: (Date.now() / 12 + Math.random() * 30) % 360,
+            alpha: 1,
+            decay: Math.random() * 0.02 + 0.015
+          });
+        }
+      });
+
+      window.addEventListener("mouseout", () => {
+        mouse.active = false;
+      });
+
+      // Ambient bubble spark spawn loop for when cursor is idle
+      setInterval(() => {
+        if (mouse.active && mouse.x !== null) {
+          particles.push({
+            x: mouse.x + (Math.random() - 0.5) * 10,
+            y: mouse.y + (Math.random() - 0.5) * 10,
+            vx: (Math.random() - 0.5) * 1.5,
+            vy: -Math.random() * 1.2 - 0.3,
+            size: Math.random() * 5 + 2,
+            hue: (Date.now() / 12) % 360,
+            alpha: 0.8,
+            decay: 0.02
+          });
+        }
+      }, 80);
+
+      function drawPlasma() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        // Additive color overlay blending mode
+        ctx.globalCompositeOperation = "screen";
+
+        for (let i = particles.length - 1; i >= 0; i--) {
+          const p = particles[i];
+          p.x += p.vx;
+          p.y += p.vy;
+          p.alpha -= p.decay;
+          p.size *= 0.98;
+
+          if (p.alpha <= 0 || p.size <= 0.3) {
+            particles.splice(i, 1);
+            continue;
+          }
+
+          ctx.beginPath();
+          // Draw radial particle gradient representing plasma light field
+          let grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size * 2.2);
+          grad.addColorStop(0, `hsla(${p.hue}, 100%, 75%, ${p.alpha})`);
+          grad.addColorStop(0.35, `hsla(${(p.hue + 25) % 360}, 100%, 55%, ${p.alpha * 0.8})`);
+          grad.addColorStop(1, `hsla(${(p.hue + 50) % 360}, 100%, 30%, 0)`);
+          
+          ctx.fillStyle = grad;
+          ctx.arc(p.x, p.y, p.size * 2.2, 0, Math.PI * 2);
+          ctx.fill();
+        }
+
+        requestAnimationFrame(drawPlasma);
+      }
+      requestAnimationFrame(drawPlasma);
+
+    });
+  </script>
+</body>
+</html>
