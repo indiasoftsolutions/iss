@@ -9,8 +9,8 @@
     // Detect if device is mobile
     const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent) || navigator.maxTouchPoints > 0;
 
-    // Set max pages: 5 for mobile, 8 for desktop
-    const maxPages = isMobile ? 5 : 8;
+    // Set max pages: 5 for mobile, 9 for desktop
+    const maxPages = isMobile ? 5 : 9;
 
     // Generate random number
     const randomNumber = Math.floor(Math.random() * maxPages) + 1;
@@ -38,8 +38,11 @@
       case 7:
         window.location.href = "index7.html";
         break;
-      default:
+      case 8:
         window.location.href = "index8.html";
+        break;
+      default:
+        window.location.href = "index9.html";
         break;
     }
   </script>

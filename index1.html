@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -7,7 +8,8 @@
 
   <link rel="icon" type="image/x-icon" href="logo.ico" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+    rel="stylesheet" />
 
   <style>
     :root {
@@ -21,14 +23,42 @@
       --border-color: #e2e8f0;
     }
 
-    :target { scroll-margin-top: 100px; }
+    :target {
+      scroll-margin-top: 100px;
+    }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Outfit', sans-serif; user-select: none; }
-    body { background-color: var(--bg-color); color: var(--text-main); overflow-x: hidden; scroll-behavior: smooth; }
-    body::-webkit-scrollbar { display: none; }
-    body { -ms-overflow-style: none; scrollbar-width: none; }
-    html { overflow-x: hidden; }
-    img { -webkit-user-drag: none; pointer-events: none; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Outfit', sans-serif;
+      user-select: none;
+    }
+
+    body {
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body::-webkit-scrollbar {
+      display: none;
+    }
+
+    body {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    html {
+      overflow-x: hidden;
+    }
+
+    img {
+      -webkit-user-drag: none;
+      pointer-events: none;
+    }
 
     /* Floating Pill Navbar */
     header {
@@ -52,17 +82,52 @@
       transition: all 0.4s ease;
     }
 
-    .logo-container { display: flex; align-items: center; }
-    header h1 { font-size: 1.5em; color: var(--text-main); font-weight: 700; letter-spacing: -0.5px; }
-    header img { height: 50px; margin-right: 12px; }
+    .logo-container {
+      display: flex;
+      align-items: center;
+    }
 
-    nav { display: flex; align-items: center; gap: 25px; }
-    nav a { text-decoration: none; color: var(--text-muted); font-weight: 500; transition: color 0.3s; font-size: 1.05em; }
-    nav a:hover { color: var(--primary); }
+    header h1 {
+      font-size: 1.5em;
+      color: var(--text-main);
+      font-weight: 700;
+      letter-spacing: -0.5px;
+    }
+
+    header img {
+      height: 50px;
+      margin-right: 12px;
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 25px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: color 0.3s;
+      font-size: 1.05em;
+    }
+
+    nav a:hover {
+      color: var(--primary);
+    }
 
     /* Animations */
-    .fade-up { opacity: 0; transform: translateY(40px); transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1); }
-    .fade-up.animated { opacity: 1; transform: translateY(0); }
+    .fade-up {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .fade-up.animated {
+      opacity: 1;
+      transform: translateY(0);
+    }
 
     /* Hero Section (Split Screen) */
     #home {
@@ -74,7 +139,7 @@
       gap: 50px;
       position: relative;
     }
-    
+
     .hero-content {
       display: flex;
       flex-direction: column;
@@ -136,14 +201,22 @@
       width: 100%;
       height: 100%;
       object-fit: contain;
-      filter: drop-shadow(0 20px 40px rgba(0,0,0,0.1));
+      filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.1));
       animation: float 6s ease-in-out infinite;
     }
 
     @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-      100% { transform: translateY(0px); }
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
     }
 
     /* Sections Shared */
@@ -151,7 +224,7 @@
       padding: 100px 8%;
       background: var(--bg-color);
     }
-    
+
     .section-title {
       font-size: 2.8em;
       font-weight: 800;
@@ -172,7 +245,7 @@
       background: var(--card-bg);
       border-radius: 24px;
       padding: 40px 30px;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.03);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.03);
       border: 1px solid var(--border-color);
       transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
       position: relative;
@@ -182,7 +255,10 @@
     .white-card::before {
       content: '';
       position: absolute;
-      top: 0; left: 0; right: 0; height: 4px;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
       background: var(--primary-gradient);
       transform: scaleX(0);
       transform-origin: left;
@@ -238,7 +314,7 @@
     .service-card:hover .icon-wrapper {
       background: var(--primary);
     }
-    
+
     .service-card:hover .icon-wrapper img {
       filter: brightness(0) invert(1);
     }
@@ -256,7 +332,7 @@
       border-radius: 40px;
       margin: 0 2%;
       padding: 100px 4%;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.02);
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.02);
     }
 
     .product-table-wrap {
@@ -333,11 +409,24 @@
       transition: all 0.3s ease;
     }
 
-    .dl-btn:hover { transform: translateY(-2px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-    .dl-btn.exe { background: #0078d4; }
-    .dl-btn.apk { background: #3ddc84; color: #000; }
-    .dl-btn.dmg { background: #af52de; }
-    
+    .dl-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .dl-btn.exe {
+      background: #0078d4;
+    }
+
+    .dl-btn.apk {
+      background: #3ddc84;
+      color: #000;
+    }
+
+    .dl-btn.dmg {
+      background: #af52de;
+    }
+
     .visit-link {
       display: inline-flex;
       align-items: center;
@@ -348,8 +437,11 @@
       font-size: 0.9em;
       transition: color 0.3s;
     }
-    .visit-link:hover { color: var(--primary-light); }
-    
+
+    .visit-link:hover {
+      color: var(--primary-light);
+    }
+
     .coming-soon-tag {
       font-size: 0.75em;
       font-weight: 600;
@@ -388,16 +480,30 @@
       font-weight: 600;
       font-size: 1.2em;
       transition: all 0.4s ease;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
     }
-    
-    .contact-btn i { font-size: 60px; margin-bottom: 20px; }
-    
-    .contact-btn.call { background: linear-gradient(135deg, #25D366, #128C7E); }
-    .contact-btn.whatsapp { background: var(--primary-gradient); }
-    .contact-btn.email { background: linear-gradient(135deg, #EA4335, #D14836); }
 
-    .contact-btn:hover { transform: translateY(-15px); box-shadow: 0 30px 50px rgba(0,0,0,0.15); }
+    .contact-btn i {
+      font-size: 60px;
+      margin-bottom: 20px;
+    }
+
+    .contact-btn.call {
+      background: linear-gradient(135deg, #25D366, #128C7E);
+    }
+
+    .contact-btn.whatsapp {
+      background: var(--primary-gradient);
+    }
+
+    .contact-btn.email {
+      background: linear-gradient(135deg, #EA4335, #D14836);
+    }
+
+    .contact-btn:hover {
+      transform: translateY(-15px);
+      box-shadow: 0 30px 50px rgba(0, 0, 0, 0.15);
+    }
 
     .response-message {
       text-align: center;
@@ -418,18 +524,53 @@
 
     /* Responsive */
     @media (max-width: 992px) {
-      #home { grid-template-columns: 1fr; text-align: center; padding-top: 150px; }
-      .hero-content { align-items: center; }
-      #home p { margin: 0 auto 40px; }
-      .hero-image-wrapper { height: 400px; }
+      #home {
+        grid-template-columns: 1fr;
+        text-align: center;
+        padding-top: 150px;
+      }
+
+      .hero-content {
+        align-items: center;
+      }
+
+      #home p {
+        margin: 0 auto 40px;
+      }
+
+      .hero-image-wrapper {
+        height: 400px;
+      }
     }
 
     @media (max-width: 768px) {
-      header { width: 95%; padding: 10px 20px; flex-direction: column; border-radius: 25px; }
-      nav { margin-top: 15px; flex-wrap: wrap; justify-content: center; gap: 15px; }
-      #home h1 { font-size: 2.8em; }
-      .section-title { font-size: 2.2em; }
-      .contact-btn { width: 100%; max-width: 280px; height: 180px; }
+      header {
+        width: 95%;
+        padding: 10px 20px;
+        flex-direction: column;
+        border-radius: 25px;
+      }
+
+      nav {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 15px;
+      }
+
+      #home h1 {
+        font-size: 2.8em;
+      }
+
+      .section-title {
+        font-size: 2.2em;
+      }
+
+      .contact-btn {
+        width: 100%;
+        max-width: 280px;
+        height: 180px;
+      }
     }
   </style>
 </head>
@@ -454,7 +595,8 @@
   <section id="home">
     <div class="hero-content fade-up">
       <h1>Welcome to<br><span>India Soft Solutions</span></h1>
-      <p>We design and develop powerful digital experiences — from mobile apps to web platforms — to help businesses grow with technology.</p>
+      <p>We design and develop powerful digital experiences — from mobile apps to web platforms — to help businesses
+        grow with technology.</p>
       <a href="#services" class="home-btn">Explore Our Work</a>
     </div>
     <div class="hero-image-wrapper fade-up">
@@ -468,15 +610,23 @@
     <div class="about-content">
       <div class="white-card fade-up">
         <h3>🏢 Who We Are</h3>
-        <p>India Soft Solutions (ISS) is a creative and technology-driven SaaS company focused on delivering modern, high-quality digital solutions for businesses and individuals. We specialize in web development, mobile apps, and customized software designed to enhance user experience and business growth. With innovation, precision, and customer satisfaction at our core, ISS transforms ideas into impactful digital realities.</p>
+        <p>India Soft Solutions (ISS) is a creative and technology-driven SaaS company focused on delivering modern,
+          high-quality digital solutions for businesses and individuals. We specialize in web development, mobile apps,
+          and customized software designed to enhance user experience and business growth. With innovation, precision,
+          and customer satisfaction at our core, ISS transforms ideas into impactful digital realities.</p>
       </div>
       <div class="white-card fade-up">
         <h3>🎯 Our Mission</h3>
-        <p>To provide reliable, scalable, and high-performance digital solutions that empower clients to reach new heights through technology and innovation. We strive to blend creativity with technical excellence, ensuring every project reflects quality, precision, and long-term value. Our mission is to help businesses evolve and stay ahead in an ever-changing digital world.</p>
+        <p>To provide reliable, scalable, and high-performance digital solutions that empower clients to reach new
+          heights through technology and innovation. We strive to blend creativity with technical excellence, ensuring
+          every project reflects quality, precision, and long-term value. Our mission is to help businesses evolve and
+          stay ahead in an ever-changing digital world.</p>
       </div>
       <div class="white-card fade-up">
         <h3>🌟 Our Vision</h3>
-        <p>To be a global leader in digital innovation — inspiring change through smart technology, sustainable growth, and creative transformation. We envision a connected world where every business, regardless of size, can harness the power of technology to thrive, innovate, and make a positive impact on society.</p>
+        <p>To be a global leader in digital innovation — inspiring change through smart technology, sustainable growth,
+          and creative transformation. We envision a connected world where every business, regardless of size, can
+          harness the power of technology to thrive, innovate, and make a positive impact on society.</p>
       </div>
     </div>
   </section>
@@ -538,11 +688,18 @@
             <td>01</td>
             <td class="logo-cell"><img src="nestlogo.png" alt="Nest Communication" /></td>
             <td class="name-cell">Nest Communication</td>
-            <td class="desc-cell">Video Communication App, It support Meeting Creation, Joining via ID and live camera/mic control, with clean and responsive UI.</td>
-            <td><a href="https://github.com/jayantadutta-code/nestEXEfile/releases/download/v2.1.0/nest_communication.zip" class="dl-btn exe"><i class="fab fa-windows"></i> .exe</a></td>
-            <td><a href="https://github.com/jayantadutta-code/nestAPKfile/releases/download/v2.1.0/app-release.apk" class="dl-btn apk" target="_blank"><i class="fab fa-android"></i> .apk</a></td>
-            <td><a href="https://github.com/jayantadutta-code/nestDMGfile/releases/download/v2.1.0/Nest.Communication.app.zip" class="dl-btn dmg" target="_blank"><i class="fa-brands fa-apple"></i> .dmg</a></td>
-            <td><a href="https://nestcomm.netlify.app/" class="visit-link" target="_blank"><i class="fas fa-external-link-alt"></i> Visit</a></td>
+            <td class="desc-cell">Video Communication App, It support Meeting Creation, Joining via ID and live
+              camera/mic control, with clean and responsive UI.</td>
+            <td><a
+                href="https://github.com/jayantadutta-code/nestEXEfile/releases/download/v2.1.0/nest_communication.zip"
+                class="dl-btn exe"><i class="fab fa-windows"></i> .exe</a></td>
+            <td><a href="https://github.com/jayantadutta-code/nestAPKfile/releases/download/v2.1.0/app-release.apk"
+                class="dl-btn apk" target="_blank"><i class="fab fa-android"></i> .apk</a></td>
+            <td><a
+                href="https://github.com/jayantadutta-code/nestDMGfile/releases/download/v2.1.0/Nest.Communication.app.zip"
+                class="dl-btn dmg" target="_blank"><i class="fa-brands fa-apple"></i> .dmg</a></td>
+            <td><a href="https://nestcomm.netlify.app/" class="visit-link" target="_blank"><i
+                  class="fas fa-external-link-alt"></i> Visit</a></td>
           </tr>
           <tr>
             <td>02</td>
@@ -680,7 +837,7 @@
 
       // Smooth scroll for nav links
       document.querySelectorAll('nav a').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
+        anchor.addEventListener('click', function (e) {
           e.preventDefault();
           const target = document.querySelector(this.getAttribute('href'));
           if (target) {
@@ -691,4 +848,5 @@
     });
   </script>
 </body>
+
 </html>
