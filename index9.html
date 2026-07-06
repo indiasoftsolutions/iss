@@ -1383,6 +1383,9 @@
       // --- 2. Scroll-Controlled Video Background ---
       const video = document.getElementById("scroll-video");
       let videoDuration = 0;
+      let targetTime = 0;
+      let lastSoughtTime = -1;
+      let isSeeking = false;
       
       video.addEventListener("loadedmetadata", () => {
         videoDuration = video.duration;
@@ -1399,8 +1402,25 @@
         if (maxScroll <= 0) return;
         
         const scrollPercent = Math.max(0, Math.min(1, scrollVal / maxScroll));
-        video.currentTime = Math.max(0, Math.min(videoDuration - 0.02, scrollPercent * videoDuration));
+        targetTime = Math.max(0, Math.min(videoDuration - 0.02, scrollPercent * videoDuration));
+        
+        if (!isSeeking) {
+          seekToTarget();
+        }
       }
+
+      function seekToTarget() {
+        if (Math.abs(targetTime - lastSoughtTime) > 0.01) {
+          isSeeking = true;
+          lastSoughtTime = targetTime;
+          video.currentTime = targetTime;
+        }
+      }
+
+      video.addEventListener("seeked", () => {
+        isSeeking = false;
+        seekToTarget();
+      });
 
       // --- 3. Animation Update Loop ---
       function scrollLoop() {
